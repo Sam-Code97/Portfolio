@@ -5,7 +5,7 @@ const app = express() // creates the Express application
 
 // MODEL (DATA)
 const sqlite3 = require('sqlite3')
-const db = new sqlite3.Database('portfolio.db')
+const db = new sqlite3.Database('portfolio1.db')
 
 // defines handlebars engine
 app.engine('handlebars', engine());
@@ -37,14 +37,15 @@ db.run("CREATE TABLE projects (pid INTEGER PRIMARY KEY, pname TEXT NOT NULL, pye
     console.log("---> Table projects created!")
 
     const projects=[
-      { "id":"1", "name":"Counting people with a camera", "type":"research", "desc": "The purpose of this project is to count people passing through a corridor and to know how many are in the room at a certain time.", "year": 2022, "dev":"Python and OpenCV (Computer vision) library", 
+      { "id":"1", "name":"Advanced Snake Game", "type":"research", "desc": "Dive into a classic snake game with a twist! Implemented in C++ using the Qt framework, this game not only offers the traditional snake gameplay but also boasts an advanced pathfinding algorithm, ensuring a challenging and engaging experience.", "year": 2022, "dev":"C++ and Qt framework", 
       "url":"/img/counting.png" },
-      { "id":"2", "name":"Visualisation of 3D medical images", "type":"research", "desc": "The project makes a 3D model of the analysis of the body of a person and displays the detected health problems. It is useful for doctors to view in 3D their patients and the evolution of a disease.", "year":
-      2012, "url":"/img/medical.png" },
-      { "id":"3", "name":"Multiple questions system", "type":"teaching", "desc": "During the lockdowns in France, this project was useful to test the students online with a Quizz system.", "year": 2021, "url":"/img/qcm07.png" },
-      { "id":"4", "name":"Image comparison with the Local Dissmilarity Map", "desc": "The project is about finding and quantifying the differences between two images of the same size. The applications were numerous: satallite imaging, medical imaging,...", "year": 2020, "type":"research", 
+      { "id":"2", "name":"Paint App", "type":"research", "desc": "Dive into a world of creativity with this simple painting application. Harnessing intricate algorithms, this app offers boundary-fill, flood-fill, and scan-line fill techniques to bring your artistic visions to life.", "year":
+      2022, "url":"/img/medical.png" },
+      { "id":"3", "name":"Calculation Algorithm", "type":"Study", "desc": "A sophisticated calculator algorithm developed in C++, showcasing a robust parsing mechanism to evaluate mathematical expressions. The project is designed with a clear focus on tokenization and operator precedence.", "year": 2022, "url":"/img/qcm07.png" },
+      { "id":"4", "name":"BetterTicTacToe", "desc": "An enhanced version of the classic Tic Tac Toe game, developed in Java. The project showcases a strong Object-Oriented Design, with distinct classes representing game components, rules, and user interactions.", "year": 2023, "type":"Study", 
       "url":"/img/diaw02.png" },
-      { "id":"5", "name":"Management system for students' internships", "desc": "This project was about the creation of a database to manage the students' internships.", "year": 2012, "type":"teaching", "url":"/img/management.png" }
+      { "id":"5", "name":"Simple Notepad", "desc": "A lightweight notepad application developed in C++ using the Qt framework. It offers essential features like opening, saving, and clearing text files, all wrapped in a user-friendly graphical interface.", "year": 2022, "type":"Study", "url":"/img/management.png" },
+      { "id":"6", "name":"Encryption Tool", "desc": "A robust encryption tool built in Java that offers both encryption and decryption functionalities. With a user-friendly GUI, users can easily input text and an encryption key to get the desired encrypted or decrypted output.", "year": 2023, "type":"Study", "url":"/img/management.png" }
     ]
 
     // inserts projects
