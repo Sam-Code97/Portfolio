@@ -5,7 +5,7 @@ const app = express() // creates the Express application
 
 // MODEL (DATA)
 const sqlite3 = require('sqlite3')
-const db = new sqlite3.Database('Medical-record-system.db')
+const db = new sqlite3.Database('portfolio.db')
 
 // defines handlebars engine
 app.engine('handlebars', engine());
@@ -163,6 +163,26 @@ app.get('/projects', function(request, response){
       response.render("projects.handlebars", model)
     }
   })
+})
+
+app.get('/contact', function(request, response){
+  response.render("contact.handlebars")
+})
+
+app.get('/about', function(request, response){
+  response.render("about.handlebars")
+})
+
+app.get('/blog', function(request, response){
+  response.render("blog.handlebars")
+})
+
+app.get('/login', function(request, response){
+  response.render("login.handlebars")
+})
+
+app.get('/signup', function(request, response){
+  response.render("signup.handlebars")
 })
 
 
