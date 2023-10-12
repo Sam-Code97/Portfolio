@@ -9,7 +9,7 @@ const bcrypt = require('bcrypt')
 
 const port = 8080 // defines the port
 const app = express() // creates the Express application
-const db = new sqlite3.Database('portfolio3.db')
+const db = new sqlite3.Database('portfolio.db')
 
 // defines handlebars engine
 app.engine('handlebars', engine());
@@ -109,6 +109,21 @@ db.run("CREATE TABLE blog (bid INTEGER PRIMARY KEY, bheader TEXT NOT NULL, bshor
     console.log("---> Table blog created!")
     const blogs=[
     {"id":"1", "header": "The Future of Programming", "shortdesc": "Dive into the exhilarating future of programming! From quantum computing to AI-driven development, explore the trends that will redefine the coding landscape. Join us on a journey to tomorrow's code, where ethics meets innovation, and possibilities are boundless.",
+     "secone": "The Future of Programming: A Glimpse into Tomorrow's Code In the ever-evolving world of technology, programming has always been at the forefront, driving innovation and shaping the digital landscape. As we stand on the cusp of a new era, it's essential to ponder what the future holds for programming. Here's a brief look into the exciting prospects that await.",
+      "sectwo": "Quantum Computing: Traditional bits will give way to qubits, opening doors to unimaginable computational power. Quantum programming languages and frameworks will become mainstream, solving problems deemed unsolvable today. AI-Driven Development: Artificial Intelligence will play a pivotal role in code generation, debugging, and optimization. Developers will collaborate with AI assistants, making the coding process more efficient and error-free. Augmented Reality (AR) and Virtual Reality (VR): As AR and VR technologies mature, there will be a surge in demand for immersive experiences. This will necessitate new programming paradigms and tools tailored for these realities. No-Code/Low-Code Platforms: Simplifying the development process, these platforms will empower non-developers to create applications. While they won't replace traditional coding, they'll democratize app development.",
+      "secthree" : "Sustainable Coding: With growing concerns about energy consumption, there will be a push towards writing energy-efficient code. Developers will need to be conscious of the environmental impact of their applications. Cross-Platform Development: As the number of devices and platforms grows, there will be a stronger emphasis on writing code that runs everywhere. Frameworks that allow for seamless integration across platforms will be in high demand.Ethical Programming: With technology deeply embedded in our lives, ethical considerations in programming will become paramount. Developers will need to ensure that their code respects user privacy, equity, and societal values. In conclusion, the future of programming is bright, filled with opportunities and challenges. As developers, it's our responsibility to adapt, innovate, and drive the next wave of technological advancements.",
+     "imgURL": "/img/bildss"},
+     {"id":"2", "header": "The Future of Programming", "shortdesc": "Dive into the exhilarating future of programming! From quantum computing to AI-driven development, explore the trends that will redefine the coding landscape. Join us on a journey to tomorrow's code, where ethics meets innovation, and possibilities are boundless.",
+     "secone": "The Future of Programming: A Glimpse into Tomorrow's Code In the ever-evolving world of technology, programming has always been at the forefront, driving innovation and shaping the digital landscape. As we stand on the cusp of a new era, it's essential to ponder what the future holds for programming. Here's a brief look into the exciting prospects that await.",
+      "sectwo": "Quantum Computing: Traditional bits will give way to qubits, opening doors to unimaginable computational power. Quantum programming languages and frameworks will become mainstream, solving problems deemed unsolvable today. AI-Driven Development: Artificial Intelligence will play a pivotal role in code generation, debugging, and optimization. Developers will collaborate with AI assistants, making the coding process more efficient and error-free. Augmented Reality (AR) and Virtual Reality (VR): As AR and VR technologies mature, there will be a surge in demand for immersive experiences. This will necessitate new programming paradigms and tools tailored for these realities. No-Code/Low-Code Platforms: Simplifying the development process, these platforms will empower non-developers to create applications. While they won't replace traditional coding, they'll democratize app development.",
+      "secthree" : "Sustainable Coding: With growing concerns about energy consumption, there will be a push towards writing energy-efficient code. Developers will need to be conscious of the environmental impact of their applications. Cross-Platform Development: As the number of devices and platforms grows, there will be a stronger emphasis on writing code that runs everywhere. Frameworks that allow for seamless integration across platforms will be in high demand.Ethical Programming: With technology deeply embedded in our lives, ethical considerations in programming will become paramount. Developers will need to ensure that their code respects user privacy, equity, and societal values. In conclusion, the future of programming is bright, filled with opportunities and challenges. As developers, it's our responsibility to adapt, innovate, and drive the next wave of technological advancements.",
+     "imgURL": "/img/bildss"},
+     {"id":"3", "header": "The Future of Programming", "shortdesc": "Dive into the exhilarating future of programming! From quantum computing to AI-driven development, explore the trends that will redefine the coding landscape. Join us on a journey to tomorrow's code, where ethics meets innovation, and possibilities are boundless.",
+     "secone": "The Future of Programming: A Glimpse into Tomorrow's Code In the ever-evolving world of technology, programming has always been at the forefront, driving innovation and shaping the digital landscape. As we stand on the cusp of a new era, it's essential to ponder what the future holds for programming. Here's a brief look into the exciting prospects that await.",
+      "sectwo": "Quantum Computing: Traditional bits will give way to qubits, opening doors to unimaginable computational power. Quantum programming languages and frameworks will become mainstream, solving problems deemed unsolvable today. AI-Driven Development: Artificial Intelligence will play a pivotal role in code generation, debugging, and optimization. Developers will collaborate with AI assistants, making the coding process more efficient and error-free. Augmented Reality (AR) and Virtual Reality (VR): As AR and VR technologies mature, there will be a surge in demand for immersive experiences. This will necessitate new programming paradigms and tools tailored for these realities. No-Code/Low-Code Platforms: Simplifying the development process, these platforms will empower non-developers to create applications. While they won't replace traditional coding, they'll democratize app development.",
+      "secthree" : "Sustainable Coding: With growing concerns about energy consumption, there will be a push towards writing energy-efficient code. Developers will need to be conscious of the environmental impact of their applications. Cross-Platform Development: As the number of devices and platforms grows, there will be a stronger emphasis on writing code that runs everywhere. Frameworks that allow for seamless integration across platforms will be in high demand.Ethical Programming: With technology deeply embedded in our lives, ethical considerations in programming will become paramount. Developers will need to ensure that their code respects user privacy, equity, and societal values. In conclusion, the future of programming is bright, filled with opportunities and challenges. As developers, it's our responsibility to adapt, innovate, and drive the next wave of technological advancements.",
+     "imgURL": "/img/bildss"},
+     {"id":"4", "header": "The Future of Programming", "shortdesc": "Dive into the exhilarating future of programming! From quantum computing to AI-driven development, explore the trends that will redefine the coding landscape. Join us on a journey to tomorrow's code, where ethics meets innovation, and possibilities are boundless.",
      "secone": "The Future of Programming: A Glimpse into Tomorrow's Code In the ever-evolving world of technology, programming has always been at the forefront, driving innovation and shaping the digital landscape. As we stand on the cusp of a new era, it's essential to ponder what the future holds for programming. Here's a brief look into the exciting prospects that await.",
       "sectwo": "Quantum Computing: Traditional bits will give way to qubits, opening doors to unimaginable computational power. Quantum programming languages and frameworks will become mainstream, solving problems deemed unsolvable today. AI-Driven Development: Artificial Intelligence will play a pivotal role in code generation, debugging, and optimization. Developers will collaborate with AI assistants, making the coding process more efficient and error-free. Augmented Reality (AR) and Virtual Reality (VR): As AR and VR technologies mature, there will be a surge in demand for immersive experiences. This will necessitate new programming paradigms and tools tailored for these realities. No-Code/Low-Code Platforms: Simplifying the development process, these platforms will empower non-developers to create applications. While they won't replace traditional coding, they'll democratize app development.",
       "secthree" : "Sustainable Coding: With growing concerns about energy consumption, there will be a push towards writing energy-efficient code. Developers will need to be conscious of the environmental impact of their applications. Cross-Platform Development: As the number of devices and platforms grows, there will be a stronger emphasis on writing code that runs everywhere. Frameworks that allow for seamless integration across platforms will be in high demand.Ethical Programming: With technology deeply embedded in our lives, ethical considerations in programming will become paramount. Developers will need to ensure that their code respects user privacy, equity, and societal values. In conclusion, the future of programming is bright, filled with opportunities and challenges. As developers, it's our responsibility to adapt, innovate, and drive the next wave of technological advancements.",
@@ -323,7 +338,8 @@ app.get('/blog', function(request, response){
         blog: [],
         isLoggedIn: request.session.isLoggedIn,
         name: request.session.name,
-        isAdmin: request.session.isAdmin
+        isAdmin: request.session.isAdmin,
+        isCreator: request.session.isAdmin
       }
       // renders the page with the model
       response.render("blog.handlebars", model)
@@ -335,12 +351,44 @@ app.get('/blog', function(request, response){
         blog: theBlogs,
         isLoggedIn: request.session.isLoggedIn,
         name: request.session.name,
-        isAdmin: request.session.isAdmin
+        isAdmin: request.session.isAdmin,
+        isCreator: request.session.isAdmin
       }
       // renders the page with the model
       response.render("blog.handlebars", model)
     }
   })
+})
+
+app.get('/blog/delete/:id', (req, res) => {
+  const id = req.params.id
+  if( req.session.isLoggedIn == true && (req.session.isAdmin == true || req.session.isCreator == true) ){
+    db.run("DELETE FROM blog WHERE pid=?", [id], (error, theBlogs) => {
+      if(error){
+        const model = {
+          dbError: true, theError: error,
+          isLoggedIn: req.session.isLoggedIn,
+          name: req.session.name,
+          isAdmin: req.session.isAdmin,
+          isCreator: req.session.isAdmin
+        }
+        res.render("blog.handlebars", model)
+      }
+      else{
+        const model = {
+          dbError: false, theError: "",
+          isLoggedIn: req.session.isLoggedIn,
+          name: req.session.name,
+          isAdmin: req.session.isAdmin,
+          isCreator: req.session.isAdmin
+        }
+        res.render("blog.handlebars", model)
+      }
+    })
+  }
+  else{
+    res.redirect('/login')
+  }
 })
 
 app.get('/blog/:id', (request, response) => {
@@ -354,7 +402,8 @@ app.get('/blog/:id', (request, response) => {
         blog: [],
         isLoggedIn: request.session.isLoggedIn,
         name: request.session.name,
-        isAdmin: request.session.isAdmin
+        isAdmin: request.session.isAdmin,
+        isCreator: request.session.isAdmin
       }
       response.render("fullblog.handlebars", model)
     }
@@ -365,19 +414,21 @@ app.get('/blog/:id', (request, response) => {
         blog: theBlogs,
         isLoggedIn: request.session.isLoggedIn,
         name: request.session.name,
-        isAdmin: request.session.isAdmin
+        isAdmin: request.session.isAdmin,
+        isCreator: request.session.isAdmin
       }
       response.render("fullblog.handlebars", model)
     }
   })
 })
 
+app.delete()
+
 app.get('/login', function(request, response){
   const model={
     isLoggedIn: request.session.isLoggedIn,
     name: request.session.name,
     isAdmin: request.session.isAdmin,
-    isBadLogin: request.session.isBadLogin
   }
   response.render("login.handlebars", model)
 })
@@ -468,14 +519,6 @@ app.post('/signup', (req, res) => {
   })
 })
 
-
-app.get('/humans/:id', function(request, response){
-  // get the id on the dynamic route
-  const id = request.params.id // E.g. “1”, “2”, “3”, …
-  const model = humans[id];
-  // do the job now!
-  response.render('human.handlebars', model)
-})
 
 // defines the final default route 404 NOT FOUND
 app.use(function(req,res){

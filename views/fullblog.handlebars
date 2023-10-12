@@ -15,47 +15,50 @@
                 {{theError}}
             </div>
             {{else}}
-                {{#each blog}}
-                    <div class="column col-1 col-md-4 col-sm-12">
-                            <div class="fullblog">
-                                <div class="card-image">
-                                    <img class="img-responsive" src="{{bimgURL}}" alt="{{bimgURL}}"/>
-                                </div>
-                                <div class="blog-header">
-                                    <div class="blog-title h3">{{bheader}}</div>
-                                </div>
-                                <div class="blog-brief-desc">
-                                    <article>
-                                        {{bshortdesc}}
-                                    </article>
-                                </div>
-
-                                <div class="blog-body">
-                                    <article>
-                                        {{bsecone}}
-                                        <br>
-                                    </article>
-                                    <article>
-                                        {{bsectwo}}
-                                        <br>
-                                    </article>
-                                    <article>
-                                        {{bsecthree}}
-                                        <br>
-                                    </article>
-                                </div>
-
-                                <div class="blog-footer">
-                                    {{#if ../isAdmin}}
-                                        <div>
-                                            <a href="/blog/update/{{pid}}"> Modify </a> - <a href="/blog/delete/{{pid}}" class="important"> Delete </a>
-                                        </div>
-                                    {{/if}}
-                                </div>
+                <div class="column col-12">
+                        <div class="fullblog">
+                            <div class="card-image">
+                                <img class="img-responsive" src="{{blog.bimgURL}}" alt="{{blog.bimgURL}}"/>
                             </div>
-                        </a>
-                    </div>
-                {{/each}}
+                            <div class="blog-header">
+                                <div class="blog-title h3">{{blog.bheader}} <br> </div>
+                                <br>
+                            </div>
+                            <div class="blog-brief-desc">
+                                <article>
+                                    {{blog.bshortdesc}}
+                                    <br>
+                                </article>
+                            </div>
+
+                            <div class="blog-body">
+                                <br>
+                                <article>
+                                    {{blog.bsecone}}
+                                    <br>
+                                </article>
+                                <br>
+                                <article>
+                                    {{blog.bsectwo}}
+                                    <br>
+                                </article>
+                                <br>
+                                <article>
+                                    {{blog.bsecthree}}
+                                    <br>
+                                </article>
+                            </div>
+
+                            <div class="blog-footer">
+                                {{#if isAdmin}}
+                                    <div>
+                                        <a href="/blog/update/{{blog.bid}}"> Modify </a> - <a href="/blog/delete/{{blog.bid}}" class="important"> Delete </a>
+                                    </div>
+                                {{/if}}
+                            </div>
+                        </div>
+                    </a>
+                </div>
             {{/if}}
         </div>
     </div>
