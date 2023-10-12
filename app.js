@@ -343,6 +343,36 @@ app.get('/blog', function(request, response){
   })
 })
 
+app.get('/blog/:id', (request, response) => {
+  const id = req.params.id
+  db.all("SELECT * FROM blog WHERE bid=?", [id], function(error, theBlogs){
+    if(error){
+      const model = {
+        hasDatabaseError: true,
+        theError: error,
+        blog: [],
+        isLoggedIn: request.session.isLoggedIn,
+        name: request.session.name,
+        isAdmin: request.session.isAdmin
+      }
+      // renders the page with the model
+      response.render("fullblog.handlebars", model)
+    }
+    else{
+      const model = {
+        hasDatabaseError: false,
+        theError: "",
+        blog: theBlogs,
+        isLoggedIn: request.session.isLoggedIn,
+        name: request.session.name,
+        isAdmin: request.session.isAdmin
+      }
+      // renders the page with the model
+      response.render("fullblog.handlebars", model)
+    }
+  })
+})
+
 app.get('/login', function(request, response){
   const model={
     isLoggedIn: request.session.isLoggedIn,

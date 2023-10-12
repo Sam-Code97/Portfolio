@@ -46,3 +46,14 @@
     box-sizing: border-box;
 }
 
+.blog-card-link, .blog-card-link:link, .blog-card-link:visited {
+    text-decoration: none;
+    text-shadow: 2px 2px 4px black;
+    color: black; /* This will ensure the color remains black */
+}
+
+.blog-card-link:hover {
+    text-decoration: none;
+    cursor: pointer;
+}
+
