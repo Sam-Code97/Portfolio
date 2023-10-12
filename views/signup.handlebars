@@ -1,13 +1,16 @@
-<div>
-    signup:
-
-    <label for="Email"></label>
+<div class="main">
     <div>
-        <input class="Email" type="text" name="Email">
+        <h1>Sign up</h1>
+        <div>
+            <form action="/signup" method="post" id="formsignup">
+                <fieldset>
+                    <legend>Signup information</legend>
+                    <label>Username: <input type="text" name="un"></label>
+                    <br>
+                    <label>Password: <input type="password" name="pw"></label>
+                </fieldset>
+                <input type="submit" value="Signup">
+            </form>
+        </div>
     </div>
-    <label for="password"></label>
-    <div>
-        <input class="password" type="password" name="password">
-    </div>
-    already signed-up? <!--link to login.handlebars-->
 </div>

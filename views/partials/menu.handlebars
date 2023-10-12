@@ -1,13 +1,23 @@
 <header id="menu">
-    <div>
-        <ul>
-            <li><a href="/"> Home </a></li>
-            <li><a href="/projects"> Projects </a></li>
-            <li><a href="/blog"> Blog </a></li>
-            <li><a href="/about"> About </a></li>
-            <li><a href="/contact"> Contact Me </a></li>
-            <li><a href="/login"> Login </a></li>
-            <li><a href="/signup"> Signup </a></li>
-        </ul>
-    </div>
+    <nav>
+        <div class="navbar">
+            <section class="navbar-section">
+                <a href="/" class="btn btn-link"> Home </a>
+                <a href="/projects" class="btn btn-link"> Projects </a>
+                <a href="/blog" class="btn btn-link"> Blog </a>
+                <a href="/about" class="btn btn-link"> About </a>
+                <a href="/contact" class="btn btn-link"> Contact Me </a>
+
+                {{#if isLoggedIn}}
+                    <div class="to-the-right">
+                        Hi, {{name}}! &nbsp; &nbsp;
+                        <a href="/logout" class="btn btn-link">Logout</a>
+                    </div>
+                {{else}}
+                    <a href="/login" class="btn btn-link to-the-right"> Login </a>
+                    <a href="/signup" class="btn btn-link to-the-right"> Signup </a>
+                {{/if}}
+            </section>
+        </div>
+    </nav>
 </header>

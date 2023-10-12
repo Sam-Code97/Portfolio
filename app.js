@@ -1,11 +1,14 @@
 const express = require('express') // loads the express package
 const { engine } = require('express-handlebars'); // loads handlebars for Express
+const session = require('express-session');
+const bodyParser = require('body-parser');
+const sqlite3 = require('sqlite3')
+const connectSqlite3 = require('connect-sqlite3')
+const cookieParser = require('cookie-parser')
+
 const port = 8080 // defines the port
 const app = express() // creates the Express application
-
-// MODEL (DATA)
-const sqlite3 = require('sqlite3')
-const db = new sqlite3.Database('portfolio1.db')
+const db = new sqlite3.Database('portfolio.db')
 
 // defines handlebars engine
 app.engine('handlebars', engine());
@@ -13,9 +16,20 @@ app.engine('handlebars', engine());
 app.set('view engine', 'handlebars');
 // defines the views directory
 app.set('views', './views');
-
+app.use(bodyParser.urlencoded({extended: false}))
+app.use(bodyParser.json())
 // define static directory "public" to access css/ and img/
 app.use(express.static('public'))
+
+//store sessions in the database
+const SQLiteStore = connectSqlite3(session)
+//define the session
+app.use(session({
+  store: new SQLiteStore({db: session-db.db}),
+  "saveUninitialized": false,
+  "resave": false,
+  "secret": "m3@5y%s1&u!p43#er=s!32e¤c2r6e/t"
+}))
 
 // MODEL (DATA)
 const humans = [
@@ -38,7 +52,7 @@ db.run("CREATE TABLE projects (pid INTEGER PRIMARY KEY, pname TEXT NOT NULL, pye
 
     const projects=[
       { "id":"1", "name":"Advanced Snake Game", "type":"research", "desc": "Dive into a classic snake game with a twist! Implemented in C++ using the Qt framework, this game not only offers the traditional snake gameplay but also boasts an advanced pathfinding algorithm, ensuring a challenging and engaging experience.", "year": 2022, "dev":"C++ and Qt framework", 
-      "url":"/img/counting.png" },
+      "url":"/img/counting.png"},
       { "id":"2", "name":"Paint App", "type":"research", "desc": "Dive into a world of creativity with this simple painting application. Harnessing intricate algorithms, this app offers boundary-fill, flood-fill, and scan-line fill techniques to bring your artistic visions to life.", "year":
       2022, "url":"/img/medical.png" },
       { "id":"3", "name":"Calculation Algorithm", "type":"Study", "desc": "A sophisticated calculator algorithm developed in C++, showcasing a robust parsing mechanism to evaluate mathematical expressions. The project is designed with a clear focus on tokenization and operator precedence.", "year": 2022, "url":"/img/qcm07.png" },
@@ -138,8 +152,14 @@ db.run("CREATE TABLE projectsSkills (psid INTEGER PRIMARY KEY, pid INTEGER, sid 
 
 // CONTROLLER (THE BOSS)
 // defines route "/"
-app.get('/', function(request, response){
-  response.render('home.handlebars')
+app.get('/', function(req, res){
+  console.log("Session: ", req.session)
+  const model={
+    isLoggedIn: req.session.isLoggedIn,
+    name: req.session.name,
+    isAdmin: req.session.isAdmin
+  }
+  res.render('home.handlebars', model)
 })
 
 // defines route "/humans"
@@ -149,7 +169,10 @@ app.get('/projects', function(request, response){
       const model = {
         hasDatabaseError: true,
         theError: error,
-        projects: []
+        projects: [],
+        isLoggedIn: request.session.isLoggedIn,
+        name: request.session.name,
+        isAdmin: request.session.isAdmin
       }
       // renders the page with the model
       response.render("projects.handlebars", model)
@@ -158,7 +181,10 @@ app.get('/projects', function(request, response){
       const model = {
         hasDatabaseError: false,
         theError: "",
-        projects: theProjects
+        projects: theProjects,
+        isLoggedIn: request.session.isLoggedIn,
+        name: request.session.name,
+        isAdmin: request.session.isAdmin
       }
       // renders the page with the model
       response.render("projects.handlebars", model)
@@ -166,20 +192,124 @@ app.get('/projects', function(request, response){
   })
 })
 
+app.get('/projects/delete/:id', (req, res) => {
+  const id = req.params.id
+  if(req.session.isLoggedIn == true && req.session.isAdmin == true){
+    db.run("DELETE FROM projects WHERE pid=?", [id], (error, theProjects) => {
+      if(error){
+        const model = {
+          dbError: true, theError: error,
+          isLoggedIn: req.session.isLoggedIn,
+          name: req.session.name,
+          isAdmin: req.session.isAdmin
+        }
+        res.render("home.handlebars", model)
+      }
+      else{
+        const model = {
+          dbError: false, theError: "",
+          isLoggedIn: req.session.isLoggedIn,
+          name: req.session.name,
+          isAdmin: req.session.isAdmin
+        }
+        res.render("home.handlebars", model)
+      }
+    })
+  }
+  else{
+    res.redirect('/login')
+  }
+})
+
+app.get('/projects/new', (req, res) => {
+  if(req.session.isLoggedIn==true && req.session.isAdmin==true){
+    const model = {
+      isLoggedIn: req.session.isLoggedIn,
+      name: req.session.name,
+      isAdmin: req.session.isAdmin
+    }
+    res.render('newproject.handlebars', model)
+  }
+  else{
+    res.redirect('/login')
+  }
+});
+
+app.post('/project/new', (req, res) => {
+  const newp = [
+    req.body.projname, req.body.projyear, req.body.projdesc, req.body.projtype, req.body.projimg,
+  ]
+  if(req.session.isLoggedIn==true && req.session.isAdmin==true){
+    db.run("INSERT INTO projects (pname, pyear, pdesc, ptype, pimgURL) VALUES (?, ?, ?, ?, ?)", newp, (error) => {
+      if(error){
+        console.log("ERROR: ", error)
+      }
+      else{
+        console.log("Line added into the projects table!")
+      }
+      res.redirect('/projects')
+    })
+  }
+  else{
+    res.redirect('/login')
+  }
+})
+
 app.get('/contact', function(request, response){
-  response.render("contact.handlebars")
+  const model={
+    isLoggedIn: request.session.isLoggedIn,
+    name: request.session.name,
+    isAdmin: request.session.isAdmin
+  }
+  response.render("contact.handlebars", model)
 })
 
 app.get('/about', function(request, response){
-  response.render("about.handlebars")
+  const model={
+    isLoggedIn: request.session.isLoggedIn,
+    name: request.session.name,
+    isAdmin: request.session.isAdmin
+  }
+  response.render("about.handlebars", model)
 })
 
 app.get('/blog', function(request, response){
-  response.render("blog.handlebars")
+  const model={
+    isLoggedIn: request.session.isLoggedIn,
+    name: request.session.name,
+    isAdmin: request.session.isAdmin
+  }
+  response.render("blog.handlebars", model)
 })
 
 app.get('/login', function(request, response){
-  response.render("login.handlebars")
+  const model={
+    isLoggedIn: request.session.isLoggedIn,
+    name: request.session.name,
+    isAdmin: request.session.isAdmin
+  }
+  response.render("login.handlebars", model)
+})
+
+//check log in and password of a user
+app.post('/login', function(req, res){
+  const un = req.body.un
+  const pw = req.body.pw
+
+  if(un=="sam" && pw=="123"){
+    console.log("Sam is logged in!")
+    req.session.isAdmin = true
+    req.session.isLoggedIn = true
+    req.session.name = "Sam"
+    res.redirect('/')
+  }
+  else{
+    console.log('Bad user or bad passwprd')
+    req.session.isAdmin = false
+    req.session.isLoggedIn = false
+    req.session.name = ""
+    res.redirect('/login')
+  }
 })
 
 app.get('/signup', function(request, response){
