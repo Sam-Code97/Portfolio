@@ -10,6 +10,12 @@
                     <label>Password: <input type="password" name="pw"></label>
                 </fieldset>
                 <input type="submit" value="Login">
+                <br>
+                {{#if errorMessage}}
+                <div class="error-message">
+                    {{errorMessage}}
+                </div>
+                {{/if}}
             </form>
         </div>
     </div>

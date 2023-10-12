@@ -75,6 +75,20 @@ db.run("CREATE TABLE users (uid INTEGER PRIMARY KEY, username TEXT NOT NULL, pas
   } 
   else {
     console.log("---> Table users created!")
+    const users = [
+      {"id":"1", "username":"sam", "password":"$2b$10$baQr.ebGvciUC7tM6ZcrUOmpQbbkPzsylf66tYQpa5UaMHNYJZYvW"},
+      {"id":"2", "username":"lala", "password":"$2b$10$baQr.$2b$10$rNvdyomZeVKD0lCavWhBKOPrZOveItFW11PKRWG7vVTz3Uev.BfLq"}
+    ]
+    users.forEach( (oneUser) => {
+      db.run("INSERT INTO users (uid, username, password) VALUES (?, ?, ?)", [oneUser.id, oneUser.username, oneUser.password], (error) => {
+        if (error) {
+        console.log("ERROR: ", error)
+        } 
+        else {
+        console.log("Line added into the projects table!")
+        }
+      })
+    })
   }
 })
 
@@ -345,7 +359,8 @@ app.get('/login', function(request, response){
   const model={
     isLoggedIn: request.session.isLoggedIn,
     name: request.session.name,
-    isAdmin: request.session.isAdmin
+    isAdmin: request.session.isAdmin,
+    isBadLogin: request.session.isBadLogin
   }
   response.render("login.handlebars", model)
 })
@@ -356,40 +371,38 @@ app.post('/login', function(req, res){
   const pw = req.body.pw
   const hash = bcrypt.hashSync(pw, 10)
 
-
   db.get("SELECT * FROM users WHERE username=?", [un], (error, user)=>{
     if(error){
       console.log("ERROR: ", error)
     }
     else if(!user){
       console.log("User Not Found!")
-      res.redirect('/login')
+      res.render('login.handlebars', { errorMessage: 'Incorrect password or username' });  
     }
     
     else{
-      const result = bcrypt.compareSync(pw, user.hash);
-
+      const result = bcrypt.compareSync(pw, user.password);
       if(result){
-        if(/* check if the username is sam and the password is the decrypted password "123" */){
+        
+        if(un=="sam"){
           console.log("Admin is logged in!")
           req.session.isAdmin = true
           req.session.isLoggedIn = true
           req.session.name = "Admin"
           res.redirect('/')
         }
+        
         else{
           console.log('user found in users table')
           req.session.isAdmin = false
           req.session.isLoggedIn = true
           req.session.name = un
-          req.session.isBadLogin = false
           res.redirect('/')
         }
       }
       else{
         console.log('Incorrect password or username');  
-        res.redirect('/login');  
-        req.session.isBadLogin = true
+        res.render('login.handlebars', { errorMessage: 'Incorrect password or username' });  
       }
     }
 
