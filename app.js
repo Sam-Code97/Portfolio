@@ -344,8 +344,9 @@ app.get('/blog', function(request, response){
 })
 
 app.get('/blog/:id', (request, response) => {
-  const id = req.params.id
-  db.all("SELECT * FROM blog WHERE bid=?", [id], function(error, theBlogs){
+  const id = request.params.id
+  console.log("visiting blog: ", id)
+  db.get("SELECT * FROM blog WHERE bid=?", [id], function(error, theBlogs){
     if(error){
       const model = {
         hasDatabaseError: true,
@@ -355,7 +356,6 @@ app.get('/blog/:id', (request, response) => {
         name: request.session.name,
         isAdmin: request.session.isAdmin
       }
-      // renders the page with the model
       response.render("fullblog.handlebars", model)
     }
     else{
@@ -367,7 +367,6 @@ app.get('/blog/:id', (request, response) => {
         name: request.session.name,
         isAdmin: request.session.isAdmin
       }
-      // renders the page with the model
       response.render("fullblog.handlebars", model)
     }
   })
