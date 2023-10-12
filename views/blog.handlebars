@@ -1,16 +1,45 @@
 <div class="main">
-    <div class="columns">
-        <div class="column col-lg-11 col-md-11 col-sm-11 col-xs-12 col-mx-auto" id="cinfo">
-            <h1>Blog</h1>
-            <br>
-            <br>
-            <div id="blog">
-                <!--image-->
-                Meet our new device Rara
-                <div>
-                    Rara is the device that will revolutionise the way we contact each other!
-                </div>
+    <div class="container">
+        <h1>Blog</h1>
+
+        {{#if isLoggedIn}}
+        <div>
+            <a href="/blog/new" class="btn btn-link">New Blog</a>
+        </div>
+        {{/if}}
+
+        <div class="columns col-gapless">
+            {{#if hasDatabaseError}}
+            <div>
+                Sorry, there was a problem with the database:<br />
+                {{theError}}
             </div>
-        </div>   
+            {{else}}
+                {{#each blog}}
+                    <div class="column col-4 col-md-6 col-sm-12">
+                        <div class="card">
+                            <div class="card-image">
+                                <img class="img-responsive" src="{{bimgURL}}" alt="{{bimgURL}}"/>
+                            </div>
+                            <div class="card-header">
+                                <div class="card-title h3">{{bheader}}</div>
+                            </div>
+                            <div class="card-brief-desc">
+                                <article>
+                                    {{bshortdesc}}
+                                </article>
+                            </div>
+                            <div class="card-footer">
+                                {{#if ../isAdmin}}
+                                    <div>
+                                        <a href="/blog/update/{{pid}}"> Modify </a> - <a href="/blog/delete/{{pid}}" class="important"> Delete </a>
+                                    </div>
+                                {{/if}}
+                            </div>
+                        </div>
+                    </div>
+                {{/each}}
+            {{/if}}
+        </div>
     </div>
 </div>

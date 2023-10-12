@@ -9,7 +9,7 @@ const bcrypt = require('bcrypt')
 
 const port = 8080 // defines the port
 const app = express() // creates the Express application
-const db = new sqlite3.Database('portfolio.db')
+const db = new sqlite3.Database('portfolio3.db')
 
 // defines handlebars engine
 app.engine('handlebars', engine());
@@ -77,7 +77,11 @@ db.run("CREATE TABLE users (uid INTEGER PRIMARY KEY, username TEXT NOT NULL, pas
     console.log("---> Table users created!")
     const users = [
       {"id":"1", "username":"sam", "password":"$2b$10$baQr.ebGvciUC7tM6ZcrUOmpQbbkPzsylf66tYQpa5UaMHNYJZYvW"},
-      {"id":"2", "username":"lala", "password":"$2b$10$baQr.$2b$10$rNvdyomZeVKD0lCavWhBKOPrZOveItFW11PKRWG7vVTz3Uev.BfLq"}
+      {"id":"2", "username":"lala", "password":"$2b$10$baQr.$2b$10$rNvdyomZeVKD0lCavWhBKOPrZOveItFW11PKRWG7vVTz3Uev.BfLq"},
+      {"id":"3", "username":"TheKing", "password":"$$2b$10$0HYg9JazwX3Kk8LhNl5rQuZnJFYNJesTgqQjBH1If9AEyAr0BLJAC"},
+      {"id":"4", "username":"Choko", "password":"$2b$10$1t2l7ywEkVdac1rQAz8Sae1g7rdxnE3oRLdjl8HLb9wxmkzrWS0mC"},
+      {"id":"5", "username":"Sadio", "password":"$2b$10$6vhkGIX.kmHct035Ferf6O4aK3sSLdVNoPbsoMhNI33xoQG1HZKbW"},
+      {"id":"6", "username":"Ronaldo", "password":"$2b$10$4XH2LmQOq3LIB7MnD4YxRegNNUKw5lMXyNVWXgN4f9/ZfIYM6C41W"},
     ]
     users.forEach( (oneUser) => {
       db.run("INSERT INTO users (uid, username, password) VALUES (?, ?, ?)", [oneUser.id, oneUser.username, oneUser.password], (error) => {
@@ -94,30 +98,25 @@ db.run("CREATE TABLE users (uid INTEGER PRIMARY KEY, username TEXT NOT NULL, pas
 
 
 
-// creates skills projects at startup
-db.run("CREATE TABLE skills (sid INTEGER PRIMARY KEY, sname TEXT NOT NULL, sdesc TEXT NOT NULL, stype TEXT NOT NULL)", (error) => {
+// 
+db.run("CREATE TABLE blog (bid INTEGER PRIMARY KEY, bheader TEXT NOT NULL, bshortdesc TEXT NOT NULL, bsecone TEXT NOT NULL, bsectwo TEXT NOT NULL, bsecthree TEXT NOT NULL, bimgURL TEXT NOT NULL)", (error) => {
   if (error) {
   // tests error: display error
   console.log("ERROR: ", error)
   } 
   else {
     // tests error: no error, the table has been created
-    console.log("---> Table skills created!")
-    const skills=[
-    {"id":"1", "name": "PHP", "type": "Programming language", "desc": "Programming with PHP on the server side."},
-    {"id":"2", "name": "Python", "type": "Programming language", "desc": "Programming with Python."},
-    {"id":"3", "name": "Java", "type": "Programming language", "desc": "Programming with Java."},
-    {"id":"4", "name": "ImageJ", "type": "Framework", "desc": "Java Framework for Image Processing."},
-    {"id":"5", "name": "Javascript", "type": "Programming language", "desc": "Programming with Javascript on the client side."},
-    {"id":"6", "name": "Node", "type": "Programming language", "desc": "Programming with Javascript on the server side."},
-    {"id":"7", "name": "Express", "type": "Framework", "desc": "A framework for programming Javascript on the server side."},
-    {"id":"8", "name": "Scikit-image", "type": "Library", "desc": "A library for Image Processing with Python."},
-    {"id":"9", "name": "OpenCV", "type": "Library", "desc": "A library for Image Processing with Python."},
+    console.log("---> Table blog created!")
+    const blogs=[
+    {"id":"1", "header": "The Future of Programming", "shortdesc": "Dive into the exhilarating future of programming! From quantum computing to AI-driven development, explore the trends that will redefine the coding landscape. Join us on a journey to tomorrow's code, where ethics meets innovation, and possibilities are boundless.",
+     "secone": "The Future of Programming: A Glimpse into Tomorrow's Code In the ever-evolving world of technology, programming has always been at the forefront, driving innovation and shaping the digital landscape. As we stand on the cusp of a new era, it's essential to ponder what the future holds for programming. Here's a brief look into the exciting prospects that await.",
+      "sectwo": "Quantum Computing: Traditional bits will give way to qubits, opening doors to unimaginable computational power. Quantum programming languages and frameworks will become mainstream, solving problems deemed unsolvable today. AI-Driven Development: Artificial Intelligence will play a pivotal role in code generation, debugging, and optimization. Developers will collaborate with AI assistants, making the coding process more efficient and error-free. Augmented Reality (AR) and Virtual Reality (VR): As AR and VR technologies mature, there will be a surge in demand for immersive experiences. This will necessitate new programming paradigms and tools tailored for these realities. No-Code/Low-Code Platforms: Simplifying the development process, these platforms will empower non-developers to create applications. While they won't replace traditional coding, they'll democratize app development.",
+      "secthree" : "Sustainable Coding: With growing concerns about energy consumption, there will be a push towards writing energy-efficient code. Developers will need to be conscious of the environmental impact of their applications. Cross-Platform Development: As the number of devices and platforms grows, there will be a stronger emphasis on writing code that runs everywhere. Frameworks that allow for seamless integration across platforms will be in high demand.Ethical Programming: With technology deeply embedded in our lives, ethical considerations in programming will become paramount. Developers will need to ensure that their code respects user privacy, equity, and societal values. In conclusion, the future of programming is bright, filled with opportunities and challenges. As developers, it's our responsibility to adapt, innovate, and drive the next wave of technological advancements.",
+     "imgURL": "/img/bildss"},
     ]
     // inserts skills
-    skills.forEach( (oneSkill) => {
-      db.run("INSERT INTO skills (sid, sname, sdesc, stype) VALUES (?, ?, ?, ?)", [oneSkill.id, oneSkill.name, oneSkill.desc, 
-        oneSkill.type], (error) => {
+    blogs.forEach( (blog) => {
+      db.run("INSERT INTO blog (bid, bheader, bshortdesc, bsecone, bsectwo, bsecthree, bimgURL) VALUES (?, ?, ?, ?, ?, ?, ?)", [blog.id, blog.header, blog.shortdesc, blog.secone, blog.sectwo, blog.secthree,  blog.imgURL], (error) => {
         if (error) {
         console.log("ERROR: ", error)
         } 
@@ -131,40 +130,6 @@ db.run("CREATE TABLE skills (sid INTEGER PRIMARY KEY, sname TEXT NOT NULL, sdesc
 
 
 // creates table projectsSkills at startup
-db.run("CREATE TABLE projectsSkills (psid INTEGER PRIMARY KEY, pid INTEGER, sid INTEGER, FOREIGN KEY (pid) REFERENCES projects (pid), FOREIGN KEY (sid) REFERENCES skills (sid))"
-, (error) => {
-  if (error) {
-    // tests error: display error
-    console.log("ERROR: ", error)
-  } 
-  else {
-    // tests error: no error, the table has been created
-    console.log("---> Table projectsSkills created!")
-    const projectsSkills=[
-    {"id":"1", "pid":"1", "sid": "2"},
-    {"id":"2", "pid":"1", "sid": "8"},
-    {"id":"3", "pid":"1", "sid": "9"},
-    {"id":"4", "pid":"2", "sid": "3"},
-    {"id":"5", "pid":"2", "sid": "4"},
-    {"id":"6", "pid":"3", "sid": "1"},
-    {"id":"7", "pid":"4", "sid": "2"},
-    {"id":"8", "pid":"4", "sid": "8"},
-    {"id":"9", "pid":"4", "sid": "9"},
-    {"id":"10", "pid":"5", "sid": "1"}
-    ]
-    // inserts projectsSkills
-    projectsSkills.forEach( (oneProjectSkill) => {
-      db.run("INSERT INTO projectsSkills (psid, pid, sid) VALUES (?, ?, ?)", [oneProjectSkill.id, oneProjectSkill.pid, 
-        oneProjectSkill.sid], (error) => {
-        if (error) {
-        console.log("ERROR: ", error)
-        } else {
-        console.log("Line added into the projectsSkills table!")
-        }
-      })
-    })
-  }
-})
 
 // CONTROLLER (THE BOSS)
 // defines route "/"
@@ -328,6 +293,8 @@ app.post('/projects/update/:id', (req, res) => {
   }
 })
 
+
+
 app.get('/contact', function(request, response){
   const model={
     isLoggedIn: request.session.isLoggedIn,
@@ -347,12 +314,33 @@ app.get('/about', function(request, response){
 })
 
 app.get('/blog', function(request, response){
-  const model={
-    isLoggedIn: request.session.isLoggedIn,
-    name: request.session.name,
-    isAdmin: request.session.isAdmin
-  }
-  response.render("blog.handlebars", model)
+
+  db.all("SELECT * FROM blog", function(error, theBlogs){
+    if(error){
+      const model = {
+        hasDatabaseError: true,
+        theError: error,
+        blog: [],
+        isLoggedIn: request.session.isLoggedIn,
+        name: request.session.name,
+        isAdmin: request.session.isAdmin
+      }
+      // renders the page with the model
+      response.render("blog.handlebars", model)
+    }
+    else{
+      const model = {
+        hasDatabaseError: false,
+        theError: "",
+        blog: theBlogs,
+        isLoggedIn: request.session.isLoggedIn,
+        name: request.session.name,
+        isAdmin: request.session.isAdmin
+      }
+      // renders the page with the model
+      response.render("blog.handlebars", model)
+    }
+  })
 })
 
 app.get('/login', function(request, response){
