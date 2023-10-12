@@ -31,15 +31,6 @@ app.use(session({
   "secret": "m3@5y%s1&u!p43#er=s!32e¤c2r6e/t"
 }))
 
-// MODEL (DATA)
-const humans = [
-    {"id": "0", "name": "Sam"}, 
-    {"id": "1", "name": "Mira"},
-    {"id": "2", "name": "Linus"}, 
-    {"id": "3", "name": "Susanne"}, 
-    {"id": "4", "name": "Jasmin"}, 
-]
-
 // creates table projects at startup
 db.run("CREATE TABLE projects (pid INTEGER PRIMARY KEY, pname TEXT NOT NULL, pyear INTEGER NOT NULL, pdesc TEXT NOT NULL, ptype TEXT NOT NULL, pimgURL TEXT NOT NULL)", (error) => {
   if (error) {
@@ -51,15 +42,15 @@ db.run("CREATE TABLE projects (pid INTEGER PRIMARY KEY, pname TEXT NOT NULL, pye
     console.log("---> Table projects created!")
 
     const projects=[
-      { "id":"1", "name":"Advanced Snake Game", "type":"research", "desc": "Dive into a classic snake game with a twist! Implemented in C++ using the Qt framework, this game not only offers the traditional snake gameplay but also boasts an advanced pathfinding algorithm, ensuring a challenging and engaging experience.", "year": 2022, "dev":"C++ and Qt framework", 
+      { "id":"1", "name":"Advanced Snake Game", "type":"Research", "desc": "Dive into a classic snake game with a twist! Implemented in C++ using the Qt framework, this game not only offers the traditional snake gameplay but also boasts an advanced pathfinding algorithm, ensuring a challenging and engaging experience.", "year": 2022, "dev":"C++ and Qt framework", 
       "url":"/img/counting.png"},
-      { "id":"2", "name":"Paint App", "type":"research", "desc": "Dive into a world of creativity with this simple painting application. Harnessing intricate algorithms, this app offers boundary-fill, flood-fill, and scan-line fill techniques to bring your artistic visions to life.", "year":
+      { "id":"2", "name":"Paint App", "type":"Research", "desc": "Dive into a world of creativity with this simple painting application. Harnessing intricate algorithms, this app offers boundary-fill, flood-fill, and scan-line fill techniques to bring your artistic visions to life.", "year":
       2022, "url":"/img/medical.png" },
-      { "id":"3", "name":"Calculation Algorithm", "type":"Study", "desc": "A sophisticated calculator algorithm developed in C++, showcasing a robust parsing mechanism to evaluate mathematical expressions. The project is designed with a clear focus on tokenization and operator precedence.", "year": 2022, "url":"/img/qcm07.png" },
-      { "id":"4", "name":"BetterTicTacToe", "desc": "An enhanced version of the classic Tic Tac Toe game, developed in Java. The project showcases a strong Object-Oriented Design, with distinct classes representing game components, rules, and user interactions.", "year": 2023, "type":"Study", 
+      { "id":"3", "name":"Calculation Algorithm", "type":"Education", "desc": "A sophisticated calculator algorithm developed in C++, showcasing a robust parsing mechanism to evaluate mathematical expressions. The project is designed with a clear focus on tokenization and operator precedence.", "year": 2022, "url":"/img/qcm07.png" },
+      { "id":"4", "name":"BetterTicTacToe", "desc": "An enhanced version of the classic Tic Tac Toe game, developed in Java. The project showcases a strong Object-Oriented Design, with distinct classes representing game components, rules, and user interactions.", "year": 2023, "type":"Education", 
       "url":"/img/diaw02.png" },
-      { "id":"5", "name":"Simple Notepad", "desc": "A lightweight notepad application developed in C++ using the Qt framework. It offers essential features like opening, saving, and clearing text files, all wrapped in a user-friendly graphical interface.", "year": 2022, "type":"Study", "url":"/img/management.png" },
-      { "id":"6", "name":"Encryption Tool", "desc": "A robust encryption tool built in Java that offers both encryption and decryption functionalities. With a user-friendly GUI, users can easily input text and an encryption key to get the desired encrypted or decrypted output.", "year": 2023, "type":"Study", "url":"/img/management.png" }
+      { "id":"5", "name":"Simple Notepad", "desc": "A lightweight notepad application developed in C++ using the Qt framework. It offers essential features like opening, saving, and clearing text files, all wrapped in a user-friendly graphical interface.", "year": 2022, "type":"Other", "url":"/img/management.png" },
+      { "id":"6", "name":"Encryption Tool", "desc": "A robust encryption tool built in Java that offers both encryption and decryption functionalities. With a user-friendly GUI, users can easily input text and an encryption key to get the desired encrypted or decrypted output.", "year": 2023, "type":"Education", "url":"/img/management.png" }
     ]
 
     // inserts projects
@@ -76,6 +67,16 @@ db.run("CREATE TABLE projects (pid INTEGER PRIMARY KEY, pname TEXT NOT NULL, pye
     })
   }
 })
+
+db.run("CREATE TABLE users (uid INTEGER PRIMARY KEY, username TEXT NOT NULL, password TEXT NOT NULL)", (error) => {
+  if (error) {
+  console.log("ERROR: ", error)
+  } 
+  else {
+    console.log("---> Table users created!")
+  }
+})
+
 
 
 // creates skills projects at startup
@@ -235,7 +236,7 @@ app.get('/projects/new', (req, res) => {
   }
 });
 
-app.post('/project/new', (req, res) => {
+app.post('/projects/new', (req, res) => {
   const newp = [
     req.body.projname, req.body.projyear, req.body.projdesc, req.body.projtype, req.body.projimg,
   ]
@@ -246,6 +247,63 @@ app.post('/project/new', (req, res) => {
       }
       else{
         console.log("Line added into the projects table!")
+      }
+      res.redirect('/projects')
+    })
+  }
+  else{
+    res.redirect('/login')
+  }
+})
+
+app.get('/projects/update/:id', (req, res) => {
+    const id = req.params.id
+    console.log("Update: ", id)
+
+    db.get("SELECT * FROM projects WHERE pid=?", [id], (error, theProject) => {
+      if(error){
+        console.log("ERROR: ", error)
+        const model = {
+          dbError: true, theError: error,
+          project: {},
+          isLoggedIn: req.session.isLoggedIn,
+          name: req.session.name,
+          isAdmin: req.session.isAdmin
+        }
+        res.render("modifyproject.handlebars", model)
+      }
+      else{
+        console.log("MODIFY: ", JSON.stringify(theProject))
+        console.log("MODIFY: ", theProject)
+        const model = {
+          dbError: false, theError: "",
+          project: theProject,
+          isLoggedIn: req.session.isLoggedIn,
+          name: req.session.name,
+          isAdmin: req.session.isAdmin,
+          helpers: {
+            theTypeR(value) { return value == "Research";},
+            theTypeE(value) { return value == "Education";},
+            theTypeO(value) { return value == "Other";},
+          }
+        }
+        res.render("modifyproject.handlebars", model)
+      }
+    })
+})
+
+app.post('/projects/update/:id', (req, res) => {
+  const id = req.params.id
+  const newp = [
+   req.body.projname, req.body.projyear, req.body.projdesc, req.body.projtype, req.body.projimg, id
+  ]
+  if(req.session.isLoggedIn==true && req.session.isAdmin==true){
+    db.run("UPDATE projects SET pname=?, pyear=?, pdesc=?, ptype=?, pimgURL=? WHERE pid=?", newp, (error) => {
+      if(error){
+        console.log("ERROR: ", error)
+      }
+      else{
+        console.log("Project updated!")
       }
       res.redirect('/projects')
     })
@@ -303,17 +361,68 @@ app.post('/login', function(req, res){
     req.session.name = "Sam"
     res.redirect('/')
   }
+
   else{
-    console.log('Bad user or bad passwprd')
-    req.session.isAdmin = false
-    req.session.isLoggedIn = false
-    req.session.name = ""
-    res.redirect('/login')
+    db.all("SELECT * FROM users WHERE username=?", [un], (error, user)=>{
+      if(error){
+        console.log("ERROR: ", error)
+      }
+      else{
+        if(user){
+          console.log('user found in users table')
+          req.session.isAdmin = false
+          req.session.isLoggedIn = true
+          req.session.name = un
+          res.redirect('/')
+        }
+        else{
+
+        }
+      }
+    })
+    
+
   }
 })
 
-app.get('/signup', function(request, response){
-  response.render("signup.handlebars")
+app.get('/logout', (req, res) => {
+  req.session.destroy( (err) => {
+    console.log("Error while destroying the session: ", err)
+  })
+  console.log("Logged out...")
+  res.redirect('/')
+})
+
+app.get('/signup', function(req, res){
+  const model={
+    isLoggedIn: req.session.isLoggedIn,
+    name: req.session.name,
+    isAdmin: req.session.isAdmin
+  }
+  if(req.session.isLoggedIn==true)
+    res.redirect('/')
+  else{
+    res.render("signup.handlebars", model)
+  }
+})
+
+app.post('/signup', (req, res) => {
+  
+  const un = req.body.un;
+  const pw = req.body.pw;
+  
+  db.run("INSERT INTO users (username, password) VALUES (?, ?)", [un, pw], (error)=>{
+    if(error){
+      console.log("ERROR: ", error)
+    }
+    else{
+      console.log("User is added")
+      req.session.isAdmin = false
+      req.session.isLoggedIn = true
+      req.session.name = un
+      res.redirect('/')
+    }
+  })
 })
 
 
