@@ -368,15 +368,18 @@ app.post('/login', function(req, res){
         console.log("ERROR: ", error)
       }
       else{
-        if(user){
+        if(user && user.password === pw){
           console.log('user found in users table')
           req.session.isAdmin = false
           req.session.isLoggedIn = true
           req.session.name = un
+          req.session.isBadLogin = false
           res.redirect('/')
         }
         else{
-
+          console.log('Incorrect password or username');
+          req.session.isBadLogin = true
+          res.redirect('/login');
         }
       }
     })
