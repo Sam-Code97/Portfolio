@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const sqlite3 = require('sqlite3')
 const connectSqlite3 = require('connect-sqlite3')
 const cookieParser = require('cookie-parser')
+const bcrypt = require('bcrypt')
 
 const port = 8080 // defines the port
 const app = express() // creates the Express application
@@ -353,22 +354,30 @@ app.get('/login', function(request, response){
 app.post('/login', function(req, res){
   const un = req.body.un
   const pw = req.body.pw
+  const hash = bcrypt.hashSync(pw, 10)
 
-  if(un=="sam" && pw=="123"){
-    console.log("Sam is logged in!")
-    req.session.isAdmin = true
-    req.session.isLoggedIn = true
-    req.session.name = "Sam"
-    res.redirect('/')
-  }
 
-  else{
-    db.all("SELECT * FROM users WHERE username=?", [un], (error, user)=>{
-      if(error){
-        console.log("ERROR: ", error)
-      }
-      else{
-        if(user && user.password === pw){
+  db.get("SELECT * FROM users WHERE username=?", [un], (error, user)=>{
+    if(error){
+      console.log("ERROR: ", error)
+    }
+    else if(!user){
+      console.log("User Not Found!")
+      res.redirect('/login')
+    }
+    
+    else{
+      const result = bcrypt.compareSync(pw, user.hash);
+
+      if(result){
+        if(/* check if the username is sam and the password is the decrypted password "123" */){
+          console.log("Admin is logged in!")
+          req.session.isAdmin = true
+          req.session.isLoggedIn = true
+          req.session.name = "Admin"
+          res.redirect('/')
+        }
+        else{
           console.log('user found in users table')
           req.session.isAdmin = false
           req.session.isLoggedIn = true
@@ -376,16 +385,16 @@ app.post('/login', function(req, res){
           req.session.isBadLogin = false
           res.redirect('/')
         }
-        else{
-          console.log('Incorrect password or username');
-          req.session.isBadLogin = true
-          res.redirect('/login');
-        }
       }
-    })
-    
+      else{
+        console.log('Incorrect password or username');  
+        res.redirect('/login');  
+        req.session.isBadLogin = true
+      }
+    }
 
-  }
+
+  })
 })
 
 app.get('/logout', (req, res) => {
@@ -413,8 +422,9 @@ app.post('/signup', (req, res) => {
   
   const un = req.body.un;
   const pw = req.body.pw;
+  const hash = bcrypt.hashSync(pw, 10)
   
-  db.run("INSERT INTO users (username, password) VALUES (?, ?)", [un, pw], (error)=>{
+  db.run("INSERT INTO users (username, password) VALUES (?, ?)", [un, hash], (error)=>{
     if(error){
       console.log("ERROR: ", error)
     }
