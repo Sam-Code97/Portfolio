@@ -51,21 +51,33 @@
                 {{/each}}
             {{/if}}
         </div>
-        {{#each comments}} 
-            <div class="comment-section">
+        <div class="comment-section">
+            <div>
                 <h2 id="comments-header">Comments</h2>
+            </div>
+            {{#each comments}} 
                 <div class="comment">
                     <div class="commenter">
-                        <h4>{{username}}</h4>
+                        <h5>- {{username}}</h5>
                     </div>
                     <div class="comment-body">
                         {{cbody}}
                     </div>
-                    <div class="comment-date text-gra" >
+                    <div class="comment-date text-gray" >
                         {{cdate}}
                     </div>
                 </div>
-            </div>
-        {{/each}}
+            {{/each}}
+            {{#if isLoggedIn}}
+                <form action="/projects/addcomment" method="post">
+                    <fieldset>
+                        <div class="writing-comment-section">
+                            <textarea name="commenttext" id="commenttext" cols="90" rows="3"></textarea>
+                        </div>
+                    </fieldset>
+                    <input type="submit" value="Add comment">
+                </form>
+            {{/if}}
+        </div>
     </div>
 </div>

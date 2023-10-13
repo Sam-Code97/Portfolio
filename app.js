@@ -9,7 +9,7 @@ const bcrypt = require('bcrypt')
 
 const port = 8080 // defines the port
 const app = express() // creates the Express application
-const db = new sqlite3.Database('portfolio4.db')
+const db = new sqlite3.Database('portfolio2.db')
 
 // defines handlebars engine
 app.engine('handlebars', engine());
@@ -152,6 +152,27 @@ app.post('/projects/new', (req, res) => {
       }
       else{
         console.log("Line added into the projects table!")
+      }
+      res.redirect('/projects')
+    })
+  }
+  else{
+    res.redirect('/login')
+  }
+})
+
+app.post('/projects/addcomment', (req, res) => {
+  const currentDate = new Date().toISOString().split('T')[0];
+  const newc = [
+    req.body.name, req.body.commenttext, currentDate
+  ]
+  if(req.session.isLoggedIn==true){
+    db.run("INSERT INTO comments (username, cbody, cdate) VALUES (?, ?, ?)", newc, (error) => {
+      if(error){
+        console.log("ERROR: ", error)
+      }
+      else{
+        console.log("Line added into the comments table!")
       }
       res.redirect('/projects')
     })

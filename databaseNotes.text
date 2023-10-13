@@ -87,7 +87,7 @@ db.run("CREATE TABLE comments (cid INTEGER PRIMARY KEY, username TEXT NOT NULL, 
       {"id":"6", "username":"Ronaldo", "body":"The Calculation_Algorithm project helped me understand some complex concepts. Thanks for sharing!", "date" : "2022-12-10"}
     ]
     comments.forEach( (oneComment) => {
-      db.run("INSERT INTO comments (cid, username, cbody, cdate) VALUES (?, ?, ?, ?)", [oneComment.id, oneComment.username, oneComment.cbody, oneComment.cdate], (error) => {
+      db.run("INSERT INTO comments (cid, username, cbody, cdate) VALUES (?, ?, ?, ?)", [oneComment.id, oneComment.username, oneComment.body, oneComment.date], (error) => {
         if (error) {
         console.log("ERROR: ", error)
         } 
