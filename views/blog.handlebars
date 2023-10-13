@@ -4,7 +4,7 @@
 
         {{#if isLoggedIn}}
         <div>
-            <a href="/blog/new" class="btn btn-link">New Blog</a>
+            <a href="/blog/new" class="btn btn-link">Write a Blog</a>
         </div>
         {{/if}}
 
@@ -17,7 +17,7 @@
             {{else}}
                 {{#each blog}}
                     <div class="column col-4 col-md-6 col-sm-12">
-                        <a href="/blog/{{bid}}" class="blog-card-link"> 
+                        <a href="/blog/article/{{bid}}" class="blog-card-link"> 
                             <div class="card">
                                 <div class="card-image">
                                     <img class="img-responsive" src="{{bimgURL}}" alt="{{bimgURL}}"/>
@@ -33,7 +33,7 @@
                                 <div class="card-footer">
                                     {{#if ../isAdmin}}
                                         <div>
-                                            <a href="/blog/update/{{pid}}"> Modify </a> - <a href="/blog/delete/{{pid}}" class="important"> Delete </a>
+                                            <a href="/blog/article/update/{{bid}}"> Modify </a> - <a href="/blog/article/delete/{{bid}}" class="important"> Delete </a>
                                         </div>
                                     {{/if}}
                                 </div>

@@ -9,7 +9,7 @@ const bcrypt = require('bcrypt')
 
 const port = 8080 // defines the port
 const app = express() // creates the Express application
-const db = new sqlite3.Database('portfolio.db')
+const db = new sqlite3.Database('portfolio2.db')
 
 // defines handlebars engine
 app.engine('handlebars', engine());
@@ -108,25 +108,30 @@ db.run("CREATE TABLE blog (bid INTEGER PRIMARY KEY, bheader TEXT NOT NULL, bshor
     // tests error: no error, the table has been created
     console.log("---> Table blog created!")
     const blogs=[
-    {"id":"1", "header": "The Future of Programming", "shortdesc": "Dive into the exhilarating future of programming! From quantum computing to AI-driven development, explore the trends that will redefine the coding landscape. Join us on a journey to tomorrow's code, where ethics meets innovation, and possibilities are boundless.",
+    {"id":"1", "header": "The Future of Programming", "shortdesc": "Journey into the contrasting worlds of OOP and FP! Discover the philosophies, strengths, and challenges of both paradigms. Whether you're team objects or functions, this exploration promises insights and revelations. Dive in and pick your side in the age-old debate!",
      "secone": "The Future of Programming: A Glimpse into Tomorrow's Code In the ever-evolving world of technology, programming has always been at the forefront, driving innovation and shaping the digital landscape. As we stand on the cusp of a new era, it's essential to ponder what the future holds for programming. Here's a brief look into the exciting prospects that await.",
       "sectwo": "Quantum Computing: Traditional bits will give way to qubits, opening doors to unimaginable computational power. Quantum programming languages and frameworks will become mainstream, solving problems deemed unsolvable today. AI-Driven Development: Artificial Intelligence will play a pivotal role in code generation, debugging, and optimization. Developers will collaborate with AI assistants, making the coding process more efficient and error-free. Augmented Reality (AR) and Virtual Reality (VR): As AR and VR technologies mature, there will be a surge in demand for immersive experiences. This will necessitate new programming paradigms and tools tailored for these realities. No-Code/Low-Code Platforms: Simplifying the development process, these platforms will empower non-developers to create applications. While they won't replace traditional coding, they'll democratize app development.",
       "secthree" : "Sustainable Coding: With growing concerns about energy consumption, there will be a push towards writing energy-efficient code. Developers will need to be conscious of the environmental impact of their applications. Cross-Platform Development: As the number of devices and platforms grows, there will be a stronger emphasis on writing code that runs everywhere. Frameworks that allow for seamless integration across platforms will be in high demand.Ethical Programming: With technology deeply embedded in our lives, ethical considerations in programming will become paramount. Developers will need to ensure that their code respects user privacy, equity, and societal values. In conclusion, the future of programming is bright, filled with opportunities and challenges. As developers, it's our responsibility to adapt, innovate, and drive the next wave of technological advancements.",
      "imgURL": "/img/bildss"},
-     {"id":"2", "header": "The Future of Programming", "shortdesc": "Dive into the exhilarating future of programming! From quantum computing to AI-driven development, explore the trends that will redefine the coding landscape. Join us on a journey to tomorrow's code, where ethics meets innovation, and possibilities are boundless.",
-     "secone": "The Future of Programming: A Glimpse into Tomorrow's Code In the ever-evolving world of technology, programming has always been at the forefront, driving innovation and shaping the digital landscape. As we stand on the cusp of a new era, it's essential to ponder what the future holds for programming. Here's a brief look into the exciting prospects that await.",
-      "sectwo": "Quantum Computing: Traditional bits will give way to qubits, opening doors to unimaginable computational power. Quantum programming languages and frameworks will become mainstream, solving problems deemed unsolvable today. AI-Driven Development: Artificial Intelligence will play a pivotal role in code generation, debugging, and optimization. Developers will collaborate with AI assistants, making the coding process more efficient and error-free. Augmented Reality (AR) and Virtual Reality (VR): As AR and VR technologies mature, there will be a surge in demand for immersive experiences. This will necessitate new programming paradigms and tools tailored for these realities. No-Code/Low-Code Platforms: Simplifying the development process, these platforms will empower non-developers to create applications. While they won't replace traditional coding, they'll democratize app development.",
-      "secthree" : "Sustainable Coding: With growing concerns about energy consumption, there will be a push towards writing energy-efficient code. Developers will need to be conscious of the environmental impact of their applications. Cross-Platform Development: As the number of devices and platforms grows, there will be a stronger emphasis on writing code that runs everywhere. Frameworks that allow for seamless integration across platforms will be in high demand.Ethical Programming: With technology deeply embedded in our lives, ethical considerations in programming will become paramount. Developers will need to ensure that their code respects user privacy, equity, and societal values. In conclusion, the future of programming is bright, filled with opportunities and challenges. As developers, it's our responsibility to adapt, innovate, and drive the next wave of technological advancements.",
+     {"id":"2", "header": "OOP vs. FP: A Tale of Two Paradigms", "shortdesc": "In the vast universe of programming, two paradigms have consistently sparked debates among developers: Object-Oriented Programming (OOP) and Functional Programming (FP). Both have their merits, philosophies, and use-cases. Let's dive into the core differences and see what each brings to the table.",
+     "secone": "In the vast universe of programming, two paradigms have consistently sparked debates among developers: Object-Oriented Programming (OOP) and Functional Programming (FP). Both have their merits, philosophies, and use-cases. Let's dive into the core differences and see what each brings to the table. Philosophical Foundations: OOP: At its heart, OOP is about encapsulating data and behavior into objects. It's like viewing the world as a collection of interacting entities, each with its attributes and actions. FP: FP, on the other hand, is all about immutability and statelessness. It treats computation as the evaluation of mathematical functions, avoiding changing state and mutable data. Main Constructs: OOP: Classes, objects, inheritance, polymorphism, encapsulation, and abstraction. FP: First-class functions, pure functions, higher-order functions, and recursion.",
+      "sectwo": "Advantages: OOP: Provides a clear modular structure for programs, making it good for defining abstract datatypes. It's also more intuitive for modeling and organizing large systems. FP: Offers better predictability and is easier to test and debug. It's inherently more parallelizable, making it apt for today's multi-core processors. Challenges: OOP: Can lead to over-complication if not designed well. The mutable state can introduce bugs that are hard to trace. FP: Has a steeper learning curve for those accustomed to imperative styles. Some tasks can be more verbose in functional languages.",
+      "secthree" : "Real-world Usage: OOP: Widely used in software engineering, especially in large systems where the organization is crucial. Examples include Java, C++, and Python. FP: Gaining traction in domains like data processing, concurrency, and where side effects need to be minimized. Languages like Haskell, Lisp, and Erlang champion this paradigm. In conclusion, neither OOP nor FP is universally superior. They offer different tools for different problems. The best developers understand the strengths and weaknesses of both and use them judiciously based on the task at hand.",
      "imgURL": "/img/bildss"},
-     {"id":"3", "header": "The Future of Programming", "shortdesc": "Dive into the exhilarating future of programming! From quantum computing to AI-driven development, explore the trends that will redefine the coding landscape. Join us on a journey to tomorrow's code, where ethics meets innovation, and possibilities are boundless.",
-     "secone": "The Future of Programming: A Glimpse into Tomorrow's Code In the ever-evolving world of technology, programming has always been at the forefront, driving innovation and shaping the digital landscape. As we stand on the cusp of a new era, it's essential to ponder what the future holds for programming. Here's a brief look into the exciting prospects that await.",
-      "sectwo": "Quantum Computing: Traditional bits will give way to qubits, opening doors to unimaginable computational power. Quantum programming languages and frameworks will become mainstream, solving problems deemed unsolvable today. AI-Driven Development: Artificial Intelligence will play a pivotal role in code generation, debugging, and optimization. Developers will collaborate with AI assistants, making the coding process more efficient and error-free. Augmented Reality (AR) and Virtual Reality (VR): As AR and VR technologies mature, there will be a surge in demand for immersive experiences. This will necessitate new programming paradigms and tools tailored for these realities. No-Code/Low-Code Platforms: Simplifying the development process, these platforms will empower non-developers to create applications. While they won't replace traditional coding, they'll democratize app development.",
-      "secthree" : "Sustainable Coding: With growing concerns about energy consumption, there will be a push towards writing energy-efficient code. Developers will need to be conscious of the environmental impact of their applications. Cross-Platform Development: As the number of devices and platforms grows, there will be a stronger emphasis on writing code that runs everywhere. Frameworks that allow for seamless integration across platforms will be in high demand.Ethical Programming: With technology deeply embedded in our lives, ethical considerations in programming will become paramount. Developers will need to ensure that their code respects user privacy, equity, and societal values. In conclusion, the future of programming is bright, filled with opportunities and challenges. As developers, it's our responsibility to adapt, innovate, and drive the next wave of technological advancements.",
+     {"id":"3", "header": "Decoding the Mysteries of Recursive Functions", "shortdesc": "Ready to embark on a recursive adventure? Dive in and discover the power and beauty of functions that call upon themselves!",
+     "secone": "Recursive functions are a fascinating concept in programming, often seen as a riddle waiting to be unraveled. At its essence, recursion is when a function calls itself in order to solve a larger problem by breaking it down into smaller, more manageable pieces. Think of it as a set of Russian nesting dolls, where each doll represents a function call, and opening one reveals a slightly smaller version inside. This technique is particularly useful for tasks like traversing tree structures, calculating factorials, or implementing algorithms like the Fibonacci sequence.",
+      "sectwo": "While the elegance of recursive solutions can be alluring, it's essential to use them judiciously. Without proper base cases or termination conditions, recursive functions can lead to infinite loops or stack overflow errors. But, when wielded correctly, recursion can lead to clean, efficient, and intuitive code that's a joy to read and understand.",
+      "secthree" : "Unearth the magic of recursive functions in programming! From elegant solutions to potential pitfalls, delve deep into this captivating concept. Whether you're a novice or a seasoned coder, this exploration promises a fresh perspective on a classic technique.",
      "imgURL": "/img/bildss"},
-     {"id":"4", "header": "The Future of Programming", "shortdesc": "Dive into the exhilarating future of programming! From quantum computing to AI-driven development, explore the trends that will redefine the coding landscape. Join us on a journey to tomorrow's code, where ethics meets innovation, and possibilities are boundless.",
-     "secone": "The Future of Programming: A Glimpse into Tomorrow's Code In the ever-evolving world of technology, programming has always been at the forefront, driving innovation and shaping the digital landscape. As we stand on the cusp of a new era, it's essential to ponder what the future holds for programming. Here's a brief look into the exciting prospects that await.",
-      "sectwo": "Quantum Computing: Traditional bits will give way to qubits, opening doors to unimaginable computational power. Quantum programming languages and frameworks will become mainstream, solving problems deemed unsolvable today. AI-Driven Development: Artificial Intelligence will play a pivotal role in code generation, debugging, and optimization. Developers will collaborate with AI assistants, making the coding process more efficient and error-free. Augmented Reality (AR) and Virtual Reality (VR): As AR and VR technologies mature, there will be a surge in demand for immersive experiences. This will necessitate new programming paradigms and tools tailored for these realities. No-Code/Low-Code Platforms: Simplifying the development process, these platforms will empower non-developers to create applications. While they won't replace traditional coding, they'll democratize app development.",
-      "secthree" : "Sustainable Coding: With growing concerns about energy consumption, there will be a push towards writing energy-efficient code. Developers will need to be conscious of the environmental impact of their applications. Cross-Platform Development: As the number of devices and platforms grows, there will be a stronger emphasis on writing code that runs everywhere. Frameworks that allow for seamless integration across platforms will be in high demand.Ethical Programming: With technology deeply embedded in our lives, ethical considerations in programming will become paramount. Developers will need to ensure that their code respects user privacy, equity, and societal values. In conclusion, the future of programming is bright, filled with opportunities and challenges. As developers, it's our responsibility to adapt, innovate, and drive the next wave of technological advancements.",
+     {"id":"4", "header": "Unveiling the Magic Behind Machine Learning Libraries", "shortdesc": "Eager to unravel the complexities of ML libraries? Join us on this enlightening journey and elevate your understanding of the frameworks that are driving the next wave of AI innovations!",
+     "secone": "Step into the intricate world of Machine Learning libraries! From TensorFlow's vast ecosystem to Scikit-learn's simplicity, uncover the secrets that power today's AI marvels. Whether you're an AI enthusiast or a seasoned developer, this exploration offers a deep dive into the tools that are shaping the future of technology.",
+      "sectwo": "Machine Learning (ML) has undeniably become one of the most transformative technologies of our era. But beneath the surface of impressive AI-driven applications lies a world of intricate algorithms and sophisticated libraries that power these innovations. One might wonder, what makes these libraries so special? At the heart of popular ML libraries like TensorFlow, PyTorch, and Scikit-learn is a blend of optimized mathematical operations, data manipulation tools, and a plethora of algorithms ranging from regression models to deep neural networks. These libraries provide developers with a platform to design, train, and deploy ML models without delving deep into the underlying math. For instance, TensorFlow, developed by Google, offers a flexible ecosystem of tools and community resources that lets researchers push the boundaries of current ML paradigms, while also enabling developers to easily integrate AI into their applications.",
+      "secthree" : "On the other hand, Scikit-learn, known for its simplicity, provides a wide array of tools for data mining and data analysis. It's built on foundational libraries like NumPy and SciPy, ensuring efficient computations. However, while these libraries simplify the ML process, understanding their intricacies and the principles of machine learning remains crucial. It allows developers to choose the right tools, optimize performance, and troubleshoot issues effectively. In essence, while ML libraries are a gateway to the world of artificial intelligence, a deep understanding of their workings amplifies their potential, bridging the gap between theoretical concepts and groundbreaking applications.",
+     "imgURL": "/img/bildss"},
+     {"id":"5", "header": "Demystifying the World of WebAssembly: Beyond JavaScript", "shortdesc": "Intrigued by the potential of WebAssembly? Embark on this exploratory voyage and witness firsthand the evolution of the web. Dive deep, and be part of the revolution that's reshaping the digital landscape!",
+     "secone": "Venture into the groundbreaking realm of WebAssembly! Discover how this emerging technology is redefining the boundaries of web development, offering performance leaps and expanding the horizons beyond JavaScript. Whether you're a web developer or a tech aficionado, this deep dive promises to illuminate the future of browser-based applications.",
+      "sectwo": "The realm of web development has long been dominated by JavaScript, the ubiquitous scripting language that powers interactivity on the web. However, as applications grow in complexity and demand more from our browsers, a new hero emerges on the horizon: WebAssembly (often abbreviated as WASM). But what exactly is WebAssembly, and why is it generating such a buzz? WebAssembly is a binary instruction format that allows code written in languages like C, C++, and Rust to run in the browser at near-native speed. It's not a replacement for JavaScript but rather a complementary tool, bringing performance optimizations and enabling the web to run languages previously confined to server-side or desktop applications. Imagine complex graphics rendering, real-time multiplayer games, or even machine learning models executing swiftly in your browser—that's the promise of WebAssembly. ",
+      "secthree" : "Tools like Emscripten make it possible to compile code from supported languages into WASM, bridging the gap between traditional web development and high-performance applications. While WebAssembly is still in its nascent stages, its potential is undeniable. It promises a future where the web is not just a platform for information but a robust environment for powerful applications. However, like all technologies, it comes with its learning curve and challenges. Embracing WebAssembly requires understanding its architecture, integration points with JavaScript, and the nuances of memory management. In summary, WebAssembly is not just a new tool in the developer's toolkit; it's a paradigm shift, heralding a new era of web development where boundaries are continually pushed, and possibilities are endless.",
      "imgURL": "/img/bildss"},
     ]
     // inserts skills
@@ -208,7 +213,7 @@ app.get('/projects/delete/:id', (req, res) => {
           name: req.session.name,
           isAdmin: req.session.isAdmin
         }
-        res.render("home.handlebars", model)
+        res.redirect('/projects')
       }
     })
   }
@@ -360,38 +365,7 @@ app.get('/blog', function(request, response){
   })
 })
 
-app.get('/blog/delete/:id', (req, res) => {
-  const id = req.params.id
-  if( req.session.isLoggedIn == true && (req.session.isAdmin == true || req.session.isCreator == true) ){
-    db.run("DELETE FROM blog WHERE pid=?", [id], (error, theBlogs) => {
-      if(error){
-        const model = {
-          dbError: true, theError: error,
-          isLoggedIn: req.session.isLoggedIn,
-          name: req.session.name,
-          isAdmin: req.session.isAdmin,
-          isCreator: req.session.isAdmin
-        }
-        res.render("blog.handlebars", model)
-      }
-      else{
-        const model = {
-          dbError: false, theError: "",
-          isLoggedIn: req.session.isLoggedIn,
-          name: req.session.name,
-          isAdmin: req.session.isAdmin,
-          isCreator: req.session.isAdmin
-        }
-        res.render("blog.handlebars", model)
-      }
-    })
-  }
-  else{
-    res.redirect('/login')
-  }
-})
-
-app.get('/blog/:id', (request, response) => {
+app.get('/blog/article/:id', (request, response) => {
   const id = request.params.id
   console.log("visiting blog: ", id)
   db.get("SELECT * FROM blog WHERE bid=?", [id], function(error, theBlogs){
@@ -422,7 +396,131 @@ app.get('/blog/:id', (request, response) => {
   })
 })
 
-app.delete()
+app.get('/blog/article/delete/:id', (req, res) => {
+  const id = req.params.id
+  if( req.session.isLoggedIn == true && (req.session.isAdmin == true || req.session.isCreator == true) ){
+    db.run("DELETE FROM blog WHERE bid=?", [id], (error, theBlogs) => {
+      if(error){
+        console.log("Error Deleting")
+        const model = {
+          dbError: true, theError: error,
+          isLoggedIn: req.session.isLoggedIn,
+          name: req.session.name,
+          isAdmin: req.session.isAdmin,
+          isCreator: req.session.isAdmin
+        }
+        res.redirect("blog.handlebars", model)
+      }
+      else{
+        console.log("supposedly Deleting")
+        const model = {
+          dbError: false, theError: "",
+          isLoggedIn: req.session.isLoggedIn,
+          name: req.session.name,
+          isAdmin: req.session.isAdmin,
+          isCreator: req.session.isAdmin
+        }
+        //res.render("blog.handlebars", model)
+        res.redirect('/blog')
+      }
+    })
+  }
+  else{
+    res.redirect('/login')
+  }
+})
+
+app.get('/blog/new', (req, res) => {
+  if(req.session.isLoggedIn==true){
+    const model = {
+      isLoggedIn: req.session.isLoggedIn,
+      name: req.session.name,
+      isAdmin: req.session.isAdmin
+    }
+    res.render('newblog.handlebars', model)
+  }
+  else{
+    res.redirect('/login')
+  }
+});
+
+app.post('/blog/new', (req, res) => {
+  const newp = [
+    req.body.blogheader, req.body.bshortdesc, req.body.bsecone, req.body.bsectwo, req.body.bsecthree, req.body.bimg
+  ]
+  if(req.session.isLoggedIn==true){
+    db.run("INSERT INTO blog (bheader, bshortdesc, bsecone, bsectwo, bsecthree, bimgURL) VALUES (?, ?, ?, ?, ?, ?)", newp, (error) => {
+      if(error){
+        console.log("ERROR: ", error)
+      }
+      else{
+        console.log("Line added into the Blog table!")
+      }
+      res.redirect('/blog')
+    })
+  }
+  else{
+    res.redirect('/login')
+  }
+})
+
+app.get('/blog/article/update/:id', (req, res) => {
+  const id = req.params.id
+  console.log("Update: ", id)
+
+  db.get("SELECT * FROM blog WHERE bid=?", [id], (error, theBlog) => {
+    if(error){
+      console.log("ERROR: ", error)
+      const model = {
+        dbError: true, theError: error,
+        blog: {},
+        isLoggedIn: req.session.isLoggedIn,
+        name: req.session.name,
+        isAdmin: req.session.isAdmin
+      }
+      res.render("modifyarticle.handlebars", model)
+    }
+    else{
+      console.log("MODIFY: ", JSON.stringify(theBlog))
+      console.log("MODIFY: ", theBlog)
+      const model = {
+        dbError: false, theError: "",
+        blog: theBlog,
+        isLoggedIn: req.session.isLoggedIn,
+        name: req.session.name,
+        isAdmin: req.session.isAdmin,
+        helpers: {
+          theTypeR(value) { return value == "Research";},
+          theTypeE(value) { return value == "Education";},
+          theTypeO(value) { return value == "Other";},
+        }
+      }
+      res.render("modifyarticle.handlebars", model)
+    }
+  })
+})
+
+app.post('/blog/article/update/:id', (req, res) => {
+const id = req.params.id
+const newp = [
+  req.body.blogheader, req.body.bshortdesc, req.body.bsecone, req.body.bsectwo, req.body.bsecthree, req.body.bimg, id
+]
+if(req.session.isLoggedIn==true){
+  db.run("UPDATE blog SET bheader=?, bshortdesc=?, bsecone=?, bsectwo=?, bsecthree=?, bimgURL=?  WHERE bid=?", newp, (error, theBlog) => {
+    if(error){
+      console.log("ERROR: ", error)
+    }
+    else{
+      console.log("Article updated!")
+    }
+    res.redirect('/blog')
+  })
+}
+else{
+  res.redirect('/login')
+}
+})
+
 
 app.get('/login', function(request, response){
   const model={

@@ -1,0 +1,37 @@
+<div id="main">
+    <div>
+        <h1>New Article</h1>
+        <div>
+            {{#if isLoggedIn}}
+                <form action="/blog/new" method="post">
+                    <fieldset>
+                        <label for="blogheader">Article header: </label>
+                        <input type="text" name="blogheader" id="blogheader" required="required">
+                        <br />
+                        <label for="bshortdesc">Short description: </label>
+                        <textarea name="bshortdesc" id="bshortdesc" cols="30" rows="5" required="required"></textarea>
+                        <br />
+                        <label for="bsecone">First paragraph: </label>
+                        <textarea name="bsecone" id="bsecone" cols="30" rows="8" required="required"></textarea>
+                        <br />
+                        <label for="bsectwo">Second paragraph: </label>
+                        <textarea name="bsectwo" id="bsectwo" cols="30" rows="8" required="required"></textarea>
+                        <br />
+                        <label for="bsecthree">Third paragraph: </label>
+                        <textarea name="bsecthree" id="bsecthree" cols="30" rows="8" required="required"></textarea>
+                        <br />
+                        <label for="bimg">Article image URL: </label>
+                        <input type="text" name="bimg" id="bimg" placeholder="/img/" required="required">
+                        <br />
+                    </fieldset>
+                    <input type="submit" value="Publish Article">
+                </form>
+            {{else}}
+                <p>
+                    Sorry, you mustbe logged in to write a new Article! <br>
+                    please go to the <a href="/login">login</a> page
+                </p>
+            {{/if}}
+        </div>
+    </div>
+</div>
