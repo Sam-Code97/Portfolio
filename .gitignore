@@ -4,3 +4,4 @@
 # ignore ALL files in any directory named temp
 
 node_modules/
+databaseNotes.text/

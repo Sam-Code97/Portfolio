@@ -1,13 +1,13 @@
 <div class="main">
     <div class="container">
-        <h1>Blog</h1>
-
+        <a href="/blog" class="btn btn-link"> Back </a>
         {{#if isLoggedIn}}
-        <div>
-            <a href="/blog/new" class="btn btn-link">New Blog</a>
-        </div>
+            <a href="/blog/new" class="btn btn-link"> Create Article </a>
+            {{#if isAdmin}}
+                <a href="/blog/article/update/{{blog.bid}}" class="btn btn-link"> Modify </a>
+                <a href="/blog/article/delete/{{blog.bid}}" class="important btn btn-link"> Delete </a>
+            {{/if}}
         {{/if}}
-
         <div class="columns col-gapless">
             {{#if hasDatabaseError}}
             <div>
@@ -21,7 +21,7 @@
                                 <img class="img-responsive" src="{{blog.bimgURL}}" alt="{{blog.bimgURL}}"/>
                             </div>
                             <div class="blog-header">
-                                <div class="blog-title h3">{{blog.bheader}} <br> </div>
+                                <div class="blog-title h2">{{blog.bheader}} <br> </div>
                                 <br>
                             </div>
                             <div class="blog-brief-desc">
@@ -47,14 +47,6 @@
                                     {{blog.bsecthree}}
                                     <br>
                                 </article>
-                            </div>
-
-                            <div class="blog-footer">
-                                {{#if isAdmin}}
-                                    <div>
-                                        <a href="/blog/article/update/{{blog.bid}}"> Modify </a> - <a href="/blog/article/delete/{{blog.bid}}" class="important"> Delete </a>
-                                    </div>
-                                {{/if}}
                             </div>
                         </div>
                     </a>

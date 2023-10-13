@@ -15,32 +15,57 @@
                 {{theError}}
             </div>
             {{else}}
-                {{#each projects}}
+                {{#each projects}}       
                     <div class="column col-4 col-md-6 col-sm-12">
-                        <div class="card">
-                            <div class="card-image">
-                                <img class="img-responsive" src="{{pimgURL}}" alt="{{pimgURL}}"/>
+                        <a href="{{github}}" class="blog-card-link" target="_blank">
+                            <div class="card">
+                                <div class="card-image">
+                                    <img class="img-responsive" src="{{pimgURL}}" alt="{{pimgURL}}"/>
+                                </div>
+                                <div class="card-header">
+                                    <div class="card-title h3">{{pname}}</div>
+                                    <div class="card-subtitle text-gray">{{pyear}}   -   {{ptype}}</div>
+                                </div>
+                                <div class="card-brief-desc">
+                                    <article>
+                                        {{pdesc}}
+                                        <br>
+                                    </article>
+                                </div>
+                                <div class="card-tech-desc">
+                                    <article>
+                                        <br>
+                                        {{ptechdesc}}
+                                    </article>
+                                </div>
+                                <div class="card-footer">
+                                    {{#if ../isAdmin}}
+                                        <div>
+                                            <a href="/projects/update/{{pid}}"> Modify </a> - <a href="/projects/delete/{{pid}}" class="important"> Delete </a>
+                                        </div>
+                                    {{/if}}
+                                </div>
                             </div>
-                            <div class="card-header">
-                                <div class="card-title h3">{{pname}}</div>
-                                <div class="card-subtitle text-gray">{{pyear}}  ---  {{ptype}}</div>
-                            </div>
-                            <div class="card-brief-desc">
-                                <article>
-                                    {{pdesc}}
-                                </article>
-                            </div>
-                            <div class="card-footer">
-                                {{#if ../isAdmin}}
-                                    <div>
-                                        <a href="/projects/update/{{pid}}"> Modify </a> - <a href="/projects/delete/{{pid}}" class="important"> Delete </a>
-                                    </div>
-                                {{/if}}
-                            </div>
-                        </div>
-                    </div>
+                        </a>
+                    </div> 
                 {{/each}}
             {{/if}}
         </div>
+        {{#each comments}} 
+            <div class="comment-section">
+                <h2 id="comments-header">Comments</h2>
+                <div class="comment">
+                    <div class="commenter">
+                        <h4>{{username}}</h4>
+                    </div>
+                    <div class="comment-body">
+                        {{cbody}}
+                    </div>
+                    <div class="comment-date text-gra" >
+                        {{cdate}}
+                    </div>
+                </div>
+            </div>
+        {{/each}}
     </div>
 </div>
