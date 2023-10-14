@@ -1,30 +1,32 @@
 <div id="main">
     <div>
-        <h1>Modify Article</h1>
+        <h1 class="pageheader">Modify Article</h1>
         <div>
             {{#if isLoggedIn}}
                 <form action="/blog/article/update/{{blog.bid}}" method="post">
-                    <fieldset>
-                        <label for="blogheader">Article header: </label>
-                        <input type="text" name="blogheader" id="blogheader" value="{{blog.bheader}}" required="required">
-                        <br />
-                        <label for="bshortdesc">Short description: </label>
-                        <textarea name="bshortdesc" id="bshortdesc" class="article-parag" cols="100" rows="4" required="required">{{blog.bshortdesc}}</textarea>
-                        <br />
-                        <label for="bsecone">First paragraph: </label>
-                        <textarea name="bsecone" id="bsecone" class="article-parag" cols="100" rows="8" required="required">{{blog.bsecone}}</textarea>
-                        <br />
-                        <label for="bsectwo">Second paragraph: </label>
-                        <textarea name="bsectwo" id="bsectwo" class="article-parag" cols="100" rows="8" required="required">{{blog.bsectwo}}</textarea>
-                        <br />
-                        <label for="bsecthree">Third paragraph: </label>
-                        <textarea name="bsecthree" id="bsecthree" class="article-parag" cols="100" rows="8" required="required">{{blog.bsecthree}}</textarea>
-                        <br />
-                        <label for="bimg">Article image URL: </label>
-                        <input type="text" name="bimg" id="bimg" value="{{blog.bimgURL}}" required="required">
-                        <br />
-                    </fieldset>
-                    <input type="submit" value="Update Article">
+                    <div class="modifypage">
+                        <fieldset class="modifyfield col-9 col-lg-11 col-md-11 col-sm-12">
+                            <label for="blogheader">Article header: </label>
+                            <input type="text" name="blogheader" id="blogheader" value="{{blog.bheader}}" required="required">
+                            <br />
+                            <label for="bshortdesc">Short description: </label>
+                            <textarea class="textareadark" name="bshortdesc" id="bshortdesc" class="article-parag" cols="70" rows="4" required="required">{{blog.bshortdesc}}</textarea>
+                            <br />
+                            <label for="bsecone">First paragraph: </label>
+                            <textarea class="textareadark" name="bsecone" id="bsecone" class="article-parag" cols="70" rows="8" required="required">{{blog.bsecone}}</textarea>
+                            <br />
+                            <label for="bsectwo">Second paragraph: </label>
+                            <textarea class="textareadark" name="bsectwo" id="bsectwo" class="article-parag" cols="70" rows="8" required="required">{{blog.bsectwo}}</textarea>
+                            <br />
+                            <label for="bsecthree">Third paragraph: </label>
+                            <textarea class="textareadark" name="bsecthree" id="bsecthree" class="article-parag" cols="70" rows="8" required="required">{{blog.bsecthree}}</textarea>
+                            <br />
+                            <label for="bimg">Article image URL: </label>
+                            <input type="text" name="bimg" id="bimg" value="{{blog.bimgURL}}" required="required">
+                            <br />
+                        </fieldset>
+                        <input class="btn3"  type="submit" value="Update Article">
+                    </div>
                 </form>
             {{else}}
                 <p>

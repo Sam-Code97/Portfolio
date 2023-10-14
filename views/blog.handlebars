@@ -2,11 +2,11 @@
     <div class="container">
         <h1 class="pageheader">Blog</h1>
         <p class="pageheader text-gray">Click to open</p>
-        {{#if isLoggedIn}}
-        <div>
-            <a href="/blog/new" class="btn2">Write a Blog</a>
+        <div class="headbtn">
+            {{#if isLoggedIn}}
+                <a href="/blog/new" class="btn2">Create article</a>
+            {{/if}}
         </div>
-        {{/if}}
 
         <div class="columns col-gapless">
             {{#if hasDatabaseError}}
@@ -25,7 +25,7 @@
                                 <div class="card-header">
                                     <div class="card-title h3">{{bheader}}</div>
                                 </div>
-                                <div class="card-brief-desc">
+                                <div class="cardtext">
                                     <article>
                                         {{bshortdesc}}
                                     </article>

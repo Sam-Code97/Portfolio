@@ -1,30 +1,32 @@
 <div id="main">
     <div>
-        <h1>New Article</h1>
+        <h1 class="pageheader">New Article</h1>
         <div>
             {{#if isLoggedIn}}
                 <form action="/blog/new" method="post">
-                    <fieldset>
-                        <label for="blogheader">Article header: </label>
-                        <input type="text" name="blogheader" id="blogheader" required="required">
-                        <br />
-                        <label for="bshortdesc">Short description: </label>
-                        <textarea name="bshortdesc" id="bshortdesc" cols="30" rows="5" required="required"></textarea>
-                        <br />
-                        <label for="bsecone">First paragraph: </label>
-                        <textarea name="bsecone" id="bsecone" cols="30" rows="8" required="required"></textarea>
-                        <br />
-                        <label for="bsectwo">Second paragraph: </label>
-                        <textarea name="bsectwo" id="bsectwo" cols="30" rows="8" required="required"></textarea>
-                        <br />
-                        <label for="bsecthree">Third paragraph: </label>
-                        <textarea name="bsecthree" id="bsecthree" cols="30" rows="8" required="required"></textarea>
-                        <br />
-                        <label for="bimg">Article image URL: </label>
-                        <input type="text" name="bimg" id="bimg" placeholder="/img/" required="required">
-                        <br />
-                    </fieldset>
-                    <input type="submit" value="Publish Article">
+                    <div class="modifypage">
+                        <fieldset class="modifyfield col-9 col-lg-11 col-md-11 col-sm-12">
+                            <label for="blogheader">Article header: </label>
+                            <input type="text" name="blogheader" id="blogheader" required="required">
+                            <br />
+                            <label for="bshortdesc">Short description: </label>
+                            <textarea class="textareadark" name="bshortdesc" id="bshortdesc" cols="30" rows="5" required="required"></textarea>
+                            <br />
+                            <label for="bsecone">First paragraph: </label>
+                            <textarea class="textareadark" name="bsecone" id="bsecone" cols="30" rows="8" required="required"></textarea>
+                            <br />
+                            <label for="bsectwo">Second paragraph: </label>
+                            <textarea class="textareadark" name="bsectwo" id="bsectwo" cols="30" rows="8" required="required"></textarea>
+                            <br />
+                            <label for="bsecthree">Third paragraph: </label>
+                            <textarea class="textareadark" name="bsecthree" id="bsecthree" cols="30" rows="8" required="required"></textarea>
+                            <br />
+                            <label for="bimg">Article image URL: </label>
+                            <input type="text" name="bimg" id="bimg" placeholder="/img/" required="required">
+                            <br />
+                        </fieldset>
+                        <input class="btn3" type="submit" value="Publish Article">
+                    </div>
                 </form>
             {{else}}
                 <p>

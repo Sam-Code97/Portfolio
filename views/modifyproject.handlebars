@@ -6,16 +6,18 @@
                 {{#if isAdmin}}
                     <form action="/projects/update/{{project.pid}}" method="post">
                         <div class="modifypage">
-                            <fieldset class="modifyfield">
+                            <fieldset class="modifyfield col-9 col-lg-11 col-md-11 col-sm-12">
                                 <label for="projname">Project name: </label>
                                 <input type="text" name="projname" id="projname" value="{{project.pname}}" required="required">
                                 <br />
                                 <label for="projyear">Project year: </label>
                                 <input type="number" name="projyear" class="yearf" placeholder="2023" value="{{project.pyear}}" required="required">
                                 <br />
-                                <textarea name="projdesc" class="textareadark" id="projdesc" cols="70" rows="10" required="required">{{project.pdesc}}</textarea>
+                                <label for="projdesc">Interesting description: </label>
+                                <textarea name="projdesc" class="textareadark" id="projdesc" cols="70" rows="7" required="required">{{project.pdesc}}</textarea>
                                 <br />
-                                <textarea name="techdesc" class="textareadark" id="techdesc" cols="70" rows="10" required="required">{{project.ptechdesc}}</textarea>
+                                <label for="techdesc">Technical description: </label>
+                                <textarea name="techdesc" class="textareadark" id="techdesc" cols="70" rows="7" required="required">{{project.ptechdesc}}</textarea>
                                 <br />
                                 <label for="projtype">Project type: </label>
                                 <select class="multiselec" name="projtype" id="projtype" required="required">

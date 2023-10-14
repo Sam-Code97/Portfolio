@@ -61,7 +61,27 @@ body{
 }
 
 .to-r:hover{
-    background-color: rgb(28, 41, 55);
+    background-color: rgb(31, 46, 63);
+    text-shadow: none;
+    transition: background-color 0.1s;
+}
+
+.logout, .logout:link, .logout:visited{
+    color: white;
+    font-size: 17px;
+    text-shadow: 2px 2px 4px black;
+    text-decoration: none;
+    margin: 0;
+    padding: 20px;
+    background-color: rgb(46, 52, 61);
+    transition: background-color 0.1s;
+
+    border-radius: 5px;
+
+}
+
+.logout:hover{
+    background-color: rgb(63, 31, 31);
     text-shadow: none;
     transition: background-color 0.1s;
 }
@@ -116,10 +136,9 @@ footer{
     color: white;
     
     text-decoration: none;
-    padding: 10px;
+    padding: 20px;
     background-color: rgb(48, 71, 104);
     transition: background-color 0.1s;
-    box-shadow: 0px 0px 0px black;
     border-radius: 5px;
 
     margin: 10px;
@@ -128,14 +147,16 @@ footer{
 
 .btn2:hover{
     background-color: rgb(33, 52, 80);
-    box-shadow: 0px 0px 0px black;
-    text-shadow: none;
 
+}
+
+.headbtn{
+    display: flex;
 }
 
 .card-title{
     text-align: center;
-    margin-top: 10px;
+    margin-top: 20px;
 }
 .card-subtitle{
     margin-bottom: 30px;
@@ -157,14 +178,12 @@ footer{
 
 .card, .card:link, .card:visited, .card:active, .card:focus{
     margin: 10px;
-    margin-top: 30px;
+    margin-bottom: 25px;
     border-radius: 10px;
     box-shadow: 0px 0px 10px black;
     background-color: rgb(30, 34, 39);
     transform: scale(1);
     transition: transform 0.3s;
-    padding: 30px;
-    margin-top: 40px;
 }
 
 
@@ -173,24 +192,22 @@ footer{
     transition: transform 0.3s;
 }
 
+.cardtext{
+    padding: 40px;
+}
+
 .card-footer {
     display: flex;
     margin-top: 0px;
 }
 
 
-
-.modify-btn:hover{
-    background-color: rgb(33, 52, 80);
-    text-shadow: none;
-}
-
 .delete-btn, .delete-btn:link, .delete-btn:visited{
     color: white;
     
     text-decoration: none;
     padding: 20px;
-    background-color: rgb(129, 7, 7);
+    background-color: rgb(135, 25, 25);
     transition: background-color 0.1s;
     margin-top: 10px;
     margin-right: auto;
@@ -201,7 +218,7 @@ footer{
 }
 
 .delete-btn:hover{
-    background-color: rgb(108, 5, 5);
+    background-color: rgb(105, 19, 19);
     transition: background-color 0.1s;
     text-shadow: none;
 }
@@ -222,6 +239,10 @@ footer{
     border-radius: 5px;
 
 }
+.modify-btn:hover{
+    background-color: rgb(33, 49, 70);
+    text-shadow: none;
+}
 
 /*-------------------*/
 
@@ -232,9 +253,10 @@ footer{
 }
 
 .textareadark {
+    width: 100%;
     margin-top: 10px;
     margin-right: 10px;
-    margin-left: 10px;
+    
     background-color: rgb(28, 32, 38);
     border-radius: 10px;
     color: rgb(189, 197, 211);
@@ -253,10 +275,10 @@ footer{
 
 .submitbtn{
     color: white;
-
+    margin-left: 20px;
     text-decoration: none;
     padding: 20px;
-    background-color: rgb(52, 60, 71);
+    background-color: rgb(48, 71, 104);
     transition: background-color 0.1s;
     box-shadow: none ;
     border: none;
@@ -264,9 +286,10 @@ footer{
 
     max-height: 70px;
 }
-.comment-section{
 
-
+.submitbtn:hover{
+    background-color: rgb(33, 52, 80) !important;
+    text-shadow: none;
 }
 .comment {
     display: flex;
@@ -287,10 +310,6 @@ footer{
 
 
 
-.submitbtn:hover{
-    background-color: rgb(41, 62, 92);
-    text-shadow: none;
-}
 
 .comment-body{
     margin-left: 20px;
@@ -381,13 +400,14 @@ fieldset {
     padding: 0;
 }
 label {
-    display: block;
-    margin-bottom: 10px;
+    margin-top: 10px;
+    margin-bottom: 5px;
     font-weight: bold;
 }
 
 input[type="text"], input[type="password"] {
     width: 300px;
+    
     padding: 10px;
     margin-left: 10px;
     margin-bottom: 10px;
@@ -406,6 +426,11 @@ input[type="text"], input[type="password"] {
     border-radius: 4px;
     font-size: 16px;
     transition: background-color 0.3s;
+}
+
+.logout{
+    background-color: #701414;
+    margin-right: 100px !important;
 }
 
 input[type="submit"]:hover {
@@ -442,15 +467,14 @@ input[type="submit"]:hover {
 }
 
 .modifyfield{
+    max-width: 1000px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #13355b;
-    padding: 20px;
+    padding: 30px;
     box-shadow: 0px 0px 5px black;
     border-radius: 20px;
-    background-color: rgb(32, 39, 47);
-
+    background-color: rgb(33, 37, 44);
     color: rgb(218, 218, 218);
 }
 
@@ -483,4 +507,15 @@ input{
     border-style: solid;
     border-color: rgb(46, 134, 231);
     border-width: 2px;
+}
+
+/*--------------------------*/
+.card-image{
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+}
+.img-responsive{
+    
+
 }
