@@ -1,36 +1,38 @@
 <div id="main">
     <div>
-        <h1>Modify Project</h1>
+        <h1 class="pageheader">Modify Project</h1>
         <div>
             {{#if isLoggedIn}}
                 {{#if isAdmin}}
                     <form action="/projects/update/{{project.pid}}" method="post">
-                        <fieldset>
-                            <label for="projname">Project name: </label>
-                            <input type="text" name="projname" id="projname" value="{{project.pname}}" required="required">
-                            <br />
-                            <label for="projyear">Project year: </label>
-                            <input type="number" name="projyear" id="projyear" placeholder="2023" value="{{project.pyear}}" required="required">
-                            <br />
-                            <textarea name="projdesc" id="projdesc" cols="30" rows="10" required="required">{{project.pdesc}}</textarea>
-                            <br />
-                            <textarea name="techdesc" id="techdesc" cols="30" rows="10" required="required">{{project.ptechdesc}}</textarea>
-                            <br />
-                            <label for="projtype">Project type: </label>
-                            <select name="projtype" id="projtype" required="required">
-                                <option value="Education" {{#if (theTypeE project.ptype)}} selected="selected"{{/if}}>Education</option>
-                                <option value="Research" {{#if (theTypeR project.ptype)}} selected="selected"{{/if}}>Research</option>
-                                <option value="Other" {{#if (theTypeO project.ptype)}} selected="selected"{{/if}}>Other</option>
-                            </select>
-                            <br />
-                            <label for="projimg">Project image URL: </label>
-                            <input type="text" name="projimg" id="projimg" placeholder="/img/" value="{{project.pimgURL}}" required="required">
-                            <br />
-                            <label for="github">Project GitHub repository: </label>
-                            <input type="text" name="github" id="github" value="{{project.github}}" required="required">
-                            <br />
-                        </fieldset>
-                        <input type="submit" value="Update project">
+                        <div class="modifypage">
+                            <fieldset class="modifyfield">
+                                <label for="projname">Project name: </label>
+                                <input type="text" name="projname" id="projname" value="{{project.pname}}" required="required">
+                                <br />
+                                <label for="projyear">Project year: </label>
+                                <input type="number" name="projyear" class="yearf" placeholder="2023" value="{{project.pyear}}" required="required">
+                                <br />
+                                <textarea name="projdesc" class="textareadark" id="projdesc" cols="70" rows="10" required="required">{{project.pdesc}}</textarea>
+                                <br />
+                                <textarea name="techdesc" class="textareadark" id="techdesc" cols="70" rows="10" required="required">{{project.ptechdesc}}</textarea>
+                                <br />
+                                <label for="projtype">Project type: </label>
+                                <select class="multiselec" name="projtype" id="projtype" required="required">
+                                    <option value="Education" {{#if (theTypeE project.ptype)}} selected="selected"{{/if}}>Education</option>
+                                    <option value="Research" {{#if (theTypeR project.ptype)}} selected="selected"{{/if}}>Research</option>
+                                    <option value="Other" {{#if (theTypeO project.ptype)}} selected="selected"{{/if}}>Other</option>
+                                </select>
+                                <br />
+                                <label for="projimg">Project image URL: </label>
+                                <input type="text" name="projimg" id="projimg" placeholder="/img/" value="{{project.pimgURL}}" required="required">
+                                <br />
+                                <label for="github">Project GitHub repository: </label>
+                                <input type="text" name="github" id="github" value="{{project.github}}" required="required">
+                                <br />
+                            </fieldset>
+                            <input class="btn3" type="submit" value="Update project">
+                        </div>
                     </form>
                 {{else}}
                     <p>Sorry, you must be an administrator to add a new project</p>

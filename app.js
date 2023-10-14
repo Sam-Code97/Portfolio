@@ -89,7 +89,6 @@ app.get('/projects', function(request, response){
             name: request.session.name,
             isAdmin: request.session.isAdmin
           }
-          console.log("The right place...........")
           // renders the page with the model
           response.render("projects.handlebars", model)
         }
@@ -164,7 +163,7 @@ app.post('/projects/new', (req, res) => {
 app.post('/projects/addcomment', (req, res) => {
   const currentDate = new Date().toISOString().split('T')[0];
   const newc = [
-    req.body.name, req.body.commenttext, currentDate
+    req.session.name, req.body.commenttext, currentDate
   ]
   if(req.session.isLoggedIn==true){
     db.run("INSERT INTO comments (username, cbody, cdate) VALUES (?, ?, ?)", newc, (error) => {

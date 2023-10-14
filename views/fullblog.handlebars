@@ -1,21 +1,23 @@
 <div class="main">
-    <div class="container">
-        <a href="/blog" class="btn btn-link"> Back </a>
-        {{#if isLoggedIn}}
-            <a href="/blog/new" class="btn btn-link"> Create Article </a>
-            {{#if isAdmin}}
-                <a href="/blog/article/update/{{blog.bid}}" class="btn btn-link"> Modify </a>
-                <a href="/blog/article/delete/{{blog.bid}}" class="important btn btn-link"> Delete </a>
+    <div class="container blogcontainer">
+        <div class="fullblogmenu">
+            <a href="/blog" class="btn1"> Back </a>
+            {{#if isLoggedIn}}
+                <a href="/blog/new" class="btn1"> Create Article </a>
+                {{#if isAdmin}}
+                    <a href="/blog/article/update/{{blog.bid}}" class="btn1"> Modify </a>
+                    <a href="/blog/article/delete/{{blog.bid}}" class="important btn1"> Delete </a>
+                {{/if}}
             {{/if}}
-        {{/if}}
-        <div class="columns col-gapless">
+        </div>
+        <div class="columns article">
             {{#if hasDatabaseError}}
             <div>
                 Sorry, there was a problem with the database:<br />
                 {{theError}}
             </div>
             {{else}}
-                <div class="column col-12">
+                <div class="column column col-9 col-xl-9 col-lg-12 col-md-12 col-sm-12">
                         <div class="fullblog">
                             <div class="card-image">
                                 <img class="img-responsive" src="{{blog.bimgURL}}" alt="{{blog.bimgURL}}"/>

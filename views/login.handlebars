@@ -1,15 +1,15 @@
 <div class="main">
-    <div>
-        <h1>Log in</h1>
+    <div class="logincontainer">
+        <h1 class="pageheader">Log in</h1>
         <div>
             <form action="/login" method="post" id="formlogin">
                 <fieldset>
-                    <legend>Login information</legend>
+                    <h2 class="logintext">Login information</h2>
                     <label>Username: <input type="text" name="un"></label>
                     <br>
                     <label>Password: <input type="password" name="pw"></label>
                 </fieldset>
-                <input type="submit" value="Login">
+                <input class="loginbtn" type="submit" value="Login">
                 <br>
                 {{#if errorMessage}}
                 <div class="error-message">

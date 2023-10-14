@@ -1,23 +1,28 @@
 <header id="menu">
     <nav>
-        <div class="navbar">
-            <section class="navbar-section">
-                <a href="/" class="btn btn-link"> Home </a>
-                <a href="/projects" class="btn btn-link"> Projects </a>
-                <a href="/blog" class="btn btn-link"> Blog </a>
-                <a href="/about" class="btn btn-link"> About </a>
-                <a href="/contact" class="btn btn-link"> Contact Me </a>
-
-                {{#if isLoggedIn}}
-                    <div class="to-the-right">
-                        Hi, {{name}}! &nbsp; &nbsp;
-                        <a href="/logout" class="btn btn-link">Logout</a>
-                    </div>
-                {{else}}
-                    <a href="/login" class="btn btn-link to-the-right"> Login </a>
-                    <a href="/signup" class="btn btn-link to-the-right"> Signup </a>
-                {{/if}}
+        <div class="navbar1">
+            <section class="navbar-section1">
+                <a href="/" class="btn1"> Home </a>
+                <a href="/projects" class="btn1"> Projects </a>
+                <a href="/blog" class="btn1"> Blog </a>
+                <a href="/about" class="btn1"> About </a>
+                <a href="/contact" class="btn1"> Contact Me </a>
             </section>
+
+            
+                {{#if isLoggedIn}}
+                    
+                        <a class="account-name">Hi, {{name}}!</a>
+                        <a href="/logout" class="btn1">Logout</a>
+                    
+                {{else}}
+                    
+                        <a href="/login" class="to-r" class="btn1" > Login </a>
+                        <a href="/signup" class="btn1"> Signup </a>
+                    
+                {{/if}}
+            
+            
         </div>
     </nav>
 </header>

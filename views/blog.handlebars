@@ -1,10 +1,10 @@
 <div class="main">
     <div class="container">
-        <h1>Blog</h1>
-
+        <h1 class="pageheader">Blog</h1>
+        <p class="pageheader text-gray">Click to open</p>
         {{#if isLoggedIn}}
         <div>
-            <a href="/blog/new" class="btn btn-link">Write a Blog</a>
+            <a href="/blog/new" class="btn2">Write a Blog</a>
         </div>
         {{/if}}
 
@@ -16,7 +16,7 @@
             </div>
             {{else}}
                 {{#each blog}}
-                    <div class="column col-4 col-md-6 col-sm-12">
+                    <div class="column col-4 col-xl-6 col-lg-6 col-md-12 col-sm-12">
                         <a href="/blog/article/{{bid}}" class="blog-card-link"> 
                             <div class="card">
                                 <div class="card-image">
@@ -30,10 +30,11 @@
                                         {{bshortdesc}}
                                     </article>
                                 </div>
-                                <div class="card-footer">
+                                <div >
                                     {{#if ../isAdmin}}
-                                        <div>
-                                            <a href="/blog/article/update/{{bid}}"> Modify </a> - <a href="/blog/article/delete/{{bid}}" class="important"> Delete </a>
+                                        <div class="card-footer">
+                                            <a href="/blog/article/update/{{bid}}"class="modify-btn"> Modify </a>
+                                            <a href="/blog/article/delete/{{bid}}"  class="delete-btn"> Delete </a>
                                         </div>
                                     {{/if}}
                                 </div>

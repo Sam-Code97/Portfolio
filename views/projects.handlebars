@@ -1,10 +1,10 @@
 <div class="main">
     <div class="container">
-        <h1>My Projects</h1>
+        <h1 class="pageheader">My Projects</h1>
 
         {{#if isAdmin}}
         <div>
-            <a href="/projects/new" class="btn btn-link">New project</a>
+            <a href="/projects/new" class="btn2">New project</a>
         </div>
         {{/if}}
 
@@ -16,7 +16,7 @@
             </div>
             {{else}}
                 {{#each projects}}       
-                    <div class="column col-4 col-md-6 col-sm-12">
+                    <div class="column col-4 col-xl-6 col-lg-6 col-md-12 col-sm-12">
                         <a href="{{github}}" class="blog-card-link" target="_blank">
                             <div class="card">
                                 <div class="card-image">
@@ -38,10 +38,11 @@
                                         {{ptechdesc}}
                                     </article>
                                 </div>
-                                <div class="card-footer">
+                                <div>
                                     {{#if ../isAdmin}}
-                                        <div>
-                                            <a href="/projects/update/{{pid}}"> Modify </a> - <a href="/projects/delete/{{pid}}" class="important"> Delete </a>
+                                        <div class="card-footer">
+                                            <a href="/projects/update/{{pid}}" class="modify-btn"> Modify </a>
+                                            <a href="/projects/delete/{{pid}}" class="delete-btn" class="important"> Delete </a>
                                         </div>
                                     {{/if}}
                                 </div>
@@ -51,14 +52,26 @@
                 {{/each}}
             {{/if}}
         </div>
+        <div>
+            <h2 id="comments-header">Comments:</h2>
+        </div>
+        {{#if isLoggedIn}}
+            <form action="/projects/addcomment" method="post">
+                <div class="commentbox">
+                    <fieldset>
+                        <div class="writing-comment-section">
+                            <textarea name="commenttext" class="textareadark" cols="90" rows="3"></textarea>
+                        </div>
+                    </fieldset>
+                    <input class="submitbtn" type="submit" value="Add comment">
+                </div>
+            </form>
+        {{/if}}
         <div class="comment-section">
-            <div>
-                <h2 id="comments-header">Comments</h2>
-            </div>
             {{#each comments}} 
                 <div class="comment">
                     <div class="commenter">
-                        <h5>- {{username}}</h5>
+                        <h5>{{username}}</h5>
                     </div>
                     <div class="comment-body">
                         {{cbody}}
@@ -68,16 +81,8 @@
                     </div>
                 </div>
             {{/each}}
-            {{#if isLoggedIn}}
-                <form action="/projects/addcomment" method="post">
-                    <fieldset>
-                        <div class="writing-comment-section">
-                            <textarea name="commenttext" id="commenttext" cols="90" rows="3"></textarea>
-                        </div>
-                    </fieldset>
-                    <input type="submit" value="Add comment">
-                </form>
-            {{/if}}
         </div>
+
+        
     </div>
 </div>
