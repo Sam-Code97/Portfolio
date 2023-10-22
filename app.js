@@ -47,12 +47,12 @@ app.get('/', function(req, res){
 })
 
 app.get('/projects', function(request, response){
-  db.all("SELECT * FROM projects", function(error, theProjects){
+  db.all("SELECT * FROM comments", (error, theComments) => {
     if(error){
+      console.log("ERROR: ", error)
       const model = {
         hasDatabaseError: true,
         theError: error,
-        projects: [],
         comments: [],
         isLoggedIn: request.session.isLoggedIn,
         name: request.session.name,
@@ -62,35 +62,16 @@ app.get('/projects', function(request, response){
       response.render("projects.handlebars", model)
     }
     else{
-      db.all("SELECT * FROM comments", (error, theComments) => {
-        if(error){
-          console.log("ERROR: ", error)
-          const model = {
-            hasDatabaseError: true,
-            theError: error,
-            projects: theProjects,
-            comments: [],
-            isLoggedIn: request.session.isLoggedIn,
-            name: request.session.name,
-            isAdmin: request.session.isAdmin
-          }
-          // renders the page with the model
-          response.render("projects.handlebars", model)
-        }
-        else{
-          const model = {
-            hasDatabaseError: false,
-            theError: "",
-            projects: theProjects,
-            comments: theComments,
-            isLoggedIn: request.session.isLoggedIn,
-            name: request.session.name,
-            isAdmin: request.session.isAdmin
-          }
-          // renders the page with the model
-          response.render("projects.handlebars", model)
-        }
-      })
+      const model = {
+        hasDatabaseError: false,
+        theError: "",
+        comments: theComments,
+        isLoggedIn: request.session.isLoggedIn,
+        name: request.session.name,
+        isAdmin: request.session.isAdmin
+      }
+      // renders the page with the model
+      response.render("projects.handlebars", model)
     }
   })
 })
@@ -237,14 +218,53 @@ app.post('/projects/update/:id', (req, res) => {
 })
 
 app.get('/projects/:page', (req, res) => {
-  const page = req.params.page
-  const model={
-    isLoggedIn: req.session.isLoggedIn,
-    name: req.session.name,
-    isAdmin: req.session.isAdmin,
-    numberPerPage : 3,
+  console.log("inside rout projects/page");
+  const page = parseInt(req.params.page);
+  const numberPerPage = 3;
+
+  db.get("SELECT COUNT(*) as total FROM projects"), (error, row) => {
+    if(error){
+      console.log("Database error: ", error);
+    }
+    else{
+      const numberOfProjects = row.total;
+      console.log("numberOfProjects: ", numberOfProjects);
+      if(page > lastPage){
+        res.redirect('/projects/' + lastPage);
+        return;
+      }
+      if(page <= 0){
+        res.redirect('/projects/1');
+        return;
+      }
+      const offset = (page - 1) * numberPerPage;
+
+      db.all("SELECT * FROM projects LIMIT ? OFFSET ?", [numberPerPage, offset], (error, theProjects)=>{
+        if(error){
+          console.log("Database error: ", error);
+          return;
+        }
+        else{
+          const model = {
+            projects: theProjects,
+            currentPage: page,
+            nextPage: page + 1 > lastPage ? null : page + 1,
+            prevPage: page - 1 < 0 ? null : page - 1,
+            lastPage: Math.ceil(numberOfProjects/numberPerPage),
+            firstPage: 1,
+            isLoggedIn: req.session.isLoggedIn,
+            name: req.session.name,
+            isAdmin: req.session.isAdmin
+          };
+          res.render("projects.handlebars", model);
+        }
+      })
+    }
+
   }
+  
 })
+
 
 
 
