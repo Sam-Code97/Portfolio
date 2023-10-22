@@ -9,7 +9,7 @@ const bcrypt = require('bcrypt')
 
 const port = 8080 // defines the port
 const app = express() // creates the Express application
-const db = new sqlite3.Database('portfolio2.db')
+const db = new sqlite3.Database('portfolio5.db')
 
 
 app.engine('handlebars', engine()); // defines handlebars engine
@@ -47,39 +47,7 @@ app.get('/', function(req, res){
 })
 
 app.get('/projects', function(request, response){
-  db.all("SELECT * FROM comments", (error, theComments) => {
-    if(error){
-      console.log("ERROR: ", error)
-      const model = {
-        hasDatabaseError: true,
-        theError: error,
-        comments: [],
-        isLoggedIn: request.session.isLoggedIn,
-        name: request.session.name,
-        isAdmin: request.session.isAdmin
-      }
-      // renders the page with the model
-      response.redirect('/projects/1');
-    }
-    else{
-      const model = {
-        hasDatabaseError: false,
-        theError: "",
-        comments: theComments,
-        isLoggedIn: request.session.isLoggedIn,
-        name: request.session.name,
-        isAdmin: request.session.isAdmin,
-
-        currentPage: 1,
-        nextPage: (currentPage + 1 > lastPage) ? null : currentPage + 1,
-        prevPage: (currentPage - 1 < 0) ? null : currentPage - 1,
-        lastPage: Math.ceil(numberOfProjects/numberPerPage),
-        firstPage: 1,
-      }
-      // renders the page with the model
-      response.redirect('/projects/1');
-    }
-  })
+  response.redirect('/projects/1');
 })
 
 app.get('/projects/delete/:id', (req, res) => {
@@ -234,10 +202,11 @@ app.get('/projects/:page', (req, res) => {
     }
     else{
       const numberOfProjects = row.total;
-      const lastPage = Math.ceil(numberOfProjects / numberPerPage);
       console.log("numberOfProjects: ", numberOfProjects);
-      if(page > lastPage){
-        res.redirect('/projects/' + lastPage);
+      const lastPg = Math.ceil(numberOfProjects / numberPerPage);
+      console.log("lastPage: ", lastPg);
+      if(page > lastPg){
+        res.redirect('/projects/' + lastPg);
         return;
       }
       if(page <= 0){
@@ -245,32 +214,80 @@ app.get('/projects/:page', (req, res) => {
         return;
       }
       const offset = (page - 1) * numberPerPage;
+      console.log("offset: ", offset);
 
+      const currentPage1= page;
+      const nextPage1 =  (page + 1 > lastPg) ? null : page + 1;
+      const prevPage1 = (page - 1 <= 0) ? null : page - 1;
+      console.log("currentPage: ", currentPage1);
+      console.log("nextPage: ", nextPage1);
+      console.log("prevPage: ", prevPage1);
+      console.log("lastPage: ", lastPg);
       db.all("SELECT * FROM projects LIMIT ? OFFSET ?", [numberPerPage, offset], (error, theProjects)=>{
         if(error){
           console.log("Database error: ", error);
           return;
         }
         else{
-          const model = {
-            projects: theProjects,
-            currentPage: page,
-            nextPage: (currentPage + 1 > lastPage) ? null : currentPage + 1,
-            prevPage: (currentPage - 1 < 0) ? null : currentPage - 1,
-            lastPage: Math.ceil(numberOfProjects/numberPerPage),
-            firstPage: 1,
-            isLoggedIn: req.session.isLoggedIn,
-            name: req.session.name,
-            isAdmin: req.session.isAdmin
-          };
-          res.render("projects.handlebars", model);
+          db.all("SELECT * FROM comments", (error, theComments) => {
+            if(error){
+              console.log("ERROR: ", error);
+              return;
+            }
+            else{
+              let pagesArray = [];
+              for (let i = 1; i <= lastPg; i++) {
+                  pagesArray.push(i);
+              }
+
+              console.log("red the comments: ", theComments);
+              /*console.log("red the comments: ", stringify(theComments));*/
+              const model = {
+                projects: theProjects,
+                comments: theComments,
+                currentPage: page,
+                pages: pagesArray,
+                nextPage: (page + 1 > lastPg) ? null : page + 1,
+                prevPage: (page - 1 <= 0) ? null : page - 1,
+                lastPage: lastPg,
+                firstPage: 1,
+                isLoggedIn: req.session.isLoggedIn,
+                name: req.session.name,
+                isAdmin: req.session.isAdmin,
+              };
+              res.render("projects.handlebars", model);
+            }
+          })
         }
       })
     }
-
   });
-  
 });
+
+app.get('/comment/delete/:id', (req, res)=>{
+  const id = req.params.id
+
+  if(req.session.isLoggedIn == true && req.session.isAdmin == true){
+    db.run("DELETE FROM comments WHERE cid=?", [id], (error, theComments)=>{
+      if(error){
+        console.log("Database error: ", error)
+        return;
+      }
+      else{
+        const model = {
+          comments: theComments,
+          isLoggedIn: req.session.isLoggedIn,
+          name: req.session.name,
+          isAdmin: req.session.isAdmin,
+        }
+        res.redirect('/projects');
+      }
+    })
+  }
+  else{
+    res.redirect('/login')
+  }
+})
 
 
 

@@ -6,6 +6,15 @@
                 <a href="/projects/new" class="btn2">New project</a>
             {{/if}}
         </div>
+        <div class="page-div">
+            <a class="page-link" href="/projects/{{firstPage}}">First</a>
+            <a class="page-link" href="/projects/{{prevPage}}">Prev</a>
+            {{#each pages}}
+                <a class="page-link" href="/projects/{{this}}">{{this}}</a>
+            {{/each}}
+            <a class="page-link" href="/projects/{{nextPage}}">Next</a>
+            <a class="page-link" href="/projects/{{lastPage}}">Last</a>
+        </div>
         <div class="columns">
             {{#if hasDatabaseError}}
             <div>
@@ -13,47 +22,55 @@
                 {{theError}}
             </div>
             {{else}}
-                <div class="page-div">
-                    <a href="/projects/{{projects.firstPage}}">First Page</a>
-                    <a href="/projects/{{projects.nextPage}}">Next Page</a>
-                    <a href="/projects/{{projects.prevPage}}">Prev Page</a>
-                    <a href="/projects/{{projects.lastPage}}">Last Page</a>
-                </div>
                 {{#each projects}}       
-                    <div class="column col-4 col-xl-6 col-lg-6 col-md-12 col-sm-12">
-                        <a href="{{github}}" class="blog-card-link" target="_blank">
-                            <div class="card">
-                                <div class="card-image">
-                                    <img class="img-responsive" src="{{pimgURL}}" alt="{{pimgURL}}"/>
-                                </div>
-                                <div class="card-header">
-                                    <div class="card-title h3">{{pname}}</div>
-                                    <div class="card-subtitle text-gray">{{pyear}}   -   {{ptype}}</div>
-                                </div>
-                                <div class="cardtext">
-                                    <div class="card-brief-desc">
-                                        <article>
-                                            {{pdesc}}
-                                            <br>
-                                        </article>
-                                    </div>
-                                    <div class="card-tech-desc col-sm-12">
-                                        <article>
-                                            <br>
-                                            {{ptechdesc}}
-                                        </article>
-                                    </div>
-                                </div>
-                                <div>
-                                    {{#if ../isAdmin}}
-                                        <div class="card-footer">
-                                            <a href="/projects/update/{{pid}}" class="modify-btn"> Modify </a>
-                                            <a href="/projects/delete/{{pid}}" class="delete-btn" class="important"> Delete </a>
+                    <div class=" flip-card column col-4 col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                        
+                            <label for="flipCheckbox{{@index}}" class="flip-card">
+                                <input type="checkbox" id="flipCheckbox{{@index}}" style="display: none;">
+                                <div class=" flip-card-inner card ">
+                                    <span class="flip-card-front">
+                                        <p class="click-to-rotate">Click<br>to Rotate</p>
+                                        <div class="card-image">
+                                            <img class="img-responsive" src="{{pimgURL}}" alt="{{pimgURL}}"/>
                                         </div>
-                                    {{/if}}
+                                        <div class="card-header">
+                                            <div class="card-title h3">{{pname}}</div>
+                                            <div class="card-subtitle text-gray">{{pyear}}   -   {{ptype}}</div>
+                                        </div>
+                                        <div >
+                                            <div class="card-brief-desc">
+                                                <article>
+                                                    {{pdesc}}
+                                                    <br>
+                                                </article>
+                                            </div>
+                                        </div>
+                                    </span>
+                                    <span class="flip-card-back">
+                                        <div>
+                                            <div class="card-title h4"><br>Technical Description</div>
+                                            <article class="artic">
+                                                <br>
+                                                {{ptechdesc}}
+                                            </article>
+                                        </div>
+
+                                        <div class="github-btn">
+                                            <a href="{{github}}" class="gh-btn btn2" target="_blank">Open in GitHub</a>
+                                        </div>
+                                        <div>
+                                            {{#if ../isAdmin}}
+                                                <div class="card-footer">
+                                                    <a href="/projects/update/{{pid}}" class="modify-btn"> Modify </a>
+                                                    <a href="/projects/delete/{{pid}}" class="delete-btn" class="important"> Delete </a>
+                                                </div>
+                                            {{/if}}
+                                        </div>
+                                        <p class="click-to-rotate-r">Click<br>to Rotate</p>
+                                    </span>
                                 </div>
-                            </div>
-                        </a>
+                            </label>
+                        
                     </div> 
                 {{/each}}
             {{/if}}
@@ -76,14 +93,23 @@
         <div class="comment-section">
             {{#each comments}} 
                 <div class="comment">
-                    <div class="commenter">
-                        <h5>{{username}}</h5>
-                    </div>
-                    <div class="comment-body">
-                        {{cbody}}
-                    </div>
-                    <div class="comment-date text-gray" >
-                        {{cdate}}
+                    <div class="comment-flex-row">
+                        <div class="comment-flex-col">
+                            <div class="commenter">
+                                <h5>{{username}}</h5>
+                            </div>
+                            <div class="comment-body">
+                                {{cbody}}
+                            </div>
+                            <div class="comment-date text-gray" >
+                                {{cdate}}
+                            </div>
+                        </div>
+                        <div>
+                            {{#if ../isAdmin}}
+                                <a class="delete-btn2" href="/comment/delete/{{this.cid}}">Delete</a>
+                            {{/if}}
+                        </div>
                     </div>
                 </div>
             {{/each}}

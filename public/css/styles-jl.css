@@ -2,6 +2,9 @@
     margin-left: 20px;
     margin-right: 25px;
 }
+a, a:active, a:focus, a:checked{
+    border-color: transparent;
+}
 .navbar1{
     width: 100%;
 
@@ -18,6 +21,8 @@
     padding: 3px;
 
     border-bottom: 1px solid black;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 18px;
 }
 
 .navbar-section2{
@@ -51,7 +56,7 @@ body{
 
 .btn1, .btn1:link, .btn1:visited{
     color: white;
-    font-size: 15px;
+    
     text-shadow: 2px 2px 4px black;
     text-decoration: none;
     margin: 0;
@@ -64,7 +69,7 @@ body{
 }
 
 .btn1:hover{
-    background-color: rgb(36, 40, 47);
+    background-color: rgb(32, 36, 42);
     text-shadow: none;
     transition: background-color 0.1s;
 }
@@ -73,7 +78,7 @@ body{
     margin-left: 100px;
 }
 .blue:hover{
-    background-color: rgb(31, 46, 63);
+    background-color: rgb(26, 39, 54);
 }
 
 .red:hover{
@@ -81,7 +86,8 @@ body{
 }
 
 .account-name, .account-name:link, .account-name:visited, .account-name:hover{
-    color: rgb(213, 228, 255);
+    color: rgb(63, 155, 254);
+    text-shadow: 2px 2px 4px black;
     font-size: 17px;
     padding: 15px;
     text-decoration: none;
@@ -89,40 +95,14 @@ body{
     
 }
 
-.footerbtn, .footerbtn:link, .footerbtn:visited{
-    color: white;
-    text-shadow: 2px 2px 4px black;
-    text-decoration: none;
-    margin: 0;
-    padding: 10px;
-    background-color: rgb(46, 52, 61);
-    border-radius: 5px;
-    transition: background-color 0.1s;
-}
-
-.footerbtn:hover{
-    background-color: rgb(36, 40, 47);
-    text-shadow: none;
-    transition: background-color 0.1s;
-}
-
-
-
-footer#footer{
-    background-color: rgb(46, 52, 61);
-    box-shadow: 0.5px 0.5px 7px black;
-    text-align: center;
-    padding: 10px;
-    position: sticky;
-    top: auto;
-    bottom: 0;
-    margin-top: auto;
-}
-
 .pageheader{
     margin: 30px;
     text-align: center;
     color: rgb(228, 228, 228);
+
+    transition: all 1s ease 0.1s;
+    transform: translateY(20px);
+    animation: y-entry 1s forwards;
 }
 
 /*------------------*/
@@ -133,7 +113,7 @@ footer#footer{
     padding: 20px;
     background-color: rgb(48, 71, 104);
     transition: background-color 0.1s;
-    border-radius: 5px;
+    border-radius: 8px;
 
     margin: 10px;
 
@@ -142,6 +122,35 @@ footer#footer{
 .btn2:hover{
     background-color: rgb(33, 52, 80);
 
+}
+
+.blog-card, .blog-card:link, .blog-card:visited, .blog-card:active, .blog-card:focus{
+    
+    max-height: 900px;
+    margin-bottom: 25px;
+    text-decoration: none;
+    color: rgb(228, 228, 228);
+    margin-top: 0;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding-top: 0;
+    border-radius: 10px;
+    border-color: #00000000;
+    box-shadow: 0px 0px 10px black;
+    background-color: rgb(30, 34, 39);
+    transform: translateX(-40px);
+    animation: x-entry 1s forwards;
+}
+
+
+.blog-card-link, .blog-card-link:link, .blog-card-link:visited, .blog-card-link:active, .blog-card-link:focus {
+
+    text-decoration: none;
+    color: rgb(228, 228, 228);
+
+}
+.blog-card-link:hover{
+    text-decoration: none;
 }
 
 .headbtn{
@@ -157,33 +166,86 @@ footer#footer{
     text-align: center;
 }
 
-.blog-card-link, .blog-card-link:link, .blog-card-link:visited, .blog-card-link:active, .blog-card-link:focus{
-    color: rgb(192, 200, 215);
-    font-size: 17px;
-    text-decoration: none;
-    border: none;
-
-    
-}
-
-.blog-card-link:hover{
-    text-decoration: none;
-}
-
 .card, .card:link, .card:visited, .card:active, .card:focus{
-    margin: 10px;
+    
+    max-height: 900px;
     margin-bottom: 25px;
+    text-decoration: none;
+    color: rgb(228, 228, 228);
+    margin-top: 0;
+    padding-top: 0;
     border-radius: 10px;
+    border-color: #00000000;
     box-shadow: 0px 0px 10px black;
     background-color: rgb(30, 34, 39);
-    transform: scale(1);
-    transition: transform 0.3s;
 }
 
 
-.card:hover{
-    transform: scale(1.05);
-    transition: transform 0.3s;
+
+
+.card .card-body:last-child, .card .card-footer:last-child, .card .card-header:last-child {
+    padding-bottom: .8rem;
+}
+.flip-card{
+    margin-left: auto;
+    margin-right: auto;
+    width: 500px;
+    height: 750px;
+    perspective: 1000px;
+    margin-bottom: 20px;
+    transition: transform 0.5s;
+
+    transform: translateX(-40px);
+    animation: x-entry 1s forwards;
+}
+
+.flip-card-inner{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    font-weight: normal;
+    transform-style: preserve-3d;
+    transition: transform 1s;
+    transform-style: preserve-3d;
+    z-index: 2;
+}
+
+.click-to-rotate{
+    position: absolute;
+    bottom: 0; /* Adjust this value if you want vertical positioning */
+    right: 0;
+    margin: 1px;
+    box-shadow: -2px -2px 5px black;
+    font-size: 16px;
+    width: 150px;
+    padding: 3px;
+    border-top-left-radius: 40px;
+    border-bottom-right-radius: 10px;
+    background-color: rgb(37, 55, 79);
+
+    z-index: 9999;
+}
+
+.click-to-rotate-r{
+    position: absolute;
+    bottom: 0; /* Adjust this value if you want vertical positioning */
+
+    margin: 1px;
+    box-shadow: 2px -2px 5px black;
+    font-size: 16px;
+    width: 150px;
+    padding: 3px;
+    border-top-right-radius: 40px;
+    border-bottom-left-radius: 10px;
+    background-color: rgb(37, 55, 79);
+
+    z-index: 9999;
+}
+
+[id^=flipCheckbox]:checked + .flip-card-inner {
+    transform: rotateY(180deg);
+    transition: transform 1s;
 }
 
 .cardtext{
@@ -192,9 +254,41 @@ footer#footer{
 
 .card-footer {
     display: flex;
-    margin-top: 0px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
 }
 
+.flip-card-front{
+    
+}
+
+.flip-card-back {
+    transform: rotateY(180deg);
+    transition: transform 0.5s;
+}
+
+.flip-card:hover{
+    transform:scale(1.02);
+    
+}
+
+.flip-card-front, .flip-card-back {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+
+.artic{
+ padding: 20px;
+ font-size: 17px;
+ margin: 20px;
+}
 
 .delete-btn, .delete-btn:link, .delete-btn:visited{
     color: white;
@@ -207,12 +301,58 @@ footer#footer{
     margin-right: auto;
     margin-left: auto;
 
-    border-radius: 5px;
+    border-radius: 8px;
 
 }
 
 .delete-btn:hover{
     background-color: rgb(105, 19, 19);
+    transition: background-color 0.1s;
+    text-shadow: none;
+}
+
+.delete-btn2, .delete-btn2:link, .delete-btn2:visited{
+    color: white;
+    
+    text-decoration: none;
+    padding: 20px;
+    background-color: rgb(135, 25, 25);
+    transition: background-color 0.1s;
+    margin-top: 10px;
+    margin-left: 15px;
+    margin-right: auto;
+    border-radius: 8px;
+
+}
+
+.delete-btn2:hover{
+    background-color: rgb(105, 19, 19);
+    transition: background-color 0.1s;
+    text-shadow: none;
+}
+
+.github-btn{
+    display: flex;
+    justify-content: center;
+    
+}
+.gh-btn{
+    box-shadow: 0px 0px 1px black;
+}
+
+.gh-btn, .gh-btn:link, .gh-btn:visited{
+    color: white;
+    
+    text-decoration: none;
+    padding: 20px;
+    background-color: rgb(25, 85, 135);
+    transition: background-color 0.1s;
+    border-radius: 15px;
+
+}
+
+.gh-btn:hover{
+    background-color: rgb(19, 63, 100);
     transition: background-color 0.1s;
     text-shadow: none;
 }
@@ -225,12 +365,12 @@ footer#footer{
     background-color: rgb(48, 71, 104);
     transition: background-color 0.1s;
     
-    margin-right: auto;
+    margin-right: .8rem;
     margin-left: auto;
     
 
     
-    border-radius: 5px;
+    border-radius: 8px;
 
 }
 .modify-btn:hover{
@@ -303,7 +443,16 @@ footer#footer{
 }
 
 
+.comment-flex-row{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
+.comment-flex-col{
+    display: flex;
+    flex-direction: column;
+}
 
 .comment-body{
     margin-left: 20px;
@@ -325,6 +474,18 @@ footer#footer{
 /*--------------------------------*/
 .img-responsive{
     margin-bottom: 30px;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+}
+
+.card .card-image:first-child img {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.bolg-entry{
+    transform: translateY(40px);
+    animation: y-entry 1s forwards;
 }
 
 .fullblog{
@@ -367,6 +528,7 @@ footer#footer{
 }
 .blog-body{
     font-size: 20px;
+    margin-bottom: 100px;
 }
 
 .abouttext{
@@ -439,6 +601,10 @@ footer#footer{
     box-shadow: 0px 0px 5px black;
     border-radius: 20px;
     background-color: rgba(30, 34, 39, 0.285);
+
+    transition: all 1s ease 0.1s;
+    transform: translateY(40px);
+    animation: y-entry 1s forwards;
 }
 .formlogin{
     display: flex;
@@ -573,14 +739,30 @@ input{
 .card-image{
     display: flex;
     justify-content: center;
-    margin: 10px;
+}
+
+.card .card-image {
+    padding: 1px;
 }
 
 div.cardtext div.card-brief-desc {
     font-size: 20px;
     text-align: center;
 }
-.card-tech-desc{}
+
+@keyframes x-entry{
+    to{
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes y-entry{
+    to{
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 
 /*-----------------------------------*/
 
@@ -654,7 +836,7 @@ div.cardtext div.card-brief-desc {
 
 #job{
     font-family: "Kalam", sans-serif, "consolas";
-    text-shadow: 2px 2px 4px rgb(17, 89, 137);
+    text-shadow: 0px 0px 5px rgb(106, 135, 168);
     text-align: center;
     color: white;
     opacity: 0;
@@ -688,4 +870,42 @@ div.cardtext div.card-brief-desc {
         opacity: 1;
         transform: translateX(0);
     }
+}
+/*------------------------------------*/
+.page-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid black;
+
+}
+
+.page-link, .page-link:link, .page-link:visited  {
+    text-decoration: none;
+    color: white;
+    font-size: 12px;
+    background-color: rgb(30, 34, 39);
+    padding: 8px 15px;
+    margin: 0 5px;
+    border-radius: 5px;
+    transition: border-color 0.3s;
+    border: 2px solid transparent;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+}
+
+.page-link:hover {
+    border: 2px solid  rgb(46, 134, 231);
+}
+
+.page-link:active {
+    transform: scale(0.95);
+}
+.btn2:active {
+    transform: scale(0.95);
+    border-color: transparent;
+}
+.btn3:active {
+    transform: scale(0.95);
 }
