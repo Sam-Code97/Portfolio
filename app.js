@@ -11,16 +11,15 @@ const port = 8080 // defines the port
 const app = express() // creates the Express application
 const db = new sqlite3.Database('portfolio2.db')
 
-// defines handlebars engine
-app.engine('handlebars', engine());
-// defines the view engine to be handlebars
-app.set('view engine', 'handlebars');
-// defines the views directory
-app.set('views', './views');
+
+app.engine('handlebars', engine()); // defines handlebars engine
+app.set('view engine', 'handlebars'); // defines the view engine to be handlebars
+app.set('views', './views'); // defines the views directory
+
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())
-// define static directory "public" to access css/ and img/
 app.use(express.static('public'))
+//app.use(cookieParser())
 
 //store sessions in the database
 const SQLiteStore = connectSqlite3(session)
@@ -33,10 +32,10 @@ app.use(session({
 }))
 
 
-// creates table projectsSkills at startup
+// creates table projectsSkills at startup.......
 
 // CONTROLLER (THE BOSS)
-// defines route "/"
+
 app.get('/', function(req, res){
   console.log("Session: ", req.session)
   const model={
@@ -47,7 +46,6 @@ app.get('/', function(req, res){
   res.render('home.handlebars', model)
 })
 
-// defines route "/humans"
 app.get('/projects', function(request, response){
   db.all("SELECT * FROM projects", function(error, theProjects){
     if(error){
@@ -235,6 +233,16 @@ app.post('/projects/update/:id', (req, res) => {
   }
   else{
     res.redirect('/login')
+  }
+})
+
+app.get('/projects/:page', (req, res) => {
+  const page = req.params.page
+  const model={
+    isLoggedIn: req.session.isLoggedIn,
+    name: req.session.name,
+    isAdmin: req.session.isAdmin,
+    numberPerPage : 3,
   }
 })
 
@@ -541,7 +549,6 @@ app.post('/signup', (req, res) => {
     }
   })
 })
-
 
 // defines the final default route 404 NOT FOUND
 app.use(function(req,res){

@@ -1,12 +1,12 @@
 <div class="main">
     <div class="container blogcontainer">
         <div class="fullblogmenu">
-            <a href="/blog" class="btn1"> Back </a>
+            <a href="/blog" class="blue btn1"> Back </a>
             {{#if isLoggedIn}}
                 <a href="/blog/new" class="btn1"> Create Article </a>
                 {{#if isAdmin}}
                     <a href="/blog/article/update/{{blog.bid}}" class="btn1"> Modify </a>
-                    <a href="/blog/article/delete/{{blog.bid}}" class="important btn1"> Delete </a>
+                    <a href="/blog/article/delete/{{blog.bid}}" class="red btn1"> Delete </a>
                 {{/if}}
             {{/if}}
         </div>
@@ -17,23 +17,23 @@
                 {{theError}}
             </div>
             {{else}}
-                <div class="column column col-9 col-xl-9 col-lg-12 col-md-12 col-sm-12">
+                <div>
                         <div class="fullblog">
-                            <div class="card-image">
-                                <img class="img-responsive" src="{{blog.bimgURL}}" alt="{{blog.bimgURL}}"/>
-                            </div>
-                            <div class="blog-header">
+                            <div class="blog-header text-magin text-center ">
                                 <div class="blog-title h2">{{blog.bheader}} <br> </div>
                                 <br>
                             </div>
-                            <div class="blog-brief-desc">
+                            <div class="card-image col-10 col-xl-12 col-lg-12 col-md-12 col-sm-12 text-center">
+                                <img class="img-responsive" src="{{blog.bimgURL}}" alt="{{blog.bimgURL}}"/>
+                            </div>
+                            <div class="blog-brief-desc text-magin col-10 col-lg-11 col-md-11 col-sm-11">
                                 <article>
                                     {{blog.bshortdesc}}
                                     <br>
                                 </article>
                             </div>
 
-                            <div class="blog-body">
+                            <div class="blog-body text-magin col-10 col-lg-11 col-md-11 col-sm-11">
                                 <br>
                                 <article>
                                     {{blog.bsecone}}
