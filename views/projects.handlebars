@@ -14,10 +14,10 @@
             </div>
             {{else}}
                 <div class="page-div">
-                    <a href="/projects/"{{firstPage}}>First Page</a>
-                    <a href="/projects/"{{nextPage}}>Next Page</a>
-                    <a href="/projects/"{{prevPage}}>Prev Page</a>
-                    <a href="/projects/"{{lastPage}}>Last Page</a>
+                    <a href="/projects/{{projects.firstPage}}">First Page</a>
+                    <a href="/projects/{{projects.nextPage}}">Next Page</a>
+                    <a href="/projects/{{projects.prevPage}}">Prev Page</a>
+                    <a href="/projects/{{projects.lastPage}}">Last Page</a>
                 </div>
                 {{#each projects}}       
                     <div class="column col-4 col-xl-6 col-lg-6 col-md-12 col-sm-12">

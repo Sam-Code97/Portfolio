@@ -59,7 +59,7 @@ app.get('/projects', function(request, response){
         isAdmin: request.session.isAdmin
       }
       // renders the page with the model
-      response.render("projects.handlebars", model)
+      response.redirect('/projects/1');
     }
     else{
       const model = {
@@ -68,10 +68,16 @@ app.get('/projects', function(request, response){
         comments: theComments,
         isLoggedIn: request.session.isLoggedIn,
         name: request.session.name,
-        isAdmin: request.session.isAdmin
+        isAdmin: request.session.isAdmin,
+
+        currentPage: 1,
+        nextPage: (currentPage + 1 > lastPage) ? null : currentPage + 1,
+        prevPage: (currentPage - 1 < 0) ? null : currentPage - 1,
+        lastPage: Math.ceil(numberOfProjects/numberPerPage),
+        firstPage: 1,
       }
       // renders the page with the model
-      response.render("projects.handlebars", model)
+      response.redirect('/projects/1');
     }
   })
 })
@@ -222,12 +228,13 @@ app.get('/projects/:page', (req, res) => {
   const page = parseInt(req.params.page);
   const numberPerPage = 3;
 
-  db.get("SELECT COUNT(*) as total FROM projects"), (error, row) => {
+  db.get("SELECT COUNT(*) as total FROM projects", (error, row) => {
     if(error){
       console.log("Database error: ", error);
     }
     else{
       const numberOfProjects = row.total;
+      const lastPage = Math.ceil(numberOfProjects / numberPerPage);
       console.log("numberOfProjects: ", numberOfProjects);
       if(page > lastPage){
         res.redirect('/projects/' + lastPage);
@@ -248,8 +255,8 @@ app.get('/projects/:page', (req, res) => {
           const model = {
             projects: theProjects,
             currentPage: page,
-            nextPage: page + 1 > lastPage ? null : page + 1,
-            prevPage: page - 1 < 0 ? null : page - 1,
+            nextPage: (currentPage + 1 > lastPage) ? null : currentPage + 1,
+            prevPage: (currentPage - 1 < 0) ? null : currentPage - 1,
             lastPage: Math.ceil(numberOfProjects/numberPerPage),
             firstPage: 1,
             isLoggedIn: req.session.isLoggedIn,
@@ -261,9 +268,9 @@ app.get('/projects/:page', (req, res) => {
       })
     }
 
-  }
+  });
   
-})
+});
 
 
 
