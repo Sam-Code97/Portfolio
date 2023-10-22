@@ -858,6 +858,7 @@ div.cardtext div.card-brief-desc {
 }
 
 #description{
+    font-family: 'Courier New', Courier, monospace;
     margin: 20px;
     opacity: 0;
     transform: translateY(30px);
@@ -909,3 +910,51 @@ div.cardtext div.card-brief-desc {
 .btn3:active {
     transform: scale(0.95);
 }
+
+.user-edit{
+    display: flex;
+    justify-content: center;
+}
+.user-edit{
+    display: flex;
+    justify-content: center;
+}
+.flex-r{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:space-around;
+}
+.flex-c{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.user-header{
+    font-size: 25px;
+}
+
+.username{
+    padding: 10px;
+}
+
+.labels{
+    margin-left: 30px;
+    margin-right: 30px;
+}
+
+.usersec{
+    display: flex;
+    justify-content: center;
+}
+
+.user-border{
+    
+    padding: 5px;
+    box-shadow: 0px 0px 5px black;
+    border-radius: 20px;
+    background-color: rgba(30, 34, 39, 0.285);
+    margin: 5px;
+    
+}
+

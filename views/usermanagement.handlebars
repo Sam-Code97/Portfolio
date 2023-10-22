@@ -1,0 +1,51 @@
+<div class="main">
+    <div class="management-container">
+        <h1 class="pageheader">User Management</h1>
+        <div>
+            {{#if isAdmin}}
+                <form action="/user/new" method="post" id="formnewuser">
+                    <div class="  col-12">
+                        <div class="flex-r user-border">
+                            <div class="flex-c">
+                                <h2 class="user-header">Create new user</h2>
+                            </div>
+                            <fieldset class="labels">
+                                <label>Username: <input type="text" name="un" value="User" required></label>
+                                <br>
+                                <label>Password: <input type="password" name="pw" placeholder="password" required></label>
+                            </fieldset>
+                            <div class="flex-c">
+                                <input class=" btn3 user-create "  type="submit" value="Create">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                {{#each users}}
+                    <form action="/user/edit/{{uid}}" method="post" id="formedituser">
+                        <div class=" col-12">
+                            <div class="flex-r user-border">
+                                <div class="flex-c">
+                                    <h3 class="user-header username">User: {{username}}</h3>
+                                </div>
+                                <fieldset class="labels"> 
+                                    <label>Username: <input type="text" name="un" value="{{username}}" required></label>
+                                    <br>
+                                    <label>Password: <input type="password" name="pw" required></label>
+                                </fieldset>
+                                <div class="flex-c">
+                                    <div class="user-edit">
+                                        <input class="btn3"  type="submit" value="Submit changes">
+                                    </div>
+                                    <div class="user-edit">
+                                        <a href="/user/delete/{{uid}}" class="delete-btn"> Delete </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+                {{/each}}
+            {{/if}}
+        </div>
+    </div>
+</div>

@@ -1,5 +1,3 @@
-
-// creates table projects at startup
 db.run("CREATE TABLE projects (pid INTEGER PRIMARY KEY, pname TEXT NOT NULL, pyear INTEGER NOT NULL, pdesc TEXT NOT NULL, ptechdesc TEXT NOT NULL, ptype TEXT NOT NULL, pimgURL TEXT NOT NULL, github TEXT NOT NULL)", (error) => {
   if (error) {
   // tests error: display error
@@ -150,3 +148,4 @@ db.run("CREATE TABLE blog (bid INTEGER PRIMARY KEY, bheader TEXT NOT NULL, bshor
     })
   }
 })
+

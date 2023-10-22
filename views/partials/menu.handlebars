@@ -12,7 +12,9 @@
 
                 <div class="navbar-section2">
                     {{#if isLoggedIn}}
-                        
+                        {{#if isAdmin}}
+                            <a href="/manage" class="btn1"> Manage users </a>
+                        {{/if}}
                             <a class="account-name">Hi, {{name}}!</a>
                             <a href="/logout" class="red btn1">Logout</a>
                         

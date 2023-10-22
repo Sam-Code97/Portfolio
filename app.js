@@ -9,7 +9,7 @@ const bcrypt = require('bcrypt')
 
 const port = 8080 // defines the port
 const app = express() // creates the Express application
-const db = new sqlite3.Database('portfolio5.db')
+const db = new sqlite3.Database('portfolio1.db')
 
 
 app.engine('handlebars', engine()); // defines handlebars engine
@@ -36,6 +36,9 @@ app.use(session({
 
 // CONTROLLER (THE BOSS)
 
+
+// creates table projects at startup
+
 app.get('/', function(req, res){
   console.log("Session: ", req.session)
   const model={
@@ -45,6 +48,162 @@ app.get('/', function(req, res){
   }
   res.render('home.handlebars', model)
 })
+
+app.get('/manage', (req, res)=>{
+  if(req.session.isLoggedIn == true && req.session.isAdmin == true){
+    db.all("SELECT * FROM users", (error, theUsers)=>{
+      if(error){
+        console.log("Database error: ", error);
+        const model={
+          users: [],
+          isLoggedIn: req.session.isLoggedIn,
+          name: req.session.name,
+          isAdmin: req.session.isAdmin
+        }
+        res.render('usermanagement.handlebars', model);
+      }
+      else{
+        const model={
+          users: theUsers,
+          isLoggedIn: req.session.isLoggedIn,
+          name: req.session.name,
+          isAdmin: req.session.isAdmin
+        }
+        res.render('usermanagement.handlebars', model);
+      }
+    })
+  }
+  else{
+    res.redirect('/login')
+  }
+})
+
+app.get('/user/new', (req, res) => {
+  if(req.session.isLoggedIn==true && req.session.isAdmin==true){
+    const model = {
+      isLoggedIn: req.session.isLoggedIn,
+      name: req.session.name,
+      isAdmin: req.session.isAdmin
+    }
+    res.render('usermanagement.handlebars', model)
+  }
+  else{
+    res.redirect('/login')
+  }
+});
+
+app.post('/user/new', (req, res) => {
+  const un = req.body.un;
+  const pw = req.body.pw;
+  const hash = bcrypt.hashSync(pw, 10);
+  if(req.session.isLoggedIn==true && req.session.isAdmin==true){
+    db.run("INSERT INTO users (username, password) VALUES (?, ?)", [un, hash], (error) => {
+      if(error){
+        console.log("ERROR: ", error)
+      }
+      else{
+        console.log("Line added into the users table!")
+      }
+      res.redirect('/manage')
+    })
+  }
+  else{
+    res.redirect('/login')
+  }
+})
+
+
+app.get('/user/edit/:id', (req, res) => {
+  const id = req.params.id
+  console.log("Update: ", id)
+  if(req.session.isLoggedIn==true && req.session.isAdmin==true){
+    db.get("SELECT * FROM users WHERE uid=?", [id], (error, theUser) => {
+      if(error){
+        console.log("ERROR: ", error)
+        const model = {
+          dbError: true, theError: error,
+          user: {},
+          isLoggedIn: req.session.isLoggedIn,
+          name: req.session.name,
+          isAdmin: req.session.isAdmin
+        }
+        res.render("usermanagement.handlebars", model)
+      }
+      else{
+        console.log("MODIFY: ", JSON.stringify(theUser))
+        console.log("MODIFY: ", theUser)
+        const model = {
+          dbError: false, theError: "",
+          user: theUser,
+          isLoggedIn: req.session.isLoggedIn,
+          name: req.session.name,
+          isAdmin: req.session.isAdmin,
+        }
+        res.render("usermanagement.handlebars", model)
+      }
+    })
+  }
+  else{
+    res.redirect('/login')
+  }
+})
+
+app.post('/user/edit/:id', (req, res) => {
+const id = req.params.id
+const un = req.body.un;
+const pw = req.body.pw;
+const hash = bcrypt.hashSync(pw, 10);
+
+console.log("Received username:", req.body.un);
+console.log("Received password:", req.body.pw);
+
+if(req.session.isLoggedIn==true && req.session.isAdmin==true){
+  db.run("UPDATE users SET username=?, password=? WHERE uid=?", [un, hash, id], (error) => {
+    if(error){
+      console.log("ERROR: ", error)
+    }
+    else{
+      console.log("user updated!")
+    }
+    res.redirect('/manage')
+  })
+}
+else{
+  res.redirect('/login')
+}
+})
+
+app.get('/user/delete/:id', (req, res) => {
+  const id = req.params.id
+  if(req.session.isLoggedIn == true && req.session.isAdmin == true){
+    db.run("DELETE FROM users WHERE uid=?", [id], (error, theUser) => {
+      if(error){
+        const model = {
+          dbError: true, theError: error,
+          isLoggedIn: req.session.isLoggedIn,
+          user: theUser,
+          name: req.session.name,
+          isAdmin: req.session.isAdmin
+        }
+        res.render("home.handlebars", model)
+      }
+      else{
+        const model = {
+          dbError: false, theError: "",
+          isLoggedIn: req.session.isLoggedIn,
+          name: req.session.name,
+          isAdmin: req.session.isAdmin
+        }
+        console.log("user deleted")
+        res.redirect('/manage')
+      }
+    })
+  }
+  else{
+    res.redirect('/login')
+  }
+})
+
 
 app.get('/projects', function(request, response){
   response.redirect('/projects/1');
