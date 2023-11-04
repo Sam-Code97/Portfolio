@@ -75,10 +75,10 @@
                 {{/each}}
             {{/if}}
         </div>
-        <div>
+        <div class="comments-border">
             <h2 id="comments-header">Comments:</h2>
         </div>
-        {{#if isLoggedIn}}
+        
             <form action="/projects/addcomment" method="post">
                 <div class="commentbox">
                     <fieldset>
@@ -89,7 +89,7 @@
                     <input class="submitbtn" type="submit" value="Add comment">
                 </div>
             </form>
-        {{/if}}
+        
         <div class="comment-section">
             {{#each comments}} 
                 <div class="comment">
