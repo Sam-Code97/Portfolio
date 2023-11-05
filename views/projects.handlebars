@@ -10,7 +10,7 @@
             <a class="page-link" href="/projects/{{firstPage}}">First</a>
             <a class="page-link" href="/projects/{{prevPage}}">Prev</a>
             {{#each pages}}
-                <a class="page-link" href="/projects/{{this}}">{{this}}</a>
+                <a class="{{#if_eq ../projectPage this}}active-link2{{else}}page-link{{/if_eq}}" href="/projects/{{this}}">{{this}}</a>
             {{/each}}
             <a class="page-link" href="/projects/{{nextPage}}">Next</a>
             <a class="page-link" href="/projects/{{lastPage}}">Last</a>

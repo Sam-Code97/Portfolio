@@ -25,6 +25,32 @@ a, a:active, a:focus, a:checked{
     font-size: 18px;
 }
 
+.active-link {
+    border: 2px solid  rgb(46, 134, 231);
+    opacity: 0.5;
+    animation: y-entry 1s forwards;
+}
+.active-link2, .active-link2:link, .active-link2:visited {
+    border: 2px solid  rgb(46, 134, 231);
+    text-decoration: none;
+    color: white;
+    font-size: 12px;
+    background-color: rgb(30, 34, 39);
+    padding: 8px 15px;
+    margin: 0 5px;
+    border-radius: 5px;
+    transition: border-color 0.3s;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+    
+}
+
+.active-link2:hover {
+    border: 2px solid  rgb(46, 134, 231);
+}
+
+.active-link2:active {
+    transform: scale(0.95);
+}
 .navbar-section2{
     display: flex;
     align-items: center; 
@@ -46,8 +72,7 @@ body{
     margin: 0;          
     padding: 0;         
     width: 100vw;       
-    height: 100vh;      
-
+    height: 100vh;   
 }
 
 .main{
@@ -204,6 +229,13 @@ body{
     box-shadow: 10px 0px 20px black;    
     cursor: pointer;
 }
+@media screen and (max-width: 700px) {
+    .card:hover{
+        transform: rotateY(0deg);
+        box-shadow: 0px 0px 10px black;    
+        cursor: pointer;
+    }
+}
 
 .flip-card-inner{
     position: relative;
@@ -342,8 +374,13 @@ body{
     justify-content: center;
     
 }
+.fa-github{
+    font-size: 30px;
+}
 .gh-btn{
     box-shadow: 0px 0px 1px black;
+    text-align: center;
+    align-items: center;
 }
 
 .gh-btn, .gh-btn:link, .gh-btn:visited{
@@ -542,6 +579,11 @@ body{
     margin-bottom: 100px;
 }
 /*--------------------------------------*/
+.flex-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .flex-wrap{
     
     flex-wrap: wrap
@@ -558,26 +600,37 @@ body{
     
 }
 #about-me-img{
-    max-width: 400px;
-    
-    
+    max-width: 350px;
     margin: 20px;
 
     float: left; 
     border-radius: 50px;
     border-style: solid;
     border-color: #b4b4b4;
-    border-width: 2px;
+    border-width: 1px;
     background-color:  rgb(32, 36, 42);
     z-index: 2;  
     position: relative;  
-    
+    opacity: 0;
+    transform: translateX(50px) translateY(50px);
+    animation: x-entry 1s forwards;
 }
+
+@media screen and (max-width: 700px) {
+    #about-me-img{
+        max-width: 280px;
+    }
+}
+
 .abouttext{
     text-align: center;
     padding: 20px;
+    font-size: 19px;
     padding-top: 40px;
     font-family: 'Courier New', Courier, monospace;
+    opacity: 0;
+    transform: translateX(-50px) translateY(-50px);
+    animation: x-entry 1s forwards;
 }
 .about-container{
     
@@ -586,13 +639,9 @@ body{
 .img-with-circle {
     position: relative;   /* Set the position to relative */
     display: inline-block; /* This will ensure the container wraps around the image */
+    padding: 20px;
 }
-.img-with-circle2 {
-    position: relative;   /* Set the position to relative */
-    display: inline-block; /* This will ensure the container wraps around the image */
-    width: 250px;
-    height: 250px;
-}
+
 .blue-circle {
     width: 300px;           /* Set the width of the circle */
     height: 300px;          /* Set the height of the circle */
@@ -603,18 +652,7 @@ body{
     left: 0;             /* Center horizontally */
     z-index: 1;  
 }
-.blue-circle2 {
-    width: 180px;           /* Set the width of the circle */
-    height: 180px;          /* Set the height of the circle */
-    background-color: rgb(72, 85, 101);  /* Set the background color to red */
-    border-radius: 40px;     /* Make it a circle */
-    position: absolute;     /* Use absolute positioning */
-                  /* Adjust this to move it up or down */
-                /* Center horizontally */
-                bottom: 50%;                /* Adjust this to move it up or down */
-                left: 50%; 
-    z-index: -1;  
-}
+
 
 .contact{
     display: flex;
@@ -622,6 +660,11 @@ body{
     text-align: center;
     font-size: 20px;
     margin: 30px;
+    background: rgb(34, 39, 47);
+    border-radius: 50px;
+    opacity: 0;
+    transform: translateY(40px);
+    animation: y-entry 1s forwards;
 }
 
 .email, .email:link, .email:visited{
@@ -639,7 +682,8 @@ body{
     
 }
 #contact-btns-container{
-    margin: 15px;
+    margin: 25px;
+    margin-top: 40px;
 }
 #phone{
     margin-top: 15px;
@@ -647,25 +691,48 @@ body{
 }
 
 
-.contact-btn, .contact-btn:link, .contact-btn:visited{
+.contact-btn-g, .contact-btn-g:link, .contact-btn-g:visited{
     color: white;
     align-self: center;
-    
+    font-size: 40px;
     text-shadow: 2px 2px 4px black;
     text-decoration: none;
-    margin: 5px;
-    padding: 15px;
-    background-color: rgb(36, 40, 47);
+    margin: 10px;
+
+    padding: 20px;
+    background-color: rgb(27, 30, 35);
     border-radius: 8px;
 
     transition: background-color 0.1s;
 }
 
-.contact-btn:hover{
+.contact-btn-g:hover{
     background-color: rgb(29, 32, 38);
+    color: rgb(185, 190, 195);
     text-shadow: none;
     transition: background-color 0.1s;
 }
+.contact-btn-l, .contact-btn-l:link, .contact-btn-l:visited{
+    color: white;
+    align-self: center;
+    font-size: 40px;
+    text-shadow: 2px 2px 4px black;
+    text-decoration: none;
+    margin: 10px;
+    padding: 20px;
+    background-color: rgb(27, 30, 35);
+    border-radius: 8px;
+
+    transition: background-color 0.1s;
+}
+
+.contact-btn-l:hover{
+    background-color: rgb(29, 32, 38);
+    color: rgb(10, 102, 194);
+    text-shadow: none;
+    transition: background-color 0.1s;
+}
+
 
 /*---------------------*/
 
@@ -725,9 +792,9 @@ input[type="text"], input[type="password"] {
 }
 
 .loginbtn{
-    min-width: 250px;
+    
     align-self: center;
-    max-width: 400px;
+    width: 100%;
     padding: 10px;
     background-color: #144170;
     color: #fff;
@@ -736,7 +803,7 @@ input[type="text"], input[type="password"] {
     font-size: 16px;
     transition: background-color 0.3s;
 }
-.no-account-signup-btn, .no-account-signup-btn:visited, .no-account-signup-btn:focus ,.no-account-signup-btn:hover {
+.no-account-signup-btn, .no-account-signup-btn:visited, .no-account-signup-btn:focus {
     text-align: center;
     color: white;
     border-radius: 20px;
@@ -745,6 +812,10 @@ input[type="text"], input[type="password"] {
     border-width: 1px;
     padding: 8px;
     text-decoration: none;
+}
+.no-account-signup-btn:hover{
+    text-decoration: none;
+    background-color: rgba(255, 255, 255, 0.049);
 }
 
 .logout{
@@ -857,28 +928,46 @@ div.cardtext div.card-brief-desc {
 }
 
 /*-----------------------------------*/
-
-.flex-container{
+.flex-container-home{
     display: flex;
+    flex-wrap: wrap-reverse;
     align-items: center;
     justify-content: center;
     margin-top: 100px;
+}
+.flex-container-img{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
 }
 .flex-container-c{
     display: flex;
     flex-direction: column;
     align-items: center;
-
 }
-.pimg-container{
-    width: 250px;
-    height: 150px; 
+
+.img-with-circle2 {
+    position: relative;   /* Set the position to relative */
+    display: inline-block; /* This will ensure the container wraps around the image */
+    width: 500px;
+    
+}
+.blue-circle2 {
+    width: 180px;           
+    height: 180px;          
+    background-color: rgb(72, 85, 101);  
+    border-radius: 40px;     
+    position: absolute;     
+    bottom: 50%;               
+    left: 50%; 
+    z-index: -1;  
 }
 
 #pimg{
-    max-width: 220px;
-    min-width: 120px;
+
     height: auto; 
+    width: 350px;
     box-shadow: 0px 0px 10px black;
     margin: 20px;
 
@@ -888,7 +977,7 @@ div.cardtext div.card-brief-desc {
     z-index: 2;  
     
     transition: all 1s ease 0.1s;
-    transform: translateY(-20px);
+    transform: translateY(-40px);
     animation: pimgEntry 1s forwards;
 }
 
@@ -956,8 +1045,8 @@ div.cardtext div.card-brief-desc {
 
 #description{
     font-family: 'Courier New', Courier, monospace;
-    max-width: 900px;
     margin: 20px;
+    font-size: 19px;
     opacity: 0;
     transform: translateY(30px);
     animation: descEntry 1s forwards;
@@ -972,6 +1061,10 @@ div.cardtext div.card-brief-desc {
 }
 
 /*------------------------------------*/
+.currentPage{
+    border: 2px solid  rgb(46, 134, 231);
+}
+
 .page-div {
     display: flex;
     justify-content: center;

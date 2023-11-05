@@ -3,11 +3,11 @@
         <div class="navbar1">
             <section class="navbar-sections">
                 <div class="navbar-section1">
-                    <a href="/" class="btn1"> Home </a>
-                    <a href="/projects/1" class="btn1"> Projects </a>
-                    <a href="/blog" class="btn1"> Blog </a>
-                    <a href="/about" class="btn1"> About </a>
-                    <a href="/contact" class="btn1"> Contact Me </a>
+                    <a href="/" class="btn1 {{#if_eq currentPage 'Home'}}active-link{{/if_eq}}"> Home </a>
+                    <a href="/projects/1" class="btn1 {{#if_eq currentPage 'projects'}}active-link{{/if_eq}}"> Projects </a>
+                    <a href="/blog" class="btn1 {{#if_eq currentPage 'blog'}}active-link{{/if_eq}}"> Blog </a>
+                    <a href="/about" class="btn1 {{#if_eq currentPage 'about'}}active-link{{/if_eq}}"> About </a>
+                    <a href="/contact" class="btn1 {{#if_eq currentPage 'contact'}}active-link{{/if_eq}}"> Contact Me </a>
                 </div>
 
                 <div class="navbar-section2">
@@ -20,8 +20,8 @@
                         
                     {{else}}
                         
-                            <a href="/login" class="blue btn1" > Login </a>
-                            <a href="/signup" class="btn1"> Signup </a>
+                            <a href="/login" class="blue btn1 {{#if_eq currentPage 'login'}}active-link{{/if_eq}}" > Login </a>
+                            <a href="/signup" class="btn1 {{#if_eq currentPage 'signup'}}active-link{{/if_eq}}"> Signup </a>
                         
                     {{/if}}
                 </div>
