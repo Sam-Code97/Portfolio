@@ -1,3 +1,4 @@
+import api from './api'
 const express = require('express') // loads the express package
 const { engine } = require('express-handlebars'); // loads handlebars for Express
 const session = require('express-session');
@@ -6,7 +7,6 @@ const sqlite3 = require('sqlite3')
 const connectSqlite3 = require('connect-sqlite3')
 const cookieParser = require('cookie-parser')
 const bcrypt = require('bcrypt')
-
 const port = 8080 // defines the port
 const app = express() // creates the Express application
 const db = new sqlite3.Database('portfolio.db')
@@ -34,6 +34,7 @@ app.set('views', './views'); // defines the views directory
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())
 app.use(express.static('public'))
+app.use('/api/v1', api)
 //app.use(cookieParser())
 
 //store sessions in the database
