@@ -47,8 +47,6 @@ app.use(session({
 
 
 
-
-
 app.get('/', function(req, res){
   console.log("Session: ", req.session)
   const model={

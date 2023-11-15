@@ -1,5 +1,6 @@
 
 
+
 db.run("CREATE TABLE projects (pid INTEGER PRIMARY KEY, pname TEXT NOT NULL, pyear INTEGER NOT NULL, pdesc TEXT NOT NULL, ptechdesc TEXT NOT NULL, ptype TEXT NOT NULL, pimgURL TEXT NOT NULL, github TEXT NOT NULL)", (error) => {
   if (error) {
   // tests error: display error
@@ -60,11 +61,8 @@ db.run("CREATE TABLE users (uid INTEGER PRIMARY KEY, username TEXT NOT NULL, pas
     console.log("---> Table users created!")
     const users = [
       {"id":"1", "username":"sam", "password":"$2b$10$baQr.ebGvciUC7tM6ZcrUOmpQbbkPzsylf66tYQpa5UaMHNYJZYvW"},
-      {"id":"2", "username":"Lala", "password":"$2b$10$baQr.$2b$10$rNvdyomZeVKD0lCavWhBKOPrZOveItFW11PKRWG7vVTz3Uev.BfLq"},
-      {"id":"3", "username":"TheKing", "password":"$$2b$10$0HYg9JazwX3Kk8LhNl5rQuZnJFYNJesTgqQjBH1If9AEyAr0BLJAC"},
-      {"id":"4", "username":"Choko", "password":"$2b$10$1t2l7ywEkVdac1rQAz8Sae1g7rdxnE3oRLdjl8HLb9wxmkzrWS0mC"},
       {"id":"5", "username":"Sadio", "password":"$2b$10$6vhkGIX.kmHct035Ferf6O4aK3sSLdVNoPbsoMhNI33xoQG1HZKbW"},
-      {"id":"6", "username":"Ronaldo", "password":"$2b$10$4XH2LmQOq3LIB7MnD4YxRegNNUKw5lMXyNVWXgN4f9/ZfIYM6C41W"},
+      
     ]
     users.forEach( (oneUser) => {
       db.run("INSERT INTO users (uid, username, password) VALUES (?, ?, ?)", [oneUser.id, oneUser.username, oneUser.password], (error) => {
@@ -86,12 +84,7 @@ db.run("CREATE TABLE comments (cid INTEGER PRIMARY KEY, username TEXT NOT NULL, 
   else {
     console.log("---> Table users created!")
     const comments = [
-      {"id":"1", "username":"Sadio", "body":"I like the snake project! The pathfinding algorithm is well written. Good job!", "date" : "2022-12-05"},
-      {"id":"2", "username":"lala", "body":"The encryption tool is quite intuitive. I've been using it for a while now.", "date" : "2022-12-06"},
-      {"id":"3", "username":"TheKing", "body":"The notepad application is simple yet effective. Great for quick notes!", "date" : "2022-12-07"},
-      {"id":"4", "username":"Choko", "body":"I'm impressed with the TicTacToe game. It's a fresh take on a classic!", "date" : "2022-12-08"},
-      {"id":"5", "username":"Sadio", "body":"The Paint_App is quite versatile. I've been using it for my digital art.", "date" : "2022-12-09"},
-      {"id":"6", "username":"Ronaldo", "body":"The Calculation_Algorithm project helped me understand some complex concepts. Thanks for sharing!", "date" : "2022-12-10"}
+      {"id":"1", "username":"Admin", "body":"Hi, visitors! Please comment and let me know what you think about my work", "date" : "2023-11-15"}
     ]
     comments.forEach( (oneComment) => {
       db.run("INSERT INTO comments (cid, username, cbody, cdate) VALUES (?, ?, ?, ?)", [oneComment.id, oneComment.username, oneComment.body, oneComment.date], (error) => {
@@ -162,4 +155,5 @@ db.run("CREATE TABLE blog (bid INTEGER PRIMARY KEY, bheader TEXT NOT NULL, bshor
     })
   }
 })
+
 
