@@ -1,32 +1,89 @@
 <header id="menu">
     <nav>
         <div class="navbar1">
-            <section class="navbar-sections">
-                <div class="navbar-section1">
-                    <a href="/" class="btn1 {{#if_eq currentPage 'Home'}}active-link{{/if_eq}}"> Home </a>
-                    <a href="/projects/1" class="btn1 {{#if_eq currentPage 'projects'}}active-link{{/if_eq}}"> Projects </a>
-                    <a href="/blog" class="btn1 {{#if_eq currentPage 'blog'}}active-link{{/if_eq}}"> Blog </a>
-                    <a href="/about" class="btn1 {{#if_eq currentPage 'about'}}active-link{{/if_eq}}"> About </a>
-                    <a href="/contact" class="btn1 {{#if_eq currentPage 'contact'}}active-link{{/if_eq}}"> Contact Me </a>
-                </div>
+            <button id="toggle-menu" class="burger-menu">&#9776;</button>
+            <div id="menu1">
+                <section class="navbar-sections">
+                    <div class="navbar-section1">
+                        <a href="/" class="btn1 {{#if_eq currentPage 'Home'}}active-link{{/if_eq}}"> Home </a>
+                        <a href="/projects/1" class="btn1 {{#if_eq currentPage 'projects'}}active-link{{/if_eq}}"> Projects </a>
+                        <a href="/blog" class="btn1 {{#if_eq currentPage 'blog'}}active-link{{/if_eq}}"> Blog </a>
+                        <a href="/about" class="btn1 {{#if_eq currentPage 'about'}}active-link{{/if_eq}}"> About </a>
+                        <a href="/contact" class="btn1 {{#if_eq currentPage 'contact'}}active-link{{/if_eq}}"> Contact Me </a>
+                    </div>
 
-                <div class="navbar-section2">
-                    {{#if isLoggedIn}}
-                        {{#if isAdmin}}
-                            <a href="/manage" class="btn1"> Manage users </a>
+                    <div class="navbar-section2">
+                        {{#if isLoggedIn}}
+                            {{#if isAdmin}}
+                                <a href="/manage" class="btn1"> Manage users </a>
+                            {{/if}}
+                                <a class="account-name">Hi, {{name}}!</a>
+                                <a href="/logout" class="red btn1">Logout</a>
+                            
+                        {{else}}
+                            
+                                <a href="/login" class="blue btn1 {{#if_eq currentPage 'login'}}active-link{{/if_eq}}" > Login </a>
+                                <a href="/signup" class="btn1 {{#if_eq currentPage 'signup'}}active-link{{/if_eq}}"> Signup </a>
+                            
                         {{/if}}
-                            <a class="account-name">Hi, {{name}}!</a>
-                            <a href="/logout" class="red btn1">Logout</a>
-                        
-                    {{else}}
-                        
-                            <a href="/login" class="blue btn1 {{#if_eq currentPage 'login'}}active-link{{/if_eq}}" > Login </a>
-                            <a href="/signup" class="btn1 {{#if_eq currentPage 'signup'}}active-link{{/if_eq}}"> Signup </a>
-                        
-                    {{/if}}
-                </div>
-            </section>
-            
+                    </div>
+                </section>
+            </div>
+            <div id="menu2">
+                <section class="">
+                    <div class="menu-sec">
+                        <a href="/" class=" {{#if_eq currentPage 'Home'}}active-link{{/if_eq}} menu-btn"> Home </a>
+                        <a href="/projects/1" class="{{#if_eq currentPage 'projects'}}active-link{{/if_eq}} menu-btn "> Projects </a>
+                        <a href="/blog" class="{{#if_eq currentPage 'blog'}}active-link{{/if_eq}} menu-btn "> Blog </a>
+                        <a href="/about" class="{{#if_eq currentPage 'about'}}active-link{{/if_eq}} menu-btn "> About </a>
+                        <a href="/contact" class="{{#if_eq currentPage 'contact'}}active-link{{/if_eq}} menu-btn "> Contact Me </a>
+                    </div>
+
+                    <div class="menu-sec div-line">
+                        {{#if isLoggedIn}}
+                            {{#if isAdmin}}
+                                <a href="/manage" class="menu-btn"> Manage users </a>
+                            {{/if}}
+                                <a class="account-name">Hi, {{name}}!</a>
+                                <a href="/logout" class="red menu-btn">Logout</a>
+                            
+                        {{else}}
+                            
+                                <a href="/login" class="{{#if_eq currentPage 'login'}}active-link{{/if_eq}} menu-btn " > Login </a>
+                                <a href="/signup" class="{{#if_eq currentPage 'signup'}}active-link{{/if_eq}} menu-btn "> Signup </a>
+                            
+                        {{/if}}
+                    </div>
+                </section>
+            </div>
         </div>
     </nav>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const toggleMenuButton = document.getElementById('toggle-menu');
+            const menu = document.getElementById('menu2');
+            const currentPageURL = window.location.pathname;
+            const menuLinks = document.querySelectorAll("#menu2 a");
+
+            toggleMenuButton.addEventListener('click', function (event) {
+            event.stopPropagation(); 
+            if (menu.style.display === 'block') {
+                menu.style.display = 'none';
+            } else {
+                menu.style.display = 'block';
+            }
+            });
+            
+            function adjustMenuVisibility() {
+                if (window.innerWidth > 700) {
+                    menu.style.display = 'none';
+                }
+            }
+
+            window.addEventListener('resize', adjustMenuVisibility);
+
+            adjustMenuVisibility();
+
+        });
+    </script>
 </header>

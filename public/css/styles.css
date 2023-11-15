@@ -5,6 +5,7 @@
 a, a:active, a:focus, a:checked{
     border-color: transparent;
 }
+
 .navbar1{
     width: 100%;
 
@@ -67,6 +68,143 @@ a, a:active, a:focus, a:checked{
     white-space: nowrap;
 }
 
+.burger-menu {
+    display: none;
+}
+.menu-sec{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+}
+.div-line{
+    border-top: 1px solid black;
+    margin-top: 10px;
+}
+.menu-btn, .menu-btn:link, .menu-btn:visited, .menu-btn:focus, .menu-btn:checked{
+    background-color: #ffffff00;
+    color: white;
+    width: 150px;
+    text-align: center;    
+    
+    text-decoration: none;
+    margin: 0;
+    padding: 15px;
+    background-color: transparent;
+    transition: background-color 0.1s;
+    border-width: 2px;
+    border-style: solid;
+    border-radius: 8px;
+    transition: border background-color 0.2s;
+}
+
+.menu-btn:hover{ 
+    background-color: rgb(19, 22, 25);
+    
+    text-shadow: none;
+    transition: border background-color 0.2s;
+}
+
+
+#menu2 {
+    display: none;
+    position: absolute; /* or fixed, depending on your requirement */
+    background-color: rgb(32, 36, 42); /* Choose a background color that fits your design */
+    width: 200px; /* Full width */
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0px 0px 10px black;
+    top: 60px;
+    right: 50px;
+    z-index: 5; /* Ensure it's above other content */
+    opacity: 0;
+    
+    transform: translateX(20px) translateY(-20px);
+    animation: y-entry 0.4s forwards;
+    
+}
+
+
+
+@media screen and (max-width: 700px) {
+    .burger-menu {
+        display: block;
+        background-color: transparent;
+        border: none;
+        color: white;
+        font-size: 24px;
+        cursor: pointer;
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 1;
+    }
+    #menu2{
+        display: none;
+    }
+    #menu1{
+        display: none;
+    }
+    #pimg{
+        height: 100px;
+    }
+
+}
+
+#about-btns-container{
+    display: flex;
+    justify-content: center;
+    margin: 25px;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 40px;
+}
+
+.download-cv-button, .download-cv-button:link, .download-cv-button:visited {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 14px;
+    padding: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin: 10px;
+    background-color: #1a4c82; /* Change as per your color scheme */
+    color: rgba(255, 255, 255, 0.723);
+    text-align: center;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+
+.download-cv-button i {
+    display: inline;
+}
+
+.download-cv-button:hover {
+    background-color: #143c67; /* Darker shade for hover effect */
+    text-decoration: none; /* Prevents the text from being underlined on hover */
+    text-shadow: none;
+    transition: background-color 0.1s;
+}
+
+.cv{
+    font-size: 25px;
+    color: white;
+    margin: 0;
+}
+
+.cv2{
+    font-size: 29px;
+    font-weight: bold;
+    color: white;
+    margin: 0;
+}
+
+
 body{
     background: linear-gradient(90deg, rgb(38, 43, 51), rgb(47, 55, 66));
     margin: 0;          
@@ -99,9 +237,7 @@ body{
     transition: background-color 0.1s;
 }
 
-.blue{
-    margin-left: 100px;
-}
+
 .blue:hover{
     background-color: rgb(26, 39, 54);
 }
@@ -184,7 +320,7 @@ body{
 
 .card-title{
     text-align: center;
-    margin-top: 20px;
+    
 }
 .card-subtitle{
     margin-bottom: 30px;
@@ -207,7 +343,10 @@ body{
 }
 
 
-
+.card-header{
+    margin-left: 10px;
+    margin-right: 10px;
+}
 
 .card .card-body:last-child, .card .card-footer:last-child, .card .card-header:last-child {
     padding-bottom: .8rem;
@@ -216,7 +355,7 @@ body{
     margin-left: auto;
     margin-right: auto;
     max-width: 500px;
-    height: 750px;
+    min-height: 750px;
     perspective: 1000px;
     margin-bottom: 20px;
     transition: transform 0.5s;
@@ -323,9 +462,10 @@ body{
 
 
 .artic{
- padding: 20px;
- font-size: 17px;
- margin: 20px;
+    font-size: 17px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin: 10px;
 }
 
 .delete-btn, .delete-btn:link, .delete-btn:visited{
@@ -584,6 +724,14 @@ body{
     justify-content: center;
     align-items: center;
 }
+
+.flex-container-about{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    order: 1;
+}
+
 .flex-wrap{
     
     flex-wrap: wrap
@@ -622,16 +770,30 @@ body{
     }
 }
 
+@media screen and (max-width: 1200px) {
+    .about-me-container{
+        flex-direction: column-reverse;
+    }
+}
+
 .abouttext{
     text-align: center;
     padding: 20px;
     font-size: 19px;
     padding-top: 40px;
     font-family: 'Courier New', Courier, monospace;
+    order: 2;
     opacity: 0;
     transform: translateX(-50px) translateY(-50px);
     animation: x-entry 1s forwards;
 }
+.fa-cloud-download-alt{
+    font-size: 20px;
+    color: white;
+    margin-bottom: 10px;
+}
+
+
 .about-container{
     
     max-width: 900px;
@@ -682,8 +844,10 @@ body{
     
 }
 #contact-btns-container{
-    margin: 25px;
-    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+    margin: 15px;
+    margin-top: 30px;
 }
 #phone{
     margin-top: 15px;
@@ -732,6 +896,37 @@ body{
     text-shadow: none;
     transition: background-color 0.1s;
 }
+
+.contact-btn-l-2, .contact-btn-l-2:link, .contact-btn-l-2:visited{
+    color: white;
+    align-self: center;
+    font-size: 40px;
+    text-shadow: 2px 2px 4px black;
+    text-decoration: none;
+    margin: 10px;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding: 20px;
+    padding-right: 30px;
+    padding-left: 30px;
+    background-color: rgb(27, 30, 35);
+    border-radius: 8px;
+
+    transition: background-color 0.1s;
+}
+
+.contact-btn-l-2:hover{
+    background-color: rgb(29, 32, 38);
+    color: rgb(10, 102, 194);
+    text-shadow: none;
+    transition: background-color 0.1s;
+}
+
+.fb:hover{
+    color: rgb(72, 103, 170);
+}
+
+
 
 
 /*---------------------*/
@@ -908,6 +1103,10 @@ input{
     padding: 1px;
 }
 
+.card-brief-desc{
+    padding-left: 10px;
+    padding-right: 10px;
+}
 div.cardtext div.card-brief-desc {
     font-size: 20px;
     text-align: center;
@@ -950,7 +1149,8 @@ div.cardtext div.card-brief-desc {
 .img-with-circle2 {
     position: relative;   /* Set the position to relative */
     display: inline-block; /* This will ensure the container wraps around the image */
-    width: 500px;
+    width: 330px;
+
     
 }
 .blue-circle2 {
@@ -958,16 +1158,28 @@ div.cardtext div.card-brief-desc {
     height: 180px;          
     background-color: rgb(72, 85, 101);  
     border-radius: 40px;     
-    position: absolute;     
-    bottom: 50%;               
-    left: 50%; 
+    position: absolute;  
+    margin: 5px;        
+    bottom: 65%;               
+    left: 55%; 
+    z-index: -1;  
+}
+.blue-circle3 {
+    width: 180px;           
+    height: 180px;          
+    background-color: rgb(72, 85, 101);  
+    border-radius: 40px;     
+    position: absolute;
+    margin: 5px;     
+    top: 65%;               
+    right: 55%; 
     z-index: -1;  
 }
 
 #pimg{
 
     height: auto; 
-    width: 350px;
+    width: 300px;
     box-shadow: 0px 0px 10px black;
     margin: 20px;
 
@@ -1058,6 +1270,57 @@ div.cardtext div.card-brief-desc {
         opacity: 1;
         transform: translateX(0);
     }
+}
+
+
+.home-cv-button, .home-cv-button:link, .home-cv-button:visited {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 14px;
+    padding: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin: 10px;
+    
+    color: rgba(255, 255, 255, 0.723);
+    text-align: center;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+
+
+
+.home-cv-button:hover {
+    background-color: #143c67; /* Darker shade for    .home-cv-button i {
+        display: none;
+    } hover effect */
+    text-decoration: none; /* Prevents the text from being underlined on hover */
+    text-shadow: none;
+    transition: background-color 0.5s ease;
+}
+
+.home-btn-l, .home-btn-l:link, .home-btn-l:visited{
+    color: white;
+    align-self: center;
+    font-size: 40px;
+    
+    text-decoration: none;
+    margin: 10px;
+    padding: 20px;
+    border-radius: 8px;
+
+    transition: background-color 0.1s;
+}
+
+.home-btn-l:hover{
+    
+    color: rgb(10, 102, 194);
+    text-shadow: none;
+    transition: background-color 0.1s;
 }
 
 /*------------------------------------*/
