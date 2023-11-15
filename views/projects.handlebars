@@ -75,6 +75,15 @@
                 {{/each}}
             {{/if}}
         </div>
+        <div id="page-div2">
+            <!--<a class="page-link" href="/projects/{{firstPage}}">First</a>-->
+            <a class="page-link" href="/projects/{{prevPage}}">Prev</a>
+            {{#each pages}}
+                <a class="{{#if_eq ../projectPage this}}active-link2{{else}}page-link{{/if_eq}}" href="/projects/{{this}}">{{this}}</a>
+            {{/each}}
+            <a class="page-link" href="/projects/{{nextPage}}">Next</a>
+            <!--<a class="page-link" href="/projects/{{lastPage}}">Last</a>-->
+        </div>
         <div class="comments-border">
             <h2 id="comments-header">Comments:</h2>
         </div>
@@ -114,7 +123,22 @@
                 </div>
             {{/each}}
         </div>
-
-        
     </div>
+
+    <script>
+
+        const nav = document.getElementById('page-div2')
+            function adjustMenuVisibility() {
+                if (window.innerWidth > 1281) {
+                    nav.style.display = 'none';
+                }
+                else{
+                    nav.style.display = 'flex';
+                }
+                
+            }
+
+            window.addEventListener('resize', adjustMenuVisibility);
+            adjustMenuVisibility();
+    </script>
 </div>

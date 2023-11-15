@@ -109,7 +109,7 @@ a, a:active, a:focus, a:checked{
 
 #menu2 {
     display: none;
-    position: absolute; /* or fixed, depending on your requirement */
+    position: fixed; /* or fixed, depending on your requirement */
     background-color: rgb(32, 36, 42); /* Choose a background color that fits your design */
     width: 200px; /* Full width */
     padding: 20px;
@@ -130,7 +130,11 @@ a, a:active, a:focus, a:checked{
 @media screen and (max-width: 700px) {
     .burger-menu {
         display: block;
-        background-color: transparent;
+        background-color: rgba(30, 34, 39, 0.344);
+        padding: 7px;
+        padding-left: 15px;
+        padding-right: 15px;
+        border-radius: 8px;
         border: none;
         color: white;
         font-size: 24px;
@@ -149,7 +153,6 @@ a, a:active, a:focus, a:checked{
     #pimg{
         height: 100px;
     }
-
 }
 
 #about-btns-container{
@@ -158,7 +161,6 @@ a, a:active, a:focus, a:checked{
     margin: 25px;
     margin-left: 0;
     margin-right: 0;
-    margin-top: 40px;
 }
 
 .download-cv-button, .download-cv-button:link, .download-cv-button:visited {
@@ -169,8 +171,8 @@ a, a:active, a:focus, a:checked{
     font-family:Verdana, Geneva, Tahoma, sans-serif;
     font-size: 14px;
     padding: 20px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding-top: 0px;
+    padding-bottom: 0px;
     margin: 10px;
     background-color: #1a4c82; /* Change as per your color scheme */
     color: rgba(255, 255, 255, 0.723);
@@ -743,6 +745,7 @@ body{
     background: rgb(34, 39, 47);
     border-style: solid;
     border-radius: 50px;
+    margin: 5px;
     border-width: 1px;
     border-color: #b4b4b4;
     
@@ -864,6 +867,8 @@ body{
     margin: 10px;
 
     padding: 20px;
+    padding-top: 8px;
+    padding-bottom: 12px;
     background-color: rgb(27, 30, 35);
     border-radius: 8px;
 
@@ -884,6 +889,8 @@ body{
     text-decoration: none;
     margin: 10px;
     padding: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     background-color: rgb(27, 30, 35);
     border-radius: 8px;
 
@@ -1144,6 +1151,7 @@ div.cardtext div.card-brief-desc {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-bottom: 50px;
 }
 
 .img-with-circle2 {
@@ -1335,8 +1343,15 @@ div.cardtext div.card-brief-desc {
     padding: 10px;
     margin-bottom: 20px;
     border-bottom: 1px solid black;
-
 }
+#page-div2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
 
 .page-link, .page-link:link, .page-link:visited  {
     text-decoration: none;

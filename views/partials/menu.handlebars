@@ -73,6 +73,12 @@
                 menu.style.display = 'block';
             }
             });
+
+            document.addEventListener('click', function (event) {
+                if (menu.style.display === 'block' && event.target !== toggleMenuButton) {
+                    menu.style.display = 'none';
+                }
+            });
             
             function adjustMenuVisibility() {
                 if (window.innerWidth > 700) {

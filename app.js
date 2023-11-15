@@ -6,7 +6,7 @@ const sqlite3 = require('sqlite3')
 const connectSqlite3 = require('connect-sqlite3')
 const cookieParser = require('cookie-parser')
 const bcrypt = require('bcrypt')
-const port = 5000 // defines the port
+const port = 8000 // defines the port
 const app = express() // creates the Express application
 const db = new sqlite3.Database('portfolio.db')
 
