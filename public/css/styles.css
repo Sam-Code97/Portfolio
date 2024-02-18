@@ -428,6 +428,10 @@ body{
     transition: transform 1s;
 }
 
+[id^=flipCheckbox]:checked + .click-to-rotate {
+    display: none;
+}
+
 .cardtext{
     padding: 40px;
 }
