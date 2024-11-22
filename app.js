@@ -61,6 +61,9 @@ db.run("CREATE TABLE projects (pid INTEGER PRIMARY KEY, pname TEXT NOT NULL, pye
       { "id":"1", "name":"Advanced Snake Game", "type":"Research", "desc": "Dive into a classic snake game with a twist! Implemented in C++ using the Qt framework, this game not only offers the traditional snake gameplay but also boasts an advanced pathfinding algorithm, ensuring a challenging and engaging experience.", "year": 2022, "dev":"C++ and Qt framework", 
       "techdesc" : "The Snake Game project is a C++ application that utilizes the Qt framework for its GUI components. The game logic is encapsulated within various classes, including MainWindow, which handles the game's main interface and user interactions. The game's rendering is managed by the Drawing class, which interfaces with the IDrawingParent to handle pixel-level manipulations. Recursive algorithms are employed for specific game functionalities, as seen in the recursiveFill method. The project is structured with a clear separation of concerns, making it modular and maintainable.",
       "url":"/img/snake.png", "github":"https://github.com/Sam-Code97/snakeGame"},
+      { "id":"3", "name":"Paint App", "type":"Research", "desc": "Dive into a world of creativity with this simple painting application. Harnessing intricate algorithms, this app offers boundary-fill, flood-fill, and scan-line fill techniques to bring your artistic visions to life.", "year": 2022, 
+      "techdesc" : "The Paint_App is a comprehensive painting application developed in C++. It leverages advanced algorithms for features like recursive and non-recursive filling. The core functionalities are encapsulated within classes such as Drawing and MainWindow, ensuring modularity and maintainability. The application uses Qt for its GUI, providing a seamless user experience. Notably, the fill algorithms, both recursive and non-recursive (using stacks and FIFOs), are implemented in the studentfill1.cpp and studentfill2.cpp files. The main interactions and GUI updates are managed in the mainwindow.cpp and drawing.cpp files.",
+      "url":"/img/paint.png", "github":"https://github.com/Sam-Code97/Paint_App" },
       {
         "id": "2",
         "name": "Weather App iOS",
@@ -71,12 +74,11 @@ db.run("CREATE TABLE projects (pid INTEGER PRIMARY KEY, pname TEXT NOT NULL, pye
         "url": "/img/weather.jpg",
         "github": "https://github.com/Sam-Code97/Weather-App-IOS"
       },
-      
-      { "id":"3", "name":"Paint App", "type":"Research", "desc": "Dive into a world of creativity with this simple painting application. Harnessing intricate algorithms, this app offers boundary-fill, flood-fill, and scan-line fill techniques to bring your artistic visions to life.", "year": 2022, 
-      "techdesc" : "The Paint_App is a comprehensive painting application developed in C++. It leverages advanced algorithms for features like recursive and non-recursive filling. The core functionalities are encapsulated within classes such as Drawing and MainWindow, ensuring modularity and maintainability. The application uses Qt for its GUI, providing a seamless user experience. Notably, the fill algorithms, both recursive and non-recursive (using stacks and FIFOs), are implemented in the studentfill1.cpp and studentfill2.cpp files. The main interactions and GUI updates are managed in the mainwindow.cpp and drawing.cpp files.",
-      "url":"/img/paint.png", "github":"https://github.com/Sam-Code97/Paint_App" },
+      { "id":"7", "name":"Webstore Database", "desc": "Manage your online store efficiently with the Webstore Database, a structured SQL schema for product and order management.", "year": 2022, "type":"Education", 
+        "techdesc" : "The Webstore Database is an SQL-based schema designed for e-commerce platforms. It includes tables for customers, orders, products, sellers, and more, with intricate relationships and constraints to ensure data integrity. The schema supports complex queries for transactions, inventory management, and customer interactions. It is built with triggers for dynamic updates and is optimized for performance with proper indexing.",
+        "url":"/img/webstore.png" , "github":"https://github.com/Sam-Code97/Webstore-Database"},
       {
-        "id": "4",
+        "id": "8",
         "name": "Ludo Game Android App",
         "desc": "Dive into the classic board game experience with the Ludo Game Android App. Developed as a collaborative project by me and my colleague Ahmednur (Link in Github), this app brings the fun of Ludo to your Android device, allowing for engaging gameplay with beautiful, modern UI.",
         "year": 2023,
@@ -85,22 +87,19 @@ db.run("CREATE TABLE projects (pid INTEGER PRIMARY KEY, pname TEXT NOT NULL, pye
         "url": "/img/ludo.jpg",
         "github": "https://github.com/Sam-Code97/Ludo-game_-Android-"
       },
-      { "id":"5", "name":"Notes Android App", "desc": "Organize your thoughts and tasks with the Notes Android App – a sleek, user-friendly mobile application for note-taking on the go.", "year": 2023, "type":"Education", 
-      "techdesc" : "The Notes Android App is developed in Kotlin, leveraging the Android SDK with a minimum API level of 28 and targeting API level 34. It utilizes AndroidX libraries, including Compose for UI, and integrates Navigation Component for seamless screen transitions. The app is built using Gradle with Kotlin DSL for script writing, and it employs Material Design 3 for a modern aesthetic. The architecture is modular, with clear separation of concerns for maintainability.",
-      "url":"/img/noteapp.png" , "github":"https://github.com/Sam-Code97/Notes-Android-App"},
-      { "id":"6", "name":"Webstore Database", "desc": "Manage your online store efficiently with the Webstore Database, a structured SQL schema for product and order management.", "year": 2022, "type":"Education", 
-      "techdesc" : "The Webstore Database is an SQL-based schema designed for e-commerce platforms. It includes tables for customers, orders, products, sellers, and more, with intricate relationships and constraints to ensure data integrity. The schema supports complex queries for transactions, inventory management, and customer interactions. It is built with triggers for dynamic updates and is optimized for performance with proper indexing.",
-      "url":"/img/webstore.png" , "github":"https://github.com/Sam-Code97/Webstore-Database"},
-      { "id":"7", "name":"Calculation Algorithm", "type":"Education", "desc": "A sophisticated calculator algorithm developed in C++, showcasing a robust parsing mechanism to evaluate mathematical expressions. The project is designed with a clear focus on tokenization and operator precedence.", "year": 2022, 
+      { "id":"9", "name":"Notes Android App", "desc": "Organize your thoughts and tasks with the Notes Android App – a sleek, user-friendly mobile application for note-taking on the go.", "year": 2023, "type":"Education", 
+        "techdesc" : "The Notes Android App is developed in Kotlin, leveraging the Android SDK with a minimum API level of 28 and targeting API level 34. It utilizes AndroidX libraries, including Compose for UI, and integrates Navigation Component for seamless screen transitions. The app is built using Gradle with Kotlin DSL for script writing, and it employs Material Design 3 for a modern aesthetic. The architecture is modular, with clear separation of concerns for maintainability.",
+        "url":"/img/noteapp.png" , "github":"https://github.com/Sam-Code97/Notes-Android-App"},
+      { "id":"10", "name":"Calculation Algorithm", "type":"Education", "desc": "A sophisticated calculator algorithm developed in C++, showcasing a robust parsing mechanism to evaluate mathematical expressions. The project is designed with a clear focus on tokenization and operator precedence.", "year": 2022, 
       "techdesc" : "The Calculation_Algorithm is a C++ application designed to parse and evaluate mathematical expressions. It employs a token-based approach, as defined in the token.h file, to break down input strings into manageable units. The core algorithm, found in student6_calculator.cpp, uses stacks to handle values and operators, ensuring accurate evaluation of infix expressions. The application also incorporates a GUI, developed using the Qt framework, to provide a user-friendly interface for input and results.",
       "url":"/img/calculator.png", "github":"https://github.com/Sam-Code97/Calculation_Algorithm" },
-      { "id":"8", "name":"BetterTicTacToe", "desc": "An enhanced version of the classic Tic Tac Toe game, developed in Java. The project showcases a strong Object-Oriented Design, with distinct classes representing game components, rules, and user interactions.", "year": 2023, "type":"Education", 
+      { "id":"11", "name":"BetterTicTacToe", "desc": "An enhanced version of the classic Tic Tac Toe game, developed in Java. The project showcases a strong Object-Oriented Design, with distinct classes representing game components, rules, and user interactions.", "year": 2023, "type":"Education", 
       "techdesc" : "BetterTicTacToe is a Java-based implementation of the Tic Tac Toe game, this project employs object-oriented principles to structure its game engine. It features an interface GameRules to define core game functionalities, with separate classes for different game rules like TicTacToeRules and ConnectFourRules. The game logic is managed by the GameEngine class, while the Controller class bridges the game logic and the user interface, implemented using Java Swing in the View class.",
       "url":"/img/tictactoe.png" , "github":"https://github.com/Sam-Code97/BetterTicTacToe"},
-      { "id":"9", "name":"Simple Notepad", "desc": "A lightweight notepad application developed in C++ using the Qt framework. It offers essential features like opening, saving, and clearing text files, all wrapped in a user-friendly graphical interface.", "year": 2022, "type":"Other", 
+      { "id":"12", "name":"Simple Notepad", "desc": "A lightweight notepad application developed in C++ using the Qt framework. It offers essential features like opening, saving, and clearing text files, all wrapped in a user-friendly graphical interface.", "year": 2022, "type":"Other", 
       "techdesc" : "Simple_Notepad is developed in C++ with the Qt framework, this application provides a basic notepad functionality. The core logic is encapsulated within the SamMainWindow class, which manages user interactions like opening, saving, and clearing text files. The GUI, defined in sammainwindow.ui, offers a text edit area and essential menu options. The application's entry point is the main.cpp file, initializing the main window and executing the application loop.",
       "url":"/img/notepad.png" , "github":"https://github.com/Sam-Code97/Simple_Notepad"},
-      { "id":"10", "name":"Encryption Tool", "desc": "Enhance your understanding of classic cryptography with the Encryption Tool, a Java application for Caesar cipher encryption and decryption.", "year": 2023, "type":"Education", 
+      { "id":"13", "name":"Encryption Tool", "desc": "Enhance your understanding of classic cryptography with the Encryption Tool, a Java application for Caesar cipher encryption and decryption.", "year": 2023, "type":"Education", 
       "techdesc" : "EncryptionTool: Developed in Java, this tool provides basic encryption and decryption functionalities. The core logic resides in the EncryptionEngine class, which employs a Caesar cipher-like approach, shifting characters based on a user-defined key. The Controller class manages the interaction between the user interface and the encryption engine. The GUI, defined in the View class, captures user inputs and displays results. Additionally, the project includes unit tests for the encryption engine in the EncryptionEngineTest class.",
       "url":"/img/encryp.png" , "github":"https://github.com/Sam-Code97/EncryptionTool"},
       
@@ -128,7 +127,7 @@ db.run("CREATE TABLE users (uid INTEGER PRIMARY KEY, username TEXT NOT NULL, pas
   else {
     console.log("---> Table users created!")
     const users = [
-      {"id":"1", "username":"sam", "password":"$2b$10$baQr.ebGvciUC7tM6ZcrUOmpQbbkPzsylf66tYQpa5UaMHNYJZYvW"},
+      {"id":"1", "username":"sam", "password":"$2b$10$4M5cx6sDKrMJbfaKx1Jr8eQoBP1DL537xs8ANpCnP1UY17DMOf1.i"},
       {"id":"5", "username":"Sadio", "password":"$2b$10$6vhkGIX.kmHct035Ferf6O4aK3sSLdVNoPbsoMhNI33xoQG1HZKbW"},
       
     ]
@@ -542,7 +541,7 @@ app.post('/projects/update/:id', (req, res) => {
 app.get('/projects/:page', (req, res) => {
   console.log("inside rout projects/page");
   const page = parseInt(req.params.page);
-  const numberPerPage = 6;
+  const numberPerPage = 14;
 
   db.get("SELECT COUNT(*) as total FROM projects", (error, row) => {
     if(error){
@@ -599,6 +598,7 @@ app.get('/projects/:page', (req, res) => {
                 prevPage: (page - 1 <= 0) ? null : page - 1,
                 lastPage: lastPg,
                 firstPage: 1,
+                isMoreThanOnePage: lastPg > 1,
                 isLoggedIn: req.session.isLoggedIn,
                 name: req.session.name,
                 isAdmin: req.session.isAdmin,

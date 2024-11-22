@@ -6,15 +6,17 @@
                 <a href="/projects/new" class="btn2">New project</a>
             {{/if}}
         </div>
-        <div class="page-div">
-            <!--<a class="page-link" href="/projects/{{firstPage}}">First</a>-->
-            <a class="page-link" href="/projects/{{prevPage}}">Prev</a>
-            {{#each pages}}
-                <a class="{{#if_eq ../projectPage this}}active-link2{{else}}page-link{{/if_eq}}" href="/projects/{{this}}">{{this}}</a>
-            {{/each}}
-            <a class="page-link" href="/projects/{{nextPage}}">Next</a>
-            <!--<a class="page-link" href="/projects/{{lastPage}}">Last</a>-->
-        </div>
+         {{#if isMoreThanOnePage}}
+            <div class="page-div">
+                <!--<a class="page-link" href="/projects/{{firstPage}}">First</a>-->
+                <a class="page-link" href="/projects/{{prevPage}}">Prev</a>
+                {{#each pages}}
+                    <a class="{{#if_eq ../projectPage this}}active-link2{{else}}page-link{{/if_eq}}" href="/projects/{{this}}">{{this}}</a>
+                {{/each}}
+                <a class="page-link" href="/projects/{{nextPage}}">Next</a>
+                <!--<a class="page-link" href="/projects/{{lastPage}}">Last</a>-->
+            </div>
+        {{/if}}
         <div class="columns">
             {{#if hasDatabaseError}}
             <div>
@@ -75,15 +77,17 @@
                 {{/each}}
             {{/if}}
         </div>
-        <div id="page-div2">
-            <!--<a class="page-link" href="/projects/{{firstPage}}">First</a>-->
-            <a class="page-link" href="/projects/{{prevPage}}">Prev</a>
-            {{#each pages}}
-                <a class="{{#if_eq ../projectPage this}}active-link2{{else}}page-link{{/if_eq}}" href="/projects/{{this}}">{{this}}</a>
-            {{/each}}
-            <a class="page-link" href="/projects/{{nextPage}}">Next</a>
-            <!--<a class="page-link" href="/projects/{{lastPage}}">Last</a>-->
-        </div>
+        {{#if isMoreThanOnePage}}
+            <div id="page-div2">
+                <!--<a class="page-link" href="/projects/{{firstPage}}">First</a>-->
+                <a class="page-link" href="/projects/{{prevPage}}">Prev</a>
+                {{#each pages}}
+                    <a class="{{#if_eq ../projectPage this}}active-link2{{else}}page-link{{/if_eq}}" href="/projects/{{this}}">{{this}}</a>
+                {{/each}}
+                <a class="page-link" href="/projects/{{nextPage}}">Next</a>
+                <!--<a class="page-link" href="/projects/{{lastPage}}">Last</a>-->
+            </div>
+        {{/if}}
         <div class="comments-border">
             <h2 id="comments-header">Comments:</h2>
         </div>

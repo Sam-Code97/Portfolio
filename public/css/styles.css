@@ -21,18 +21,18 @@ a, a:active, a:focus, a:checked{
     white-space: nowrap;
     padding: 3px;
 
-    border-bottom: 1px solid black;
+    /* border-bottom: 1px solid black; */
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-size: 18px;
 }
 
 .active-link {
-    border: 2px solid  rgb(46, 134, 231);
+    border: 2px solid  rgb(64, 76, 91);
     opacity: 0.5;
     animation: y-entry 1s forwards;
 }
 .active-link2, .active-link2:link, .active-link2:visited {
-    border: 2px solid  rgb(46, 134, 231);
+    border: 2px solid  rgb(64, 76, 91);
     text-decoration: none;
     color: white;
     font-size: 12px;
@@ -208,7 +208,8 @@ a, a:active, a:focus, a:checked{
 
 
 body{
-    background: linear-gradient(90deg, rgb(38, 43, 51), rgb(47, 55, 66));
+    /* background: linear-gradient(90deg, rgb(38, 43, 51), rgb(47, 55, 66)); */
+    background: #2b323c;
     margin: 0;          
     padding: 0;         
     width: 100vw;       
@@ -230,7 +231,7 @@ body{
     transition: background-color 0.1s;
 
     border-radius: 8px;
-
+    z-index: 11;
 }
 
 .btn1:hover{
@@ -274,22 +275,22 @@ body{
     
     text-decoration: none;
     padding: 20px;
-    background-color: rgb(48, 71, 104);
+    background-color: rgb(76, 90, 108);
     transition: background-color 0.1s;
     border-radius: 8px;
 
     margin: 10px;
-
+    z-index: 1;
 }
 
 .btn2:hover{
-    background-color: rgb(33, 52, 80);
+    background-color: rgb(55, 65, 79);
 
 }
 
 .blog-card, .blog-card:link, .blog-card:visited, .blog-card:active, .blog-card:focus{
     
-    max-height: 900px;
+    height: 550px;
     margin-bottom: 25px;
     text-decoration: none;
     color: rgb(228, 228, 228);
@@ -318,6 +319,7 @@ body{
 
 .headbtn{
     display: flex;
+    z-index: 1;
 }
 
 .card-title{
@@ -341,7 +343,6 @@ body{
     border-color: #00000000;
     box-shadow: 0px 0px 10px black;
     background-color: rgb(30, 34, 39);
-
 }
 
 
@@ -357,7 +358,7 @@ body{
     margin-left: auto;
     margin-right: auto;
     max-width: 500px;
-    min-height: 750px;
+    min-height: 700px;
     perspective: 1000px;
     margin-bottom: 20px;
     transition: transform 0.5s;
@@ -367,13 +368,14 @@ body{
 }
 .card:hover{
     transform: rotateY(30deg);
-    box-shadow: 10px 0px 20px black;    
+    box-shadow: 10px 10px 20px black;   
+    transition: all 0.5s;  
     cursor: pointer;
 }
 @media screen and (max-width: 700px) {
     .card:hover{
         transform: rotateY(0deg);
-        box-shadow: 0px 0px 10px black;    
+        box-shadow: 0px 0px 10px black;  
         cursor: pointer;
     }
 }
@@ -390,20 +392,24 @@ body{
     z-index: 2;
 }
 
+.card:hover .click-to-rotate {
+    box-shadow: 0px 0px 0px black;
+    transition: all 0.5s;  
+}
 
 .click-to-rotate{
     position: absolute;
     bottom: 0; 
     right: 0;
     margin: 1px;
-    box-shadow: -2px -2px 5px black;
+    box-shadow: -2px -2px 5px rgb(17, 26, 38);
     font-size: 16px;
     width: 150px;
     padding: 3px;
     border-top-left-radius: 40px;
     border-bottom-right-radius: 10px;
     background-color: rgb(37, 55, 79);
-
+    transition: all 0.5s;  
     z-index: 9999;
 }
 
@@ -412,7 +418,7 @@ body{
     bottom: 0; 
 
     margin: 1px;
-    box-shadow: 2px -2px 5px black;
+    box-shadow: 2px -2px 5px rgb(17, 26, 38);
     font-size: 16px;
     width: 150px;
     padding: 3px;
@@ -434,6 +440,7 @@ body{
 
 .cardtext{
     padding: 40px;
+    padding-top: 20px;
 }
 
 .card-footer {
@@ -464,6 +471,17 @@ body{
     height: 100%;
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
+}
+
+.management-container{
+    display: flex;
+    z-index: 1;
+}
+#formnewuser{
+    z-index: 1;
+}
+#formedituser{
+    z-index: 1;
 }
 
 
@@ -687,12 +705,14 @@ body{
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    z-index: 10;
 }
 .blogcontainer{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    z-index: 10;
 }
 .fullblogmenu{
     display: flex;
@@ -705,14 +725,44 @@ body{
 
 }
 .text-magin{
-    margin-left: 20px;
-    margin-right: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 .article{
     display: flex;
     justify-content: center;
 }
+.article-summary{
+    display: flex;
+    max-height: 100px; /* Adjust this value based on your card size */
+    overflow-y: auto; /* Hide overflowed content */
+    text-overflow: ellipsis; /* Add ellipsis for trimmed text */
+    line-height: 1.5; /* Optional: Adjust for better readability */
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+.article-summary::-webkit-scrollbar {
+    width: 5px; /* Adjust scrollbar width */
+    margin-left: 10px;
+    padding-left: 10px;
+}
+
+.article-summary::-webkit-scrollbar-thumb {
+    background: rgb(64, 76, 91); /* Scrollbar color */
+    border-radius: 4px; /* Rounded edges */
+}
+
+.article-summary::-webkit-scrollbar-thumb:hover {
+    background: rgb(45, 55, 67); /* Darker color on hover */
+}
+
+.article-summary::-webkit-scrollbar-track {
+    background: rgb(141, 156, 177); /* Track color */
+    border-radius: 4px; /* Rounded edges */
+}
+
 .blog-header{
     color: white;
 }
@@ -746,13 +796,8 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-    background: rgb(34, 39, 47);
-    border-style: solid;
-    border-radius: 50px;
     margin: 5px;
-    border-width: 1px;
-    border-color: #b4b4b4;
-    
+    z-index: 1;
 }
 #about-me-img{
     max-width: 350px;
@@ -761,7 +806,7 @@ body{
     float: left; 
     border-radius: 50px;
     border-style: solid;
-    border-color: #b4b4b4;
+    border-color: rgb(64, 76, 91);
     border-width: 1px;
     background-color:  rgb(32, 36, 42);
     z-index: 2;  
@@ -793,6 +838,7 @@ body{
     opacity: 0;
     transform: translateX(-50px) translateY(-50px);
     animation: x-entry 1s forwards;
+    background: rgb(43, 50, 60);
 }
 .fa-cloud-download-alt{
     font-size: 20px;
@@ -829,7 +875,7 @@ body{
     text-align: center;
     font-size: 20px;
     margin: 30px;
-    background: rgb(34, 39, 47);
+    background: rgb(39, 46, 55);
     border-radius: 50px;
     opacity: 0;
     transform: translateY(40px);
@@ -955,7 +1001,7 @@ body{
     padding: 35px;
     box-shadow: 0px 0px 5px black;
     border-radius: 20px;
-    background-color: rgba(30, 34, 39, 0.285);
+    background-color: rgb(39, 46, 55);
 
     transition: all 1s ease 0.1s;
     transform: translateY(40px);
@@ -968,7 +1014,7 @@ body{
     padding: 35px;
     box-shadow: 0px 0px 5px black;
     border-radius: 20px;
-    background-color: rgba(30, 34, 39, 0.285);
+    background-color: rgb(39, 46, 55);
 }
 
 fieldset {
@@ -1071,6 +1117,7 @@ input[type="submit"]:hover {
     border-radius: 20px;
     background-color: rgb(33, 37, 44);
     color: rgb(218, 218, 218);
+    z-index: 1;
 }
 
 input{
@@ -1108,6 +1155,7 @@ input{
 .card-image{
     display: flex;
     justify-content: center;
+    z-index: 1;
 }
 
 .card .card-image {
@@ -1162,7 +1210,9 @@ div.cardtext div.card-brief-desc {
     position: relative;   /* Set the position to relative */
     display: inline-block; /* This will ensure the container wraps around the image */
     width: 330px;
-
+    margin-left: 40px;
+    margin-right: 40px;
+    z-index: 1;
     
 }
 .blue-circle2 {
@@ -1285,6 +1335,7 @@ div.cardtext div.card-brief-desc {
     opacity: 0;
     transform: translateY(30px);
     animation: descEntry 1s forwards;
+    background: rgb(43, 50, 60);
 }
 
 
@@ -1447,5 +1498,52 @@ div.cardtext div.card-brief-desc {
     background-color: rgba(30, 34, 39, 0.285);
     margin: 5px;
     
+}
+
+/*------------------------------------*/
+/* ---- particles.js container ---- */ 
+#particles-js {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #2b323c;
+    background-image: url("");
+}
+
+/* ---- stats.js ---- */
+.count-particles {
+    background: transparent;
+    position: absolute;
+    top: 48px;
+    left: 0;
+    width: 80px;
+    color: #13E8E9;
+    font-size: .8em;
+    text-align: left;
+    text-indent: 4px;
+    line-height: 14px;
+    padding-bottom: 2px;
+    font-family: Helvetica, Arial, sans-serif;
+    font-weight: bold;
+}
+
+.js-count-particles {
+    font-size: 1.1em;
+}
+
+#stats,
+.count-particles {
+    -webkit-user-select: none;
+    margin-top: 5px;
+    margin-left: 5px;
+}
+
+#stats {
+    border-radius: 3px 3px 0 0;
+    overflow: hidden;
+}
+
+.count-particles {
+    border-radius: 0 0 3px 3px;
 }
 
