@@ -1,7 +1,7 @@
 {
   "name": "myapp-2023",
   "version": "1.0.0",
-  "description": "Medical Records System",
+  "description": "Portfolio website",
   "main": "app.js",
   "engines": {
     "node": "18.x"
