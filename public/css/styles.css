@@ -765,14 +765,17 @@ body{
 
 .blog-header{
     color: white;
+    z-index: 1;
 }
 
 .blog-brief-desc{
     font-size: 20px;
+    z-index: 1;
 }
 .blog-body{
     font-size: 20px;
     margin-bottom: 100px;
+    z-index: 1;
 }
 /*--------------------------------------*/
 .flex-container{
